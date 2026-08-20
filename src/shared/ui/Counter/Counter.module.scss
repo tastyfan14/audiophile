@@ -5,7 +5,7 @@
 
 .counter {
     @include flex($align: center, $gap: sm);
-    @include space(padding, m4, sm, m4, sm);
+    @include space(padding, m3, sm, m3, sm);
     background-color: var(--bg-tertiary);
 
     &__value {
