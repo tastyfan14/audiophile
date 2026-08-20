@@ -1,0 +1,36 @@
+@use '@/shared/styles/mixins' as *;
+@use '@/shared/styles/functions' as *;
+
+//
+
+.counter {
+    @include flex($align: center, $gap: sm);
+    @include space(padding, m4, sm, m4, sm);
+    background-color: var(--bg-tertiary);
+
+    &__value {
+        @include font(bold, var(--font-manrope), var(--text-secondary), auto, 3xl);
+        font-size: get-font-size(sm);
+
+        @include space(margin, 0, m0, 0, m1);
+
+        max-width: 6ch;
+        text-align: center;
+        font-variant-numeric: tabular-nums;
+    }
+
+    &__button {
+        transition: color .1s linear;
+
+        @include space(padding, m0, m1, m0, m1);
+    }
+
+    &__button:hover {
+        color: var(--text-accent-primary);
+    }
+
+    &__button:focus-visible {
+        outline: rem(2) solid var(--bg-i-accent-primary);
+        outline-offset: get-space(m0);
+    }
+}
