@@ -1,6 +1,7 @@
-import AppLayout from '@/shared/ui/layout/ui/AppLayout';
 import type { Metadata } from 'next'
 import { Manrope } from 'next/font/google'
+import '@/shared/styles/main.scss'
+import AppLayout from '@/shared/ui/layout/ui/AppLayout'
 
 const ManropeFont = Manrope({
     variable: '--font-manrope',
