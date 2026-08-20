@@ -1,0 +1,19 @@
+@use '@/shared/styles/mixins' as *; // instruments
+@use '@/shared/styles/functions' as *; // instruments
+
+//
+
+.container {
+    @include size(width, full, get-breakpoint(mobile), get-breakpoint(desktopIn)); // min: 375px, max: 940px
+
+    @include space(margin, 0, auto, 0, auto);
+    padding-inline: get-inline(); // base mobile - mobileIn
+
+    @include breakpoint(laptop) {
+        padding-inline: get-inline(laptop, laptopIn);
+    };
+
+    @include breakpoint(desktop) {
+        padding-inline: 0;
+    };
+}

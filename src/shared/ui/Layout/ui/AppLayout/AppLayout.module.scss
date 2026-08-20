@@ -1,0 +1,12 @@
+@use '@/shared/styles/mixins' as *; // instruments
+@use '@/shared/styles/functions' as *; // instruments
+
+//
+
+.app-layout {
+    min-width: 100dvw;
+    min-height: 100dvh;
+    max-width: 100dvw;
+
+    @include flex($direction: column);
+}
