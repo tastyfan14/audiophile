@@ -1,0 +1,150 @@
+@use '@/shared/styles/mixins' as *;
+@use '@/shared/styles/functions' as *;
+
+//
+
+%btn {
+    @include typography(subtitle);
+    line-height: 1; // reset for btn(- additional)
+    text-transform: uppercase;
+
+    @include flex($justify: center, $align: center, $gap: sm);
+
+    will-change: transform;
+
+    cursor: pointer;
+
+    &:focus-visible {
+        outline-offset: get-space(m0);
+    }
+
+    &:active {
+        transform: scale(.98);
+    }
+}
+
+.primary, .secondary {
+    @extend %btn;
+
+    @include space(padding, md, 7xl, md, 7xl);
+}
+
+.primary {
+    background-color: var(--bg-accent-primary);
+
+    color: var(--text-primary);
+
+    border: rem(1) solid var(--border-accent-primary);
+
+    transition: background-color .1s linear, border-color .1s linear, transform .1s linear;
+
+    &:hover {
+        background-color: var(--bg-accent-primary-hover);
+
+        border-color: var(--border-accent-primary-hover);
+    }
+
+    &:focus-visible {
+        outline: rem(2) solid var(--bg-accent-primary);
+    }
+}
+
+.secondary {
+    background-color: transparent;
+
+    color: var(--text-secondary);
+
+    border: rem(1) solid var(--border-secondary);
+
+    transition: background-color .1s linear, color .1s linear, transform .1s linear;
+
+    &:hover {
+        color: var(--text-primary);
+
+        background-color: var(--bg-secondary);
+    }
+
+    &:focus-visible {
+        outline: rem(2) solid var(--bg-secondary);
+    }
+}
+
+.tertiary {
+    @extend %btn;
+
+    @include space(padding, m4, sm, m4, sm);
+
+    @include flex($justify: center, $align: center, $gap: sm);
+
+    background-color: transparent;
+
+    color: var(--text-tertiary);
+
+    transition: background-color .1s linear, color .1s linear, transform .1s linear;
+
+    & svg {
+        //
+
+        & path {
+            stroke: var(--bg-i-accent-primary);
+        }
+    }
+
+    &:hover {
+        color: var(--text-accent-primary);
+    }
+
+    &:focus-visible {
+        outline: rem(2) solid currentColor;
+    }
+
+    &:active {
+        transform: scale(.96);
+    }
+}
+
+.icon {
+    @extend %btn;
+
+    @include space(padding, m0, m0, m0, m0);
+
+    transition: transform .1s linear;
+
+    & svg {
+        //
+        
+        & path, & stroke, & rect, & circle {
+            transition: fill .1s linear, stroke .1s linear;
+        }
+    }
+
+    &:focus-visible {
+        outline: rem(2) solid currentColor;
+    }
+
+    &:active {
+        transform: scale(.96);
+    }
+}
+
+.additional {
+    @extend %btn;
+
+    @include typography(body);
+    color: var(--text-tertiary);
+    text-transform: none;
+
+    transition: color .1s linear, transform .1s linear;
+
+    &:hover {
+        color: var(--bg-accent-primary);
+    }
+
+    &:focus-visible {
+        outline: rem(2) solid var(--bg-accent-primary);
+    }
+
+    &:active {
+        transform: scale(.96);
+    }
+}
