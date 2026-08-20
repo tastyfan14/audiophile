@@ -1,0 +1,219 @@
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:math';
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/functions' as *;
+
+// Flex
+// @include flex(); - it will only transmit 'display: flex;'
+@mixin flex($direction: row, $justify: null, $align: null, $gap: 0, $wrap: nowrap) {
+    display: flex;
+    @if $direction == row or $direction == column {
+        flex-direction: $direction;
+    }
+    @if $justify != null {
+        justify-content: $justify;
+    }
+    @if $align != null {
+        align-items: $align;
+    }
+    @if $gap != null and $gap != 0 {
+        gap: rem(map.get($spacing, $gap));
+    }
+    @if $wrap == wrap or $wrap == nowrap {
+        flex-wrap: $wrap;
+    }
+}
+
+// A mixin for building a font, font-size is not used inside, so @mixin adaptive is applied to font-size.
+@mixin font($weight: null, $family: null, $color: null, $line-height: null, $letter-spacing: null) {
+    @if $weight != null and $family != null and $color != null {
+        @if not map.has-key($font-weights, $weight) {
+            @error " If you see this error, then the variable is not in the '$font-weights' map. Current value: '#{$weight}' ";
+        } @else {
+            font-weight: map.get($font-weights, $weight);
+        }
+
+        font-family: $family;
+
+        @if $color == CurrentColor {
+            color: CurrentColor;
+        } @else {
+            color: $color;
+        }
+
+        @if $line-height != null {
+            @if $line-height == auto {
+                line-height: auto;
+            } @else if not map.has-key($line-heights, $line-height) {
+                @error " If you see this error, then the variable is not in the '$line-heights' map. Current value: '#{$line-height}' ";
+            } @else if math.unit(map.get($line-heights, $line-height)) == '%' {
+                line-height: map.get($line-heights, $line-height);
+            } @else {
+                line-height: rem(map.get($line-heights, $line-height));
+            }
+        }
+
+        @if $letter-spacing != null {
+            @if $letter-spacing == 0 {
+                letter-spacing: 0;
+            } @else {
+                letter-spacing: rem(map.get($letter-spacings, $letter-spacing));
+            }
+        }
+    }
+}
+
+// Mixin using clamp and subtracting the extremum for adaptation.
+// $property = any, for example - width, font-size, height
+// $min = minimum value
+// $max = maximum value
+// $min-vp and $max-vp = It is set automatically in the function and usually does not expect to change during use.
+@mixin adaptive(
+    $property: null,
+    $min: null,
+    $max: null,
+    $min-vp: map.get($breakpoints, mobile), // The prefix mobile means viewport, a regular mob is the size of the container.
+    $max-vp: map.get($breakpoints, desktop)
+    ) {
+        @if $property == font-size {
+            #{$property}: clamp(rem(#{map.get($font-sizes, $min)}), calc(rem(#{map.get($font-sizes, $min)}) + (rem(#{map.get($font-sizes, $max)}) - rem(#{map.get($font-sizes, $min)})) * ((100vw - rem(#{$min-vp})) / (rem(#{$max-vp}) - rem(#{$min-vp})))), rem(#{map.get($font-sizes, $max)}));
+        } @else if $property != null and $min != null and $max != null {
+            #{$property}: clamp(rem(#{$min}), calc(rem(#{$min}) + (rem(#{$max}) - rem(#{$min})) * ((100vw - rem(#{$min-vp})) / (rem(#{$max-vp}) - rem(#{$min-vp})))), rem(#{$max}));
+        }
+}
+
+// Mixin for media queries.
+// $min-value = saves the '$min' parameter in rem
+// $max-value = saves the '$max' parameter in rem
+@mixin breakpoint($min: null, $max: null) {
+    @if $min == null and $max == null {
+        @error " The mixin cannot be empty. ";
+    } @else {
+        $min-value: rem(map.get($breakpoints, $min));
+        $max-value: rem(map.get($breakpoints, $max));
+
+        @if ($min-value != null and $max-value != null) {
+            @media (min-width: #{$min-value}) and (max-width: #{$max-value}) {
+            @content;
+            }
+        } @else if $min-value != null {
+            @media (min-width: #{$min-value}) {
+            @content;
+            }
+        } @else if $max-value != null {
+            @media (max-width: #{$max-value}) {
+            @content;
+            }
+        }
+    }
+}
+
+// Universal mixin, padding and margin can be used.
+@mixin space($property: null, $t: null, $r: null, $b: null, $l: null) {
+    @if $property != null {
+        @if $t == 0 {
+            #{$property}-top: 0;
+        } @else if ($t == auto) {
+            #{$property}-top: auto;
+        } @else {
+            #{$property}-top: rem(map.get($spacing, $t));
+        }
+        
+        @if $r == 0 {
+            #{$property}-right: 0;
+        } @else if ($r == auto) {
+            #{$property}-right: auto;
+        } @else {
+            #{$property}-right: rem(map.get($spacing, $r));
+        }
+
+        @if $b == 0 {
+            #{$property}-bottom: 0;
+        } @else if ($b == auto) {
+            #{$property}-bottom: auto;
+        } @else {
+            #{$property}-bottom: rem(map.get($spacing, $b));
+        }
+
+        @if $l == 0 {
+            #{$property}-left: 0;
+        } @else if ($l == auto) {
+            #{$property}-left: auto;
+        } @else {
+            #{$property}-left: rem(map.get($spacing, $l));
+        }
+    } @else {
+        @error " The parameter '$property' must be padding or margin. Current value: '#{$property}' ";
+    }
+}
+
+// Mixin to build the size, minimum and maximum values, the types of checks are described inside.
+// The values to use:
+// full = 100%
+// min-content = min-content
+// max-content = max-content
+// fit-content = fit-content
+@mixin size($property: null, $p: null, $pmin: null, $pmax: null) {
+    @if ($property != null) {
+        @if ($p != null) {
+            @if ($p == full) {
+                #{$property}: 100%;
+            } @else if ($p == fit-content) {
+                #{$property}: fit-content;
+            } @else if ($p == min-content) {
+                #{$property}: min-content;
+            } @else if ($p == max-content) {
+                #{$property}: max-content;
+            } @else {
+                #{$property}: rem($p);
+            }
+        }
+
+        @if ($pmin != null) {
+            @if ($pmin == full) {
+                min-#{$property}: 100%;
+            } @else if ($pmin == min-content) {
+                min-#{$property}: min-content;
+            } @else if ($pmin == fit-content) {
+                min-#{$property}: fit-content;
+            } @else {
+                min-#{$property}: rem($pmin);
+            }
+        }
+
+        @if ($pmax != null) {
+            @if ($pmax == full) {
+                max-#{$property}: 100%;
+            } @else if ($pmax == fit-content) {
+                max-#{$property}: fit-content;
+            } @else if ($pmax == min-content) {
+                max-#{$property}: min-content;
+            } @else if ($pmax == max-content) {
+                max-#{$property}: max-content;
+            } @else {
+                max-#{$property}: rem($pmax);
+            }
+        }
+    } @else {
+        @error " The parameter '$property' must be width or height. Current value: '#{$property}' ";
+    }
+}
+
+// Special mixin made only for the printing house takes a variable with values from the typography map and converts it to font
+@mixin typography($class: null) {
+    $cls: map.get($typography, $class);
+
+    @if $class == null {
+        @error " The mixin cannot be empty. ";
+    } @else {
+        @include font(
+            map.get($cls, weight),
+            map.get($cls, family),
+            currentColor,
+            map.get($cls, line-height),
+            map.get($cls, letter-spacing)
+        );
+        font-size: get-font-size(map.get($cls, font-size));
+    }
+}

@@ -1,0 +1,243 @@
+// Breakpoints
+
+$breakpoints: (
+    mobile: 375, // Без суффикса означает разрешение экрана
+    mobileIn: 327, // Суффикс In означает размер контейнера
+    laptop: 768, //
+    laptopIn: 689, //
+    desktop: 1440, //
+    desktopIn: 1110, //
+
+    preLaptop: 512, // Calculation formula: / 3, x 2
+    postMobile: 437, // Calculation formula: / 3, / 2, x 7 - 0.5
+);
+
+// Space (margin, padding)
+
+$spacing: (
+    // xs, sm, md, lg, lx = UI
+    xs: 12,
+    sm: 14,
+    md: 16,
+    lg: 18,
+    xl: 20,
+    2xl: 22,
+    3xl: 24,
+    4xl: 26,
+    5xl: 28,
+    6xl: 30,
+    7xl: 32,
+    8xl: 36,
+    9xl: 38,
+
+    // m = micro
+    m0: 2,
+    m1: 4,
+    m2: 6,
+    m3: 8,
+    m4: 10,
+
+    // l = layout (l != 1)
+    l0: 40,
+    l1: 48,
+    l2: 56,
+    l3: 64,
+    l4: 72,
+    l5: 80,
+    l6: 90,
+    l7: 100,
+    l8: 110,
+    l9: 120,
+    l10: 130,
+    l11: 140,
+    l12: 150,
+    l13: 160,
+    l14: 170,
+    l15: 180,
+    l16: 190,
+    l17: 200,
+
+    // s = section
+    s0: 100,
+    s1: 128,
+    s2: 162,
+    s3: 200,
+    s4: 252,
+);
+
+// Border
+
+$border-radius: (
+    circle: 50%,
+
+    6xs: 2,
+    5xs: 4,
+    4xs: 6,
+    3xs: 8,
+    2xs: 10,
+    xs: 12,
+    sm: 14,
+    md: 16,
+    lg: 18,
+    xl: 20,
+    2xl: 22,
+    3xl: 24,
+    4xl: 26,
+    5xl: 28,
+    6xl: 30,
+
+    ten: 100,
+);
+
+// Font
+
+$font-sizes: (
+    6xs: 2,
+    5xs: 4,
+    4xs: 6,
+    3xs: 8,
+    2xs: 10,
+    xs: 12,
+    sm: 14,
+    md: 16,
+    lg: 18,
+    xl: 20,
+    2xl: 22,
+    3xl: 24,
+    4xl: 26,
+    5xl: 28,
+    6xl: 30,
+    7xl: 32,
+    8xl: 36,
+    9xl: 38,
+    10xl: 40,
+    11xl: 42,
+    12xl: 44,
+    13xl: 46,
+    14xl: 48,
+    15xl: 50,
+    16xl: 52,
+    17xl: 54,
+    18xl: 56,
+    19xl: 58,
+    20xl: 60,
+    21xl: 62,
+    22xl: 64,
+    23xl: 66,
+    24xl: 68,
+    25xl: 70,
+    26xl: 72,
+    27xl: 74,
+    28xl: 76,
+    29xl: 78,
+    30xl: 80,
+);
+
+$font-weights: (
+    regular: 400,
+    medium: 500,
+    bold: 700,
+);
+
+$line-heights: (
+    lg: 18,
+    xl: 20,
+    3xl: 24,
+    7xl: 32,
+    8xl: 36,
+    9xl: 38,
+    10xl: 40,
+    12xl: 44,
+    19xl: 58,
+    twelve: 120%,
+    thirteen: 130%,
+    fourteen: 140%,
+    fifteen: 150%,
+);
+
+$letter-spacings: (
+    3xs: -.96,
+    2xs: -.72,
+    xs: -.48,
+    sm: -.24,
+    md: 0,
+    lg: .24,
+    xl: .48,
+    2xl: .72,
+    3xl: .96,
+    4xl: 1.2,
+    5xl: 1.44,
+    6xl: 1.68,
+    7xl: 1.92,
+    8xl: 2.16,
+    9xl: 2.4,
+    10xl: 2.64,
+
+    ten: 10,
+);
+
+$typography: (
+    h1: (
+        weight: bold,
+        family: var(--font-manrope),
+        line-height: 19xl,
+        letter-spacing: 7xl,
+        font-size: 18xl,
+    ),
+    h2: (
+        weight: bold,
+        family: var(--font-manrope),
+        line-height: 12xl,
+        letter-spacing: 5xl,
+        font-size: 10xl,
+    ),
+    h3: (
+        weight: bold,
+        family: var(--font-manrope),
+        line-height: 8xl,
+        letter-spacing: 4xl,
+        font-size: 7xl,
+    ),
+    h4: (
+        weight: bold,
+        family: var(--font-manrope),
+        line-height: 9xl,
+        letter-spacing: 19xl,
+        font-size: 5xl,
+    ),
+    h5: (
+        weight: bold,
+        family: var(--font-manrope),
+        line-height: 7xl,
+        letter-spacing: 6xl,
+        font-size: 3xl,
+    ),
+    h6: (
+        weight: bold,
+        family: var(--font-manrope),
+        line-height: 3xl,
+        letter-spacing: 4xl,
+        font-size: lg,
+    ),
+    overline: (
+        weight: regular,
+        family: var(--font-manrope),
+        line-height: lg,
+        letter-spacing: ten,
+        font-size: sm,
+    ),
+    subtitle: (
+        weight: bold,
+        family: var(--font-manrope),
+        line-height: 3xl,
+        letter-spacing: 3xl,
+        font-size: sm,
+    ),
+    body: (
+        weight: medium,
+        family: var(--font-manrope),
+        line-height: 3xl,
+        letter-spacing: md,
+        font-size: md,
+    ),
+);

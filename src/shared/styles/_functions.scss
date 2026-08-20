@@ -1,0 +1,92 @@
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:meta';
+@use '@/shared/styles/tokens' as *;
+
+// Function converting px to rem
+// $size = a number without subsequent characters
+@function rem($size) {
+    @if $size == null {
+        @return null;
+    } @else if $size == 0 {
+        @return 0;
+    } @else {
+        @return math.div($size, 16) * 1rem;
+    }
+}
+
+// Function to get the radius from map $border-radius
+// $size = variable without px, %, etc
+@function get-radius($size) {
+    @if $size == null {
+        @return null;
+    } @else if not map.has-key($border-radius, $size) {
+        @error " If you see this error, then the variable is not in the '$border-radius' map. Current value: '#{$size}' ";
+    } @else if meta.type-of(map.get($border-radius, $size)) == 'number' and math.unit(map.get($border-radius, $size)) == '%' {
+        @return map.get($border-radius, $size);
+    } @else if $size == 0 {
+        @return 0;
+    } @else {
+        @return rem(map.get($border-radius, $size)); // The numeric value is converted to rem, conversion is required.
+    }
+}
+
+// Function to get the font-size from map $font-size
+// $size = variable without px, %, etc
+@function get-font-size($size) {
+    @if $size == null {
+        @return null;
+    } @else if not map.has-key($font-sizes, $size) {
+        @error " If you see this error, then the variable is not in the '$font-sizes' map. Current value: '#{$size}' ";
+    } @else if $size == 0 {
+        @return 0;
+    } @else {
+        @return rem(map.get($font-sizes, $size)); // The numeric value is converted to rem, conversion is required.
+    }
+}
+
+// Function to get the breakpoint from map $breakpoints
+// $size = variable without px, %, etc
+@function get-breakpoint($size) {
+    @if $size == null {
+        @return null;
+    } @else if $size == 0 {
+        @return 0;
+    } @else if not map.has-key($breakpoints, $size) {
+        @error " If you see this error, then the variable is not in the '$breakpoints' map. Current value: '#{$size}' ";
+    } @else {
+        @return map.get($breakpoints, $size);
+    }
+}
+
+// Function to get the space(padding, margin) from map $spacing
+// $size = variable without px, %, etc
+@function get-space($size) {
+    @if $size == null {
+        @return null;
+    } @else if $size == 0 {
+        @return 0;
+    } @else if not map.has-key($spacing, $size) {
+        @error " If you see this error, then the variable is not in the '$spacing' map. Current value: '#{$size}' ";
+    } @else {
+        @return rem(map.get($spacing, $size)); // The numeric value is converted to rem, conversion is required.
+    }
+}
+
+@function get-inline(
+    $vp: mobile,
+    $container: mobileIn
+) {
+    $vp: get-breakpoint($vp);
+    $container: get-breakpoint($container);
+    $min-inline: rem(math.div(map.get($breakpoints, mobile) - map.get($breakpoints, mobileIn), 2));
+
+    @if $vp != null and $container != null {
+        @return max(
+            rem(math.div($vp - $container, 2)),
+            $min-inline
+        );
+    }
+
+    @return $min-inline;
+}
