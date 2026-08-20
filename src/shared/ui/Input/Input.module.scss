@@ -1,0 +1,53 @@
+@use '@/shared/styles/mixins' as *; // instruments
+@use '@/shared/styles/functions' as *; // instruments
+
+//
+
+.input {
+    @include size(width, full);
+    @include size(height, max-content);
+
+    border: rem(1) solid var(--border-primary);
+    border-radius: get-radius(3xs);
+
+    @include space(padding, lg, 3xl, lg, 3xl);
+
+    @include flex($align: center, $gap: lg);
+
+    transition: border-color .1s linear;
+
+    &:has(input:hover) {
+        border-color: var(--border-accent-primary-hover);
+    }
+
+    &:has(input:focus-visible) {
+        border-color: var(--border-accent-primary);
+
+        outline: rem(1) solid var(--border-accent-primary);
+    }
+
+    &:has(input[aria-invalid='true']) {
+        border-color: var(--border-error);
+
+        outline: rem(1) solid var(--border-error);
+    }
+
+    &__icon {
+        flex-shrink: 0;
+    }
+
+    & input {
+        @include size(width, full);
+
+        caret-color: var(--bg-accent-primary);
+
+        @include typography(subtitle);
+        line-height: 1;
+        letter-spacing: rem(-.24);
+        color: var(--text-secondary);
+
+        &::placeholder {
+            color: var(--text-tertiary);
+        }
+    }
+}
