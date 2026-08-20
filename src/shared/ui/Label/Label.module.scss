@@ -1,0 +1,45 @@
+@use '@/shared/styles/mixins' as *;
+@use '@/shared/styles/functions' as *;
+
+//
+
+.label {
+    @include size(width, full, 280, 309);
+    @include size(height, max-content);
+
+    &__in {
+        @include flex($direction: column, $gap: m4);
+    }
+
+    &__out {
+        @include space(margin, 0, 0, m4, 0);
+    }
+
+    &__overview {
+        @include flex($justify: space-between, $align: center, $gap: m4);
+    }
+
+    &__title {
+        @include typography(subtitle);
+        line-height: 1;
+        letter-spacing: rem(-.24);
+        color: var(--text-secondary);
+        font-size: get-font-size(xs);
+
+        &--error {
+            color: var(--text-error);
+        }
+    }
+
+    &__error {
+        @include typography(body);
+        line-height: 1.4;
+        letter-spacing: rem(-.24);
+        color: var(--text-error);
+        font-size: get-font-size(xs);
+
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
