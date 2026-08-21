@@ -1,26 +1,28 @@
 import type { InputProps } from './types'
 import cls from './Input.module.scss'
 import clsx from 'clsx'
-import Label from '../Label'
 
-export default function Input({ title, rightEl: Right, leftEl: Left, className, errorMessage, errorId, ...props }: InputProps) {
+export default function Input({ rightEl: Right, leftEl: Left, className, errorId, ...props }: InputProps) {
     return (
-        <Label
-        variant='in'
-        title={title}
-        errorId={errorId}
-        errorMessage={errorMessage}
-        >
-            <div className={clsx(cls['input'], className)}>
-                {Right && <Right aria-hidden='true' className={cls['input__icon']} />}
-
+        <>
+            {!Right && !Left ? (
                 <input
-                aria-describedby={errorMessage ? `error-${errorId}` : undefined}
+                className={clsx(cls['input'], className)}
+                aria-describedby={errorId ? errorId : undefined}
                 {...props}
                 />
+            ) : (
+                <div className={clsx(cls['input__wrapper'], className)}>
+                    {Right && <Right aria-hidden='true' className={cls['input__wrapper--icon']} />}
 
-                {Left && <Left aria-hidden='true' className={cls['input__icon']} />}
-            </div>
-        </Label>
+                    <input
+                    aria-describedby={errorId ? errorId : undefined}
+                    {...props}
+                    />
+
+                    {Left && <Left aria-hidden='true' className={cls['input__wrapper--icon']} />}
+                </div>
+            )}
+        </>
     )
 }
