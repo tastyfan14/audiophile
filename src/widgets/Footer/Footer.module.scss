@@ -17,7 +17,7 @@
         @include size(width, full);
         @include size(height, full);
 
-        @include space(padding, l1, null, l0, null);
+        @include space(padding, l1, null, l1, null);
 
         @include flex($direction: column, $justify: center, $align: center, $gap: l1);
 
