@@ -118,10 +118,6 @@
         }
     }
 
-    &:focus-visible {
-        outline: rem(2) solid currentColor;
-    }
-
     &:active {
         transform: scale(.96);
     }
