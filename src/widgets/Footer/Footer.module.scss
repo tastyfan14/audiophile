@@ -1,0 +1,188 @@
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/mixins' as *;
+@use '@/shared/styles/functions' as *;
+
+//
+
+.footer {
+    @include size(width, full);
+
+    position: relative;
+
+    margin-top: auto;
+
+    background-color: var(--bg-secondary);
+
+    &__container {
+        @include size(width, full);
+        @include size(height, full);
+
+        @include space(padding, l1, null, l0, null);
+
+        @include flex($direction: column, $justify: center, $align: center, $gap: l1);
+
+        position: relative;
+
+        @include breakpoint(laptop) {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(auto-fit, minmax(rem(10), 1fr));
+            gap: 0;
+        };
+
+        @include breakpoint(desktop) {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(auto-fit, minmax(rem(10), 1fr));
+        };
+    }
+
+    &__line {
+        @include size(width, full, 101, 101);
+        @include size(height, full, 4, 4);
+
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+
+        background-color: var(--bg-accent-primary);
+
+        @include breakpoint(laptop) {
+            left: calc((get-breakpoint(laptop) - get-breakpoint(laptopIn)) / 2);
+            transform: translateX(0);
+        };
+
+        @include breakpoint(desktop) {
+            left: 0;
+        };
+    }
+
+    &__logo {
+        //
+
+        @include breakpoint(laptop) {
+            grid-column: span 2 / span 2;
+
+            @include space(margin, 8xl, 0, 0, 0);
+        };
+
+        @include breakpoint(desktop) {
+            grid-column-start: 1;
+            grid-row-start: 1;
+
+            margin: 0;
+        };
+
+        & path {
+            fill: var(--bg-i-primary);
+        }
+    }
+
+    &__navigation {
+        @include space(margin, md, 0, md, 0);
+
+        @include flex($direction: column, $justify: space-between, $align: center, $gap: 7xl);
+
+        @include breakpoint(laptop) {
+            @include flex($justify: start, $align: center, $gap: 8xl);
+        };
+
+        @include breakpoint(laptop) {
+            grid-column: span 2 / span 2;
+            grid-row-start: 2;
+
+            @include flex($justify: start, $align: center);
+
+            @include space(margin, l1, 0, l1, 0);
+        };
+
+        @include breakpoint(desktop) {
+            grid-column-start: 2;
+            grid-row-start: 1;
+
+            justify-self: flex-end;
+        };
+    }
+
+    &__desc {
+        @include typography(body);
+        letter-spacing: 0;
+        font-size: get-font-size(md);
+        color: var(--text-tertiary);
+        text-align: center;
+
+        @include breakpoint(laptop) {
+            grid-column: span 2 / span 2;
+            grid-row-start: 3;
+
+            text-align: left;
+
+            @include space(margin, 0, 0, s0, 0);
+        };
+
+        @include breakpoint(desktop) {
+            width: 50%;
+
+            @include space(margin, 0, 0, l3, 0);
+
+            grid-column-start: 1;
+            grid-row-start: 2;
+        };
+    }
+
+    &__copyright {
+        @include typography(subtitle);
+        letter-spacing: 0;
+        font-size: get-font-size(md);
+        color: var(--text-tertiary);
+        text-align: center;
+
+        @include breakpoint(laptop) {
+            @include size(width, full);
+
+            grid-row-start: 4;
+
+            text-align: left;
+        };
+
+        @include breakpoint(desktop) {
+            grid-column-start: 1;
+            grid-row-start: 3;
+        };
+    }
+
+    &__socials {
+        @include flex($align: center, $gap: md);
+
+        @include breakpoint(laptop) {
+            @include size(width, full);
+
+            grid-row-start: 4;
+
+            justify-content: flex-end;
+        };
+
+        @include breakpoint(desktop) {
+            grid-row: span 2 / span 2;
+            grid-column-start: 2;
+            grid-row-start: 2;
+        };
+
+        &--icon {
+            & svg path {
+                fill: var(--bg-i-primary);
+            }
+
+            &:hover {
+                & svg path {
+                    fill: var(--bg-i-accent-primary);
+                }
+            }
+
+            &:focus-visible {
+                border-radius: get-radius(6xs);
+                outline: rem(2) solid var(--border-accent-primary);
+            }
+        }
+    }
+}
