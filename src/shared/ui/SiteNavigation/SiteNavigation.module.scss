@@ -1,0 +1,41 @@
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/mixins' as *;
+@use '@/shared/styles/functions' as *;
+
+//
+
+.navigation {
+    @include typography(subtitle);
+    letter-spacing: rem(2);
+    color: var(--text-primary);
+
+    &__li {
+        transition: transform .1s linear;
+    }
+
+    &__li a {
+        @include size(width, full);
+        @include size(height, full);
+
+        display: block;
+
+        text-transform: uppercase;
+
+        transition: color .1s linear;
+    }
+
+    &__li:hover a {
+        color: var(--text-accent-primary);
+    }
+
+    &__li a:focus-visible {
+        outline: rem(2) solid var(--bg-i-accent-primary);
+        outline-offset: get-space(m0);
+
+        border-radius: get-radius(6xs);
+    }
+
+    &__li:active {
+        transform: scale(.96);
+    }
+}
