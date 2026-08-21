@@ -1,0 +1,92 @@
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/mixins' as *;
+@use '@/shared/styles/functions' as *;
+
+//
+
+.banner {
+    @include size(width, full);
+
+    @include flex($direction: column, $justify: center, $align: center, $gap: l0);
+
+    @include space(margin, l8, 0, l10, 0);
+
+    @include breakpoint(laptop) {
+        gap: get-space(l2);
+
+        @include space(margin, l6, 0, l10, 0);
+    }
+
+    @include breakpoint(desktop) {
+        @include flex($direction: row, $justify: space-between, $align: center, $gap: s1);
+
+        @include space(margin, l14, 0, s4, 0);
+    }
+
+    &__picture {
+        @include size(width, full, 327, 327);
+        @include size(height, full, 300, 300);
+
+        position: relative;
+
+        @include breakpoint(laptop) {
+            @include size(width, full, 689, 719);
+            @include size(height, full, 300, 330);
+        }
+
+        @include breakpoint(desktop) {
+            @include size(width, full, 540);
+            @include size(height, full, 588);
+
+            grid-row: span 2 / span 2;
+
+            order: 1;
+        }
+
+        & img {
+            pointer-events: none;
+
+            border-radius: get-radius(3xs);
+        }
+    }
+
+    &__overview {
+        @include flex($direction: column, $justify: center, $align: center, $gap: 9xl);
+
+        @include breakpoint(desktop) {
+            align-items: start;
+
+            gap: get-space(7xl);
+        }
+    }
+
+    &__title {
+        @include typography(h4);
+        letter-spacing: rem(.96);
+        color: var(--text-secondary);
+
+        text-align: center;
+        text-transform: uppercase;
+
+        @include breakpoint(desktop) {
+            width: 70%;
+
+            text-align: left;
+        }
+
+        &--highlight {
+            color: var(--bg-accent-primary);
+        }
+    }
+
+    &__desc {
+        @include typography(body);
+        color: var(--text-paragraph);
+
+        text-align: center;
+
+        @include breakpoint(desktop) {
+            text-align: left;
+        }
+    }
+}
