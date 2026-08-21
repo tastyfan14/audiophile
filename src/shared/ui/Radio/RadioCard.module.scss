@@ -1,0 +1,88 @@
+@use '@/shared/styles/mixins' as *; // instruments
+@use '@/shared/styles/functions' as *; // instruments
+
+//
+
+.radio-card {
+    @include size(width, full);
+    @include size(height, max-content);
+
+    cursor: pointer;
+
+    & input {
+        @include size(width, max-content);
+    }
+
+    &:has(input[type='radio']) {
+        @include flex($align: center, $gap: lg);
+
+        &:has(input:hover) {
+            border-color: var(--border-accent-primary-hover);
+        }
+
+        &:has(input:focus-visible) {
+            border-color: var(--border-accent-primary);
+
+            outline: rem(1) solid var(--border-accent-primary);
+        }
+
+        &:has(input[aria-invalid='true']) {
+            border-color: var(--border-error);
+
+            outline: rem(1) solid var(--border-error);
+        }
+
+        &:has(input[aria-invalid='true']:focus-visible) {
+            border-color: var(--border-accent-primary);
+
+            outline: rem(1) solid var(--border-accent-primary);
+        }
+
+        &:has(input:checked) {
+            border-color: var(--border-accent-primary);
+        }
+    }
+
+    &__circle {
+        @include size(width, full, 20, 20);
+        @include size(height, full, 20, 20);
+
+        @include flex();
+
+        border: rem(1) solid var(--border-primary);
+        border-radius: get-radius(circle);
+
+        position: relative;
+    }
+
+    // Border:
+
+    // & input:checked + &__circle {
+    //     border-color: var(--border-accent-primary);
+    // }
+
+    &__circle::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        transform: translateX(-50%) translateY(-50%) scale(0);
+        background-color: var(--bg-accent-primary);
+        transition: transform .1s linear;
+    }
+
+    & input:checked + &__circle::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        transform: translateX(-50%) translateY(-50%) scale(100%);
+        background-color: var(--bg-accent-primary);
+    }
+}
