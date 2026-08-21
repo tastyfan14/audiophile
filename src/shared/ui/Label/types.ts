@@ -1,6 +1,5 @@
 export type LabelProps = {
-    title: string
-    variant: 'in' | 'out'
+    title?: string
     className?: string
 
     children: React.ReactNode
