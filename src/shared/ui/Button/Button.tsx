@@ -11,7 +11,7 @@ export default function Button(props: ButtonProps) {
 
         return (
             <Link
-            className={clsx(cls[variant], className, cls['link'])}
+            className={clsx(cls[variant], className)}
             href={href}
             {...linkProps}
             >
@@ -31,13 +31,13 @@ export default function Button(props: ButtonProps) {
             {variant === 'tertiary' ? (
                 <>
                     {children}
-                    <IButtonRightArrow className={cls['button__icon--arrow']} />
+                    <IButtonRightArrow />
                 </>
             ) : (
                 <>
-                    {LeftIcon && <LeftIcon className={cls['button__icon']} />}
+                    {LeftIcon && <LeftIcon />}
                     {children}
-                    {RightIcon && <RightIcon className={cls['button__icon']} />}
+                    {RightIcon && <RightIcon />}
                 </>
             )}
         </>
