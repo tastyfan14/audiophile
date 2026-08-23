@@ -12,7 +12,7 @@
     &__container {
         @include size(width, full);
 
-        @include space(padding, s1, null, l12, null);
+        @include space(padding, l9, null, l9, null);
         @include space(margin, 0, auto, 0, auto);
 
         @include flex($direction: column, $justify: center, $align: center, $gap: 3xl);
@@ -22,27 +22,21 @@
         background-color: var(--bg-secondary);
         background-image: url('/images/mobile/hero/hero.jpg');
         background-repeat: no-repeat;
-        background-size: rem(437) rem(707);
-        background-position: 50% 100%;
-
-        @include breakpoint(preLaptop) {
-            @include space(padding, s1, null, s2, null);
-
-            background-image: url('/images/laptop/hero/hero.jpg');
-            background-size: rem(728) rem(678);
-            background-position: 50% 110%;
-        };
+        background-size: rem(387) rem(617);
+        background-position: 50% 110%;
 
         @include breakpoint(laptop) {
-            @include space(padding, l12, null, s2, null);
+            @include space(padding, l10, null, l14, null);
+
+            background-image: url('/images/laptop/hero/hero.jpg');
             background-size: rem(768) rem(738);
-            background-position: 50% 115%;
+            background-position: 50% 110%;
         };
 
         @include breakpoint(desktop) {
             @include flex($direction: column, $justify: center, $align: start);
 
-            @include space(padding, l11, null, l14, null);
+            @include space(padding, l11, null, l15, null);
 
             background-image: url('/images/desktop/hero/hero.jpg');
             background-size: rem(1538) rem(788);
@@ -56,13 +50,20 @@
     }
 
     &__title {
-        @include typography(h1);
+        @include typography(h2);
         color: var(--text-primary);
         text-align: center;
         text-transform: uppercase;
 
+        @include breakpoint(preLaptop) {
+            width: 70%;
+        };
+
         @include breakpoint(laptop) {
             width: 60%;
+
+            @include typography(h1);
+            color: var(--text-primary);
 
             @include space(margin, 0, 0, xs, 0);
         };
