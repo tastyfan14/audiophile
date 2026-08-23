@@ -1,0 +1,126 @@
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/mixins' as *;
+@use '@/shared/styles/functions' as *;
+
+//
+
+.header {
+    @include size(width, full);
+    @include size(height, max-content);
+
+    background-color: var(--bg-secondary);
+
+    position: relative;
+    z-index: 15;
+
+    &__container {
+        @include flex($justify: space-between, $align: center);
+
+        @include space(padding, 7xl, null, 7xl, null);
+
+        @include breakpoint(laptop) {
+            @include flex($justify: space-between, $align: center, $gap: l0);
+        }
+
+        @include breakpoint(desktop) {
+            @include flex($justify: space-between, $align: center);
+
+            @include space(padding, 8xl, null, 8xl, null);
+        }
+
+        border-bottom: rem(1) solid #282828;
+    }
+
+    &__overlay {
+        position: relative;
+
+        &--burger, &--cart {
+            //
+
+            &:focus-visible {
+                border-radius: get-radius(6xs);
+                outline: rem(2) solid var(--border-accent-primary);
+            }
+        }
+
+        &--burger {
+            //
+
+            @include breakpoint(desktop) {
+                display: none;
+            };
+
+            &:hover {
+                & svg g {
+                    fill: var(--bg-i-accent-primary);
+                }
+            }
+        }
+
+        &--cart {
+            position: relative;
+            top: rem(-3);
+
+            & svg path {
+                fill: var(--bg-i-primary);
+            }
+
+            &:hover {
+                & svg path {
+                    fill: var(--bg-i-accent-primary);
+                }
+            }
+
+            @include breakpoint(laptop) {
+                margin-left: auto;
+            };
+
+            @include breakpoint(desktop) {
+                margin: 0;
+            };
+        }
+    }
+
+    &__burger {
+        position: relative;
+        top: rem(1);
+
+        & svg g {
+            fill: var(--bg-i-primary);
+        }
+    }
+
+    &__cart {
+        //
+
+        &--disabled {
+            pointer-events: none;
+
+            & svg path {
+                fill: var(--bg-i-secondary);
+            }
+        }
+    }
+
+    &__logo {
+        //
+
+        & path {
+            fill: var(--bg-i-primary);
+        }
+    }
+
+    &__navigation {
+        display: none;
+
+        @include breakpoint(desktop) {
+            display: flex;
+        };
+
+        & ul {
+            @include breakpoint(desktop) {
+                @include flex($justify: start, $align: center, $gap: 8xl);
+            };
+        }
+    }
+}
