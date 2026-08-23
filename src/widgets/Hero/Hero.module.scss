@@ -7,9 +7,6 @@
 .hero {
     @include size(width, full);
 
-    position: relative;
-    z-index: 90;
-
     background-color: var(--bg-secondary);
 
     &__container {
@@ -19,9 +16,6 @@
         @include space(margin, 0, auto, 0, auto);
 
         @include flex($direction: column, $justify: center, $align: center, $gap: 3xl);
-
-        position: relative;
-        z-index: 100;
         
         background-blend-mode: difference;
 
