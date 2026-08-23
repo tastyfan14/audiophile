@@ -2,8 +2,6 @@ import type { Metadata, Viewport } from 'next'
 import { Manrope } from 'next/font/google'
 import '@/shared/styles/main.scss'
 import AppLayout from '@/shared/ui/Layout/ui/AppLayout'
-import Footer from '@/widgets/Footer/Footer'
-import Header from '@/widgets/Header/Header'
 
 const ManropeFont = Manrope({
     variable: '--font-manrope',
@@ -24,18 +22,15 @@ export const metadata: Metadata = {
     },
 };
 
+
 export default function RootLayout({ children }: LayoutProps<'/'>) {
     return (
         <html lang='en' className={`${ManropeFont.variable}`}>
             <body>
                 <AppLayout>
-                    <Header />
-
                     {children}
-
-                    <Footer />
                 </AppLayout>
             </body>
         </html>
-    );
+    )
 }
