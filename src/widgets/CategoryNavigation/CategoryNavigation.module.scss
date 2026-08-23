@@ -1,0 +1,127 @@
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/mixins' as *;
+@use '@/shared/styles/functions' as *;
+
+//
+
+.category-navigation {
+    @include size(width, full);
+
+    position: relative;
+
+    &__page, &__menu {
+        @include flex($direction: column, $justify: center, $align: center, $gap: l3);
+
+        @include breakpoint(laptop) {
+            @include flex($justify: space-between, $align: center, $gap: xl);
+        };
+
+        @include breakpoint(desktop) {
+            gap: get-space(7xl);
+        };
+    }
+
+    &__page {
+        @include space(margin, l6, 0, s1, 0);
+
+        @include breakpoint(laptop) {
+            @include space(margin, s2, 0, l6, 0);
+        };
+
+        @include breakpoint(desktop) {
+            @include space(margin, s3, 0, s2, 0);
+        };
+    }
+
+    // Render card
+    &__card {
+        @include size(width, full);
+        @include size(height, full, 165, 165);
+
+        @include flex($justify: center, $align: center);
+
+        background-color: var(--bg-tertiary);
+
+        position: relative;
+
+        border-radius: get-radius(3xs);
+
+        transition: background-color .1s linear, transform .1s linear;
+
+        &:hover {
+            background-color: #00000015;
+
+            .category-navigation__overview--button {
+                color: var(--text-accent-primary);
+            }
+        }
+
+        &:focus-visible {
+            outline: rem(2) solid var(--bg-accent-primary);
+            outline-offset: get-space(m0);
+        }
+
+        &:active {
+            transform: scale(.98);
+        }
+    }
+
+    // Base image
+    &__picture {
+        position: absolute;
+        top: rem(-50);
+        left: 50%;
+        transform: translateX(-50%);
+
+        @include breakpoint(laptop) {
+            top: rem(-66);
+        };
+
+        @include breakpoint(desktop) {
+            top: rem(-74);
+        };
+
+        & img {
+            filter: drop-shadow(rem(2) rem(25) rem(27) rgba(255, 255, 255, 100%));
+
+            pointer-events: none;
+        }
+    }
+
+    // For each image
+    &__picture--headphones {
+        @include size(width, full, 144, 180);
+        @include adaptive(width, 144, 180);
+        @include size(height, full, 140, 174);
+        @include adaptive(height, 140, 174);
+    }
+
+    &__picture--speakers {
+        @include size(width, full, 144, 184);
+        @include adaptive(width, 144, 184);
+        @include size(height, full, 144, 176);
+        @include adaptive(height, 144, 176);
+    }
+
+    &__picture--earphones {
+        @include size(width, full, 162, 216);
+        @include adaptive(width, 162, 216);
+        @include size(height, full, 140, 190);
+        @include adaptive(height, 140, 190);
+    }
+
+    // Text
+    &__overview {
+        @include flex($direction: column, $justify: center, $align: center, $gap: m2);
+
+        @include space(margin, auto, 0, sm, 0);
+
+        &--title {
+            @include typography(subtitle);
+            font-size: get-font-size(md);
+            color: var(--text-secondary);
+
+            text-transform: uppercase;
+        }
+    }
+}
