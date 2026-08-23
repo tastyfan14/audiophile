@@ -10,8 +10,6 @@
 
     @include flex($justify: center, $align: center, $gap: sm);
 
-    will-change: transform;
-
     cursor: pointer;
 
     &:focus-visible {
