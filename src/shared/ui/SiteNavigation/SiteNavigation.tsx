@@ -9,21 +9,23 @@ export default function SiteNavigation({ className }: { className?: string }) {
         className={clsx(cls.navigation, className)}
         aria-label='Site navigation'
         >
-            <li className={clsx(cls['navigation__li'])}>
-                <Link href={ROUTES.Home.route}>{ROUTES.Home.label}</Link>
-            </li>
+            <ul>
+                <li className={clsx(cls['navigation__li'])}>
+                    <Link href={ROUTES.Home.route}>{ROUTES.Home.label}</Link>
+                </li>
 
-            <li className={clsx(cls['navigation__li'])}>
-                <Link href={ROUTES.Headphones.route}>{ROUTES.Headphones.label}</Link>
-            </li>
+                <li className={clsx(cls['navigation__li'])}>
+                    <Link href={ROUTES.Headphones.route}>{ROUTES.Headphones.label}</Link>
+                </li>
 
-            <li className={clsx(cls['navigation__li'])}>
-                <Link href={ROUTES.Speakers.route}>{ROUTES.Speakers.label}</Link>
-            </li>
+                <li className={clsx(cls['navigation__li'])}>
+                    <Link href={ROUTES.Speakers.route}>{ROUTES.Speakers.label}</Link>
+                </li>
 
-            <li className={clsx(cls['navigation__li'])}>
-                <Link href={ROUTES.Earphones.route}>{ROUTES.Earphones.label}</Link>
-            </li>
+                <li className={clsx(cls['navigation__li'])}>
+                    <Link href={ROUTES.Earphones.route}>{ROUTES.Earphones.label}</Link>
+                </li>
+            </ul>
         </nav>
     )
 }
