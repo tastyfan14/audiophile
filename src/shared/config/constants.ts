@@ -31,26 +31,38 @@ const PRODUCTS = '/products'
 
 export const ROUTES = {
     Home: {
+        id: 'home',
+        slug: 'home',
         route: '/',
         label: 'HOME',
     },
-    Product: {
+    Products: {
+        id: 'products',
+        slug: 'products',
         route: PRODUCTS,
-        label: 'PRODUCT',
+        label: 'PRODUCTS',
     },
     Headphones: {
+        id: 'headphones',
+        slug: 'headphones',
         route: `${PRODUCTS}/headphones`,
         label: 'HEADPHONES',
     },
     Speakers: {
+        id: 'speakers',
+        slug: 'speakers',
         route: `${PRODUCTS}/speakers`,
         label: 'SPEAKERS',
     },
     Earphones: {
+        id: 'earphones',
+        slug: 'earphones',
         route: `${PRODUCTS}/earphones`,
         label: 'EARPHONES',
     },
     Checkout: {
+        id: 'checkout',
+        slug: 'checkout',
         route: '/checkout',
         label: 'CHECKOUT',
     },
