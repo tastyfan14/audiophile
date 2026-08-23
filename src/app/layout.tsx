@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Manrope } from 'next/font/google'
 import '@/shared/styles/main.scss'
 import AppLayout from '@/shared/ui/Layout/ui/AppLayout'
@@ -10,6 +10,11 @@ const ManropeFont = Manrope({
     weight: ['400', '500', '700'],
     subsets: ['latin'],
 })
+
+export const viewport: Viewport = {
+    width: 'device-width',
+    initialScale: 1,
+}
 
 export const metadata: Metadata = {
     title: 'Audiophile',
