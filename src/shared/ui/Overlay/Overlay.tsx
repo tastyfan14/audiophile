@@ -2,11 +2,11 @@ import type { OverlayProps } from './types'
 import clsx from 'clsx'
 import cls from './Overlay.module.scss'
 
-export default function Overlay({ isOpen, onClose, className, children }: OverlayProps) {
+export default function Overlay({ isOpen, onClose, className, coverage, children }: OverlayProps) {
     if (!isOpen) return null
 
     return (
-        <div className={cls.overlay}>
+        <div className={clsx(cls.overlay, cls[`overlay-${coverage}`])}>
             <button
             type='button'
             className={cls['overlay__backdrop']}
