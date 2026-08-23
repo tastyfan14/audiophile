@@ -1,0 +1,59 @@
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/mixins' as *;
+@use '@/shared/styles/functions' as *;
+
+//
+
+.not-found {
+    @include flex($direction: column, $align: center, $gap: md);
+
+    @include space(padding, l4, null, l4, null);
+
+    @include breakpoint(laptop) {
+        @include space(padding, l6, null, l6, null);
+    };
+
+    @include breakpoint(desktop) {
+        @include space(padding, l8, null, l8, null);
+    };
+
+    &__code {
+        transform: scale(1.5);
+
+        &--line {
+            fill: var(--bg-i-tertiary);
+        }
+
+        &--accent {
+            fill: var(--bg-i-accent-primary);
+        }
+    }
+
+    &__title {
+        @include typography(h3);
+        text-transform: uppercase;
+        text-align: center;
+
+        @include space(margin, 3xl, null, null, null);
+
+        @include breakpoint(laptop) {
+            @include typography(h2);
+        };
+    }
+
+    &__desc {
+        @include typography(body);
+        color: var(--text-paragraph);
+        text-align: center;
+
+        @include space(margin, null, null, 7xl, null);
+
+        @include breakpoint(laptop) {
+            width: 50%;
+        };
+
+        @include breakpoint(desktop) {
+            width: 30%;
+        };
+    }
+}
