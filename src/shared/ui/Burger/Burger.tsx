@@ -28,7 +28,12 @@ export default function Burger({ isOpen, onClose, className, children }: BurgerP
             clickOutsideDeactivates: true,
         }}
         >
-            <div id='burger' className={clsx(cls.burger, className)}>
+            <div
+            id='burger'
+            className={clsx(cls.burger, className)}
+            role='dialog'
+            aria-modal='true'
+            >
                 <Container>
                     {children}
                 </Container>
