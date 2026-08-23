@@ -5,9 +5,7 @@
 //
 
 .overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 10;
+    //
 
     &__backdrop {
         position: absolute;
@@ -22,4 +20,23 @@
         position: relative;
         z-index: 5;
     }
+}
+
+.overlay-viewport {
+    @extend .overlay;
+
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+}
+
+.overlay-container {
+    @extend .overlay;
+
+    width: 100dvw;
+    height: 100dvh;
+
+    position: absolute;
+    inset: 0;
+    z-index: 10;
 }
