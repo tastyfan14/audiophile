@@ -69,18 +69,58 @@
 // $min = minimum value
 // $max = maximum value
 // $min-vp and $max-vp = It is set automatically in the function and usually does not expect to change during use.
+// @mixin adaptive(
+//     $property: null,
+//     $min: null,
+//     $max: null,
+//     $min-vp: map.get($breakpoints, mobile), // The prefix mobile means viewport, a regular mob is the size of the container.
+//     $max-vp: map.get($breakpoints, desktop)
+//     ) {
+//         @if $property == font-size {
+//             #{$property}: clamp(rem(map.get($font-sizes, $min)), calc(rem(map.get($font-sizes, $min)) + (rem(map.get($font-sizes, $max)) - rem(map.get($font-sizes, $min))) * ((100vw - rem($min-vp)) / (rem($max-vp) - rem($min-vp)))), rem(map.get($font-sizes, $max)));
+//         } @else if $property != null and $min != null and $max != null {
+//             #{$property}: clamp(rem($min), calc(rem($min) + (rem($max) - rem($min)) * ((100vw - rem(min-vp)) / (rem($max-vp) - rem($min-vp)))), rem($max));
+//         }
+// }
 @mixin adaptive(
     $property: null,
     $min: null,
     $max: null,
     $min-vp: map.get($breakpoints, mobile), // The prefix mobile means viewport, a regular mob is the size of the container.
     $max-vp: map.get($breakpoints, desktop)
-    ) {
-        @if $property == font-size {
-            #{$property}: clamp(rem(#{map.get($font-sizes, $min)}), calc(rem(#{map.get($font-sizes, $min)}) + (rem(#{map.get($font-sizes, $max)}) - rem(#{map.get($font-sizes, $min)})) * ((100vw - rem(#{$min-vp})) / (rem(#{$max-vp}) - rem(#{$min-vp})))), rem(#{map.get($font-sizes, $max)}));
-        } @else if $property != null and $min != null and $max != null {
-            #{$property}: clamp(rem(#{$min}), calc(rem(#{$min}) + (rem(#{$max}) - rem(#{$min})) * ((100vw - rem(#{$min-vp})) / (rem(#{$max-vp}) - rem(#{$min-vp})))), rem(#{$max}));
-        }
+) {
+    @if $property == font-size {
+        #{$property}: clamp(
+            rem(map.get($font-sizes, $min)),
+            calc(
+                rem(map.get($font-sizes, $min)) +
+                (
+                    rem(map.get($font-sizes, $max)) -
+                    rem(map.get($font-sizes, $min))
+                ) *
+                (
+                    (100vw - rem($min-vp)) /
+                    (rem($max-vp) - rem($min-vp))
+                )
+            ),
+            rem(map.get($font-sizes, $max))
+        );
+    }
+
+    @else if $property != null and $min != null and $max != null {
+        #{$property}: clamp(
+            rem($min),
+            calc(
+                rem($min) +
+                (rem($max) - rem($min)) *
+                (
+                    (100vw - rem($min-vp)) /
+                    (rem($max-vp) - rem($min-vp))
+                )
+            ),
+            rem($max)
+        );
+    }
 }
 
 // Mixin for media queries.
