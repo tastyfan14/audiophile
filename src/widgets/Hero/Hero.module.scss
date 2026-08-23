@@ -15,7 +15,7 @@
     &__container {
         @include size(width, full);
 
-        @include space(padding, s1, null, s2, null);
+        @include space(padding, s1, null, l12, null);
         @include space(margin, 0, auto, 0, auto);
 
         @include flex($direction: column, $justify: center, $align: center, $gap: 3xl);
@@ -29,13 +29,14 @@
         background-image: url('/images/mobile/hero/hero.jpg');
         background-repeat: no-repeat;
         background-size: rem(437) rem(707);
-        background-position: 50% 110%;
+        background-position: 50% 100%;
 
         @include breakpoint(preLaptop) {
             @include space(padding, s1, null, s2, null);
 
             background-image: url('/images/laptop/hero/hero.jpg');
             background-size: rem(728) rem(678);
+            background-position: 50% 110%;
         };
 
         @include breakpoint(laptop) {
@@ -47,65 +48,57 @@
         @include breakpoint(desktop) {
             @include flex($direction: column, $justify: center, $align: start);
 
-            @include space(padding, s2, null, s2, null);
+            @include space(padding, l11, null, l14, null);
 
             background-image: url('/images/desktop/hero/hero.jpg');
             background-size: rem(1538) rem(788);
-            background-position: 52% 110%;
+            background-position: 52% 100%;
         };
     }
 
-    &__overview {
-        @include size(width, full);
+    &__sub {
+        @include typography(overline);
+        color: var(--text-tertiary);
+    }
 
+    &__title {
+        @include typography(h1);
+        color: var(--text-primary);
+        text-align: center;
+        text-transform: uppercase;
+
+        @include breakpoint(laptop) {
+            width: 60%;
+
+            @include space(margin, 0, 0, xs, 0);
+        };
 
         @include breakpoint(desktop) {
+            width: 60%;
+
+            text-align: left;
         };
-    
-        &--sub {
-            @include typography(overline);
-            color: var(--text-tertiary);
-        }
+    }
 
-        &--title {
-            @include typography(h1);
-            color: var(--text-primary);
-            text-align: center;
-            text-transform: uppercase;
+    &__desc {
+        @include typography(body);
+        color: var(--text-paragraph-alternate);
+        text-align: center;
 
-            @include breakpoint(laptop) {
-                width: 60%;
+        @include breakpoint(preLaptop) {
+            width: 80%;
+        };
 
-                @include space(margin, 0, 0, xs, 0);
-            };
+        @include breakpoint(laptop) {
+            width: 40%;
 
-            @include breakpoint(desktop) {
-                width: 60%;
+            @include space(margin, 0, 0, xl, 0);
+        };
 
-                text-align: left;
-            };
-        }
+        @include breakpoint(desktop) {
+            width: 30%;
 
-        &--desc {
-            @include typography(body);
-            color: var(--text-paragraph-alternate);
-            text-align: center;
-
-            @include breakpoint(preLaptop) {
-                width: 80%;
-            };
-
-            @include breakpoint(laptop) {
-                width: 40%;
-
-                @include space(margin, 0, 0, xl, 0);
-            };
-
-            @include breakpoint(desktop) {
-                width: 30%;
-
-                text-align: left;
-            };
-        }
+            text-align: left;
+        };
     }
 }
