@@ -1,0 +1,30 @@
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/mixins' as *;
+@use '@/shared/styles/functions' as *;
+
+//
+
+.burger {
+    @include size(width, full);
+
+    @include space(padding, l6, 0, 7xl, 0); // 3xl
+
+    background-color: var(--bg-primary);
+
+    max-height: calc(100dvh - rem(200));
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+
+    position: relative;
+    top: 0;
+
+    border-bottom-left-radius: get-radius(3xs);
+    border-bottom-right-radius: get-radius(3xs);
+
+    @include flex($direction: column, $gap: l3);
+
+    @include breakpoint(laptopIn) {
+        @include flex($direction: row, $justify: space-between, $align: center, $gap: xs);
+    }
+}
