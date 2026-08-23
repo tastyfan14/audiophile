@@ -67,3 +67,27 @@ export const ROUTES = {
         label: 'CHECKOUT',
     },
 } as const
+
+export const CATEGORY_NAVIGATION = [
+    { // headphones
+        id: ROUTES.Headphones.id,
+        slug: ROUTES.Headphones.slug,
+        route: ROUTES.Headphones.route,
+        image: 'category-headphones.png',
+        title: ROUTES.Headphones.label,
+    },
+    { // speakers
+        id: ROUTES.Speakers.id,
+        slug: ROUTES.Speakers.slug,
+        route: ROUTES.Speakers.route,
+        image: 'category-speakers.png',
+        title: ROUTES.Speakers.label,
+    },
+    { // earphones
+        id: ROUTES.Earphones.id,
+        slug: ROUTES.Earphones.slug,
+        route: ROUTES.Earphones.route,
+        image: 'category-earphones.png',
+        title: ROUTES.Earphones.label,
+    },
+] as const
