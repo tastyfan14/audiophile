@@ -76,19 +76,11 @@
     }
 
     &__navigation {
-        @include space(margin, md, 0, md, 0);
-
-        @include flex($direction: column, $justify: space-between, $align: center, $gap: 7xl);
-
-        @include breakpoint(laptop) {
-            @include flex($justify: start, $align: center, $gap: 8xl);
-        };
+        //
 
         @include breakpoint(laptop) {
             grid-column: span 2 / span 2;
             grid-row-start: 2;
-
-            @include flex($justify: start, $align: center);
 
             @include space(margin, l1, 0, l1, 0);
         };
@@ -96,9 +88,23 @@
         @include breakpoint(desktop) {
             grid-column-start: 2;
             grid-row-start: 1;
-
-            justify-self: flex-end;
         };
+    
+        & ul {
+            @include flex($direction: column, $justify: space-between, $align: center, $gap: 7xl);
+
+            @include breakpoint(laptop) {
+                @include flex($justify: start, $align: center, $gap: 8xl);
+            };
+
+            @include breakpoint(laptop) {
+                @include flex($justify: start, $align: center);
+            };
+
+            @include breakpoint(desktop) {
+                justify-self: flex-end;
+            };
+        }
     }
 
     &__desc {
