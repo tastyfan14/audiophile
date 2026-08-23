@@ -19,13 +19,12 @@ html {
     scroll-behavior: smooth;
     scrollbar-color: var(--bg-accent-primary) transparent;
     scrollbar-width: thin;
+    scrollbar-gutter: stable;
 }
 
 html::selection {
     background-color: var(--bg-accent-primary);
     color: var(--text-secondary);
-
-    scrollbar-gutter: stable;
 }
 
 body {
