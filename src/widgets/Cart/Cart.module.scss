@@ -1,0 +1,194 @@
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/mixins' as *;
+@use '@/shared/styles/functions' as *;
+
+//
+
+.cart {
+    @include size(width, max-content, 327, 327);
+
+    @include space(padding, 3xl, 4xl, 3xl, 4xl);
+
+    background-color: var(--bg-primary);
+
+    max-height: calc(100dvh - rem(200));
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+
+    position: relative;
+    float: right;
+    margin-top: get-space(3xl);
+
+    border-radius: get-radius(3xs);
+
+    @include flex($direction: column, $gap: 3xl);
+
+    @include breakpoint(postMobile) {
+        @include size(width, max-content, 327, 377);
+    }
+
+    &-empty {
+        @include flex($direction: column, $gap: 7xl);
+
+        @include space(padding, l0, 0, l0, 0);
+        
+        &__title {
+            @include typography(h5);
+            color: var(--text-secondary);
+
+            text-align: center;
+
+            text-transform: uppercase;
+        }
+
+        &__desc {
+            @include typography(body);
+            color: var(--text-paragraph);
+
+            text-align: center;
+        }
+
+        &__button {
+            width: 80%;
+
+            align-self: center;
+        }
+    }
+
+    //
+
+    &-content {
+        //
+        
+        &__interactive {
+            @include flex($justify: space-between, $align: center);
+
+            &--title {
+                @include typography(h6);
+                color: var(--text-secondary);
+                text-transform: uppercase;
+            }
+            
+            &--button {
+                text-decoration: rem(.5) underline;
+            }
+        }
+
+        &__products {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            grid-template-rows: repeat(auto-fit, 1fr);
+            gap: get-space(l0);
+
+            @include space(margin, m3, 0, m3, 0);
+
+            @include breakpoint(postMobile) {
+                @include flex($direction: column, $justify: center, $align: center, $gap: 4xl);
+            }
+        }
+
+        &__product {
+            @include size(width, full);
+
+            cursor: pointer;
+
+            display: grid;
+            grid-template-columns: 3fr 7fr;
+            row-gap: get-space(md);
+
+            align-items: center;
+
+            @include space(margin, m3, 0, m3, 0);
+
+            @include breakpoint(postMobile) {
+                @include flex($align: center, $gap: xl);
+            }
+
+            &:focus-visible {
+                outline: rem(2) solid var(--bg-i-accent-primary);
+                outline-offset: get-space(m0);
+
+                border-radius: get-radius(6xs);
+            }
+
+            &--image {
+                @include size(width, full, 64, 64);
+                @include size(height, full, 64, 64);
+
+                background-color: var(--bg-tertiary);
+
+                position: relative;
+
+                & img {
+                    border-radius: get-radius(3xs);
+                }
+
+                border-radius: get-radius(3xs);
+            }
+
+            &--overview {
+                @include flex($direction: column);
+            }
+
+            &--title {
+                @include typography(body);
+                font-weight: bold;
+                color: var(--text-secondary);
+
+                @include breakpoint(postMobile) {
+                    max-width: 10ch;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                }
+            }
+
+            &--price {
+                @include typography(subtitle);
+                letter-spacing: 0;
+                color: var(--text-paragraph);
+            }
+
+            &--counter {
+                @include breakpoint(null, postMobile) {
+                    width: 100%;
+
+                    & > * {
+                        justify-content: center;
+                    }
+                };
+
+                margin-left: auto;
+
+                grid-column: 1 / -1;
+            }
+        }
+
+        &__cta {
+            @include flex($justify: space-between, $align: center);
+
+            &--title {
+                @include typography(body);
+                color: var(--text-paragraph);
+            }
+
+            &--price {
+                @include typography(h6);
+                letter-spacing: 0;
+                color: var(--text-secondary);
+            }
+        }
+
+        &__button {
+            width: 100%;
+
+            @include breakpoint(postMobile) {
+                @include size(width, full, 323, 323);
+            }
+        }
+    }
+}
