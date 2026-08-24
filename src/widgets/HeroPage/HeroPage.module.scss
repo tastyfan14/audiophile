@@ -1,0 +1,33 @@
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/mixins' as *;
+@use '@/shared/styles/functions' as *;
+
+//
+
+.heropage {
+    @include size(width, full);
+
+    background-color: var(--bg-secondary);
+
+    position: relative;
+
+    @include space(padding, l0, 0, l0, 0);
+    @include space(margin, 0, 0, s0, 0);
+
+    @include breakpoint(laptop) {
+        @include space(padding, s0, 0, s0, 0);
+        @include space(margin, 0, 0, s2, 0);
+    };
+
+    @include breakpoint(desktop) {
+        @include space(margin, 0, 0, s3, 0);
+    };
+
+    &__title {
+        @include typography(h2);
+        color: var(--text-primary);
+
+        text-align: center;
+        text-transform: uppercase;
+    }
+}
