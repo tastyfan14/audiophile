@@ -1,6 +1,6 @@
 import { IconProps } from '../types'
 
-export default function IRecommendedCircle({ ...props }: IconProps) {
+export default function IShowcaseCircle({ ...props }: IconProps) {
     return (
         <svg {...props} width="944" height="944" xmlns="http://www.w3.org/2000/svg">
         <g stroke="currentColor" fill="none" fillRule="evenodd" opacity=".202">
