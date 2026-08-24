@@ -9,18 +9,16 @@
 
     @include flex($direction: column, $justify: center, $align: center, $gap: l0);
 
-    @include space(margin, l8, 0, l10, 0);
+    @include space(margin, 0, 0, l10, 0);
 
     @include breakpoint(laptop) {
         gap: get-space(l2);
-
-        @include space(margin, l6, 0, l10, 0);
     }
 
     @include breakpoint(desktop) {
         @include flex($direction: row, $justify: space-between, $align: center, $gap: s1);
 
-        @include space(margin, l14, 0, s4, 0);
+        @include space(margin, 0, 0, s2, 0);
     }
 
     &__picture {
@@ -85,7 +83,13 @@
 
         text-align: center;
 
+        @include breakpoint(laptop) {
+            width: 80%;
+        }
+
         @include breakpoint(desktop) {
+            width: 100%;
+
             text-align: left;
         }
     }
