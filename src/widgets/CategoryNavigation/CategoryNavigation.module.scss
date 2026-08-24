@@ -22,14 +22,14 @@
     }
 
     &__page {
-        @include space(margin, l6, 0, s1, 0);
+        @include space(margin, 0, 0, s1, 0);
 
         @include breakpoint(laptop) {
-            @include space(margin, s2, 0, l6, 0);
+            @include space(margin, 0, 0, l9, 0);
         };
 
         @include breakpoint(desktop) {
-            @include space(margin, s3, 0, s2, 0);
+            @include space(margin, 0, 0, s2, 0);
         };
     }
 
