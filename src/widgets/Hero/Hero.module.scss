@@ -9,6 +9,16 @@
 
     background-color: var(--bg-secondary);
 
+    @include space(margin, 0, 0, s0, 0);
+
+    @include breakpoint(laptop) {
+        @include space(margin, 0, 0, s2, 0);
+    };
+
+    @include breakpoint(desktop) {
+        @include space(margin, 0, 0, s3, 0);
+    };
+
     &__container {
         @include size(width, full);
 
