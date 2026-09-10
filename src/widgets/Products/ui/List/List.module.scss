@@ -1,0 +1,21 @@
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/mixins' as *;
+@use '@/shared/styles/functions' as *;
+
+//
+
+.list {
+    @include flex($direction: column, $gap: l7);
+
+    @include space(margin, null, null, s3, null);
+
+    @include breakpoint(laptop) {
+        gap: get-space(l9);
+    };
+
+    @include breakpoint(laptop) {
+        gap: get-space(l11);
+
+        @include space(margin, null, null, s4, null);
+    };
+}
