@@ -2,11 +2,11 @@ import { IconProps } from '../types'
 
 export default function IShowcaseCircle({ ...props }: IconProps) {
     return (
-        <svg {...props} width="944" height="944" xmlns="http://www.w3.org/2000/svg">
-        <g stroke="currentColor" fill="none" fillRule="evenodd" opacity=".202">
-        <circle cx="472" cy="472" r="235.5"/>
-        <circle cx="472" cy="472" r="270.5"/>
-        <circle cx="472" cy="472" r="471.5"/>
+        <svg {...props} width="327" height="437" viewBox="0 0 327 437" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g opacity="0.202147">
+        <circle cx="162.5" cy="158.5" r="139" stroke="currentColor"/>
+        <circle cx="163" cy="158" r="159.5" stroke="currentColor"/>
+        <circle cx="163" cy="158" r="278.5" stroke="currentColor"/>
         </g>
         </svg>
     )
