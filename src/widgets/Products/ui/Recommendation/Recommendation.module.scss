@@ -1,0 +1,110 @@
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/mixins' as *;
+@use '@/shared/styles/functions' as *;
+
+//
+
+.recommendation {
+    @include size(width, full);
+
+    @include flex($direction: column, $align: center, $gap: l1);
+
+    @include space(margin, null, null, l14, null);
+
+    @include breakpoint(laptop) {
+        @include space(margin, null, null, s3, null);
+    };
+
+    @include breakpoint(desktop) {
+        margin-bottom: calc(get-space(s3) + get-space(7xl));
+
+        gap: get-space(l2);
+    };
+
+    //
+
+    &__title {
+        @include typography(h4);
+        color: var(--text-secondary);
+        text-transform: uppercase;
+
+        @include breakpoint(laptop) {
+            @include typography(h3);
+        };
+    }
+
+    // content
+
+    &__cards {
+        width: 100%;
+
+        @include flex($direction: column, $justify: space-between, $gap: l3);
+
+        @include breakpoint(laptop) {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: get-space(xs);
+        };
+
+        @include breakpoint(desktop) {
+            gap: get-space(7xl);
+        };
+    }
+
+    &__card {
+        @include flex($direction: column, $align: center, $gap: 7xl);
+
+        &--picture {
+            @include size(width, full, get-breakpoint(mobileIn));
+            @include size(height, full, 120, 120);
+
+            overflow: hidden;
+
+            position: relative;
+
+            pointer-events: none;
+
+            background-color: var(--bg-tertiary);
+
+            border-radius: get-radius(3xs);
+
+            @include breakpoint(laptop) {
+                @include size(width, full, 223);
+                @include size(height, full, 318, 318);
+            };
+
+            @include breakpoint(desktop) {
+                @include size(width, full, 350);
+            };
+
+            & img {
+                object-fit: contain;
+
+                transform: scale(1.2);
+
+                @include breakpoint(laptop) {
+                    object-fit: cover;
+
+                    transform: scale(1);
+                };
+
+                @include breakpoint(desktop) {
+                    object-position: 0 rem(-10);
+                };
+            }
+        }
+
+        &--title {
+            width: 90%;
+
+            @include typography(h5);
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        &--button {
+            margin-top: auto;
+        }
+    }
+}
