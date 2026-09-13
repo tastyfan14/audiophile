@@ -10,7 +10,7 @@ export default function Banner() {
             desktop='/images/desktop/banner/image-best-gear.jpg'
             alt=''
             className={cls['banner__picture']}
-            aria-hidden='true'
+            loading='lazy'
             />
 
             <div className={cls['banner__overview']}>
