@@ -44,6 +44,13 @@ img, picture {
     -webkit-user-drag: none;
 }
 
+picture {
+    @include size(height, full);
+
+    position: absolute;
+    inset: 0;
+}
+
 button, input, optgroup, select, textarea {
     font: inherit;
     border: none;
