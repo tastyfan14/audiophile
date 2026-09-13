@@ -91,8 +91,6 @@
         &__product {
             @include size(width, full);
 
-            cursor: pointer;
-
             display: grid;
             grid-template-columns: 3fr 7fr;
             row-gap: get-space(md);
@@ -112,17 +110,15 @@
                 border-radius: get-radius(6xs);
             }
 
-            &--image {
+            &--picture {
                 @include size(width, full, 64, 64);
                 @include size(height, full, 64, 64);
 
                 background-color: var(--bg-tertiary);
 
-                position: relative;
+                overflow: hidden;
 
-                & img {
-                    border-radius: get-radius(3xs);
-                }
+                position: relative;
 
                 border-radius: get-radius(3xs);
             }
@@ -132,12 +128,13 @@
             }
 
             &--title {
-                @include typography(body);
-                font-weight: bold;
+                @include typography(subtitle);
                 color: var(--text-secondary);
+                text-transform: uppercase;
+                font-size: rem(15);
 
                 @include breakpoint(postMobile) {
-                    max-width: 10ch;
+                    max-width: 16ch;
                     overflow: hidden;
                     text-overflow: ellipsis;
                     display: -webkit-box;
@@ -151,6 +148,7 @@
                 @include typography(subtitle);
                 letter-spacing: 0;
                 color: var(--text-paragraph);
+                font-size: rem(15);
             }
 
             &--counter {
