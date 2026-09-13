@@ -1,0 +1,111 @@
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/mixins' as *;
+@use '@/shared/styles/functions' as *;
+
+//
+
+.gallery {
+    @include flex($direction: column, $gap: md);
+
+    @include space(margin, 0, auto, l10, auto);
+
+    pointer-events: none;
+
+    @include breakpoint(laptop) {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        gap: get-space(xl);
+    };
+
+    @include breakpoint(desktop) {
+        gap: get-space(3xl);
+
+        @include space(margin, 0, auto, s2, auto);
+    };
+
+    &__picture {
+        @include size(width, full, 327, 327);
+        @include size(height, full, 174, 174);
+
+        position: relative;
+
+        border-radius: get-radius(3xs);
+
+        overflow: hidden;
+
+        & img {
+            width: 100%;
+
+            object-fit: cover;
+        }
+
+        // special
+        @media (min-width: rem(550)) {
+            @include size(width, full, 427, 427);
+            @include size(height, full, 274, 274);
+        };
+        //
+
+        @include breakpoint(laptop) {
+            @include size(width, full, 277, 277);
+            @include size(height, full, 174, 174);
+        };
+
+        // special
+        @media (min-width: rem(1050)) {
+            @include size(width, full, 377, 377);
+            @include size(height, full, 274, 224);
+        };
+        //
+
+        @include breakpoint(desktop) {
+            @include size(width, full, 445, 445);
+            @include size(height, full, 280, 280);
+        };
+    }
+
+    //
+
+    &__picture:nth-of-type(3n + 2) {
+        @include breakpoint(laptop) {
+            grid-column-start: 1;
+            grid-row-start: 2;
+        };
+    }
+
+    &__picture:nth-of-type(3n + 3) {
+        @include size(width, full, 327, 327);
+        @include size(height, full, 368, 368);
+
+        position: relative;
+
+        // special
+        @media (min-width: rem(550)) {
+            @include size(width, full, 427, 427);
+            @include size(height, full, 468, 468);
+        };
+        //
+
+        @include breakpoint(laptop) {
+            @include size(width, full, 395, 395);
+            @include size(height, full, 368, 368);
+
+            grid-row: span 2 / span 2;
+            grid-column-start: 2;
+            grid-row-start: 1;
+        };
+
+        // special
+        @media (min-width: rem(1050)) {
+            @include size(width, full, 595, 595);
+            @include size(height, full, 568, 568);
+        };
+        //
+
+        @include breakpoint(desktop) {
+            @include size(width, full, 635, 635);
+            @include size(height, full, 592, 592);
+        };
+    }
+}
