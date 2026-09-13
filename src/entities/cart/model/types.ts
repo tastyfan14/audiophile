@@ -1,6 +1,6 @@
 import { Product } from '@/entities/product/model/types'
 
-export type CartItem = Pick<Product, 'id' | 'slug' | 'category' | 'image' | 'title' | 'price'> & {
+export type CartItem = Pick<Product, 'id' | 'slug' | 'category' | 'image' | 'shortTitle' | 'price'> & {
     quantity: number
 }
 
