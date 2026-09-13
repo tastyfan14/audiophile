@@ -13,7 +13,7 @@ export default function NotFound() {
 
             <Button
             as='link'
-            href={ROUTES.Home.route}
+            href={ROUTES.home.route}
             variant='secondary'
             className={cls['not-found__button']}
             >
