@@ -42,6 +42,7 @@ export interface Product {
 
     image: string
     title: string
+    shortTitle: string
     desc: string
     price: number
 
