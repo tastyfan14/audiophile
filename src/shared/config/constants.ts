@@ -30,37 +30,37 @@ export const SOCIAL_LINKS = {
 const PRODUCTS = '/products'
 
 export const ROUTES = {
-    Home: {
+    home: {
         id: 'home',
         slug: 'home',
         route: '/',
         label: 'HOME',
     },
-    Products: {
+    products: {
         id: 'products',
         slug: 'products',
         route: PRODUCTS,
         label: 'PRODUCTS',
     },
-    Headphones: {
+    headphones: {
         id: 'headphones',
         slug: 'headphones',
         route: `${PRODUCTS}/headphones`,
         label: 'HEADPHONES',
     },
-    Speakers: {
+    speakers: {
         id: 'speakers',
         slug: 'speakers',
         route: `${PRODUCTS}/speakers`,
         label: 'SPEAKERS',
     },
-    Earphones: {
+    earphones: {
         id: 'earphones',
         slug: 'earphones',
         route: `${PRODUCTS}/earphones`,
         label: 'EARPHONES',
     },
-    Checkout: {
+    checkout: {
         id: 'checkout',
         slug: 'checkout',
         route: '/checkout',
@@ -69,25 +69,28 @@ export const ROUTES = {
 } as const
 
 export const CATEGORY_NAVIGATION = [
-    { // headphones
-        id: ROUTES.Headphones.id,
-        slug: ROUTES.Headphones.slug,
-        route: ROUTES.Headphones.route,
+    {
+        // headphones
+        id: ROUTES.headphones.id,
+        slug: ROUTES.headphones.slug,
+        route: ROUTES.headphones.route,
         image: 'category-headphones.png',
-        title: ROUTES.Headphones.label,
+        title: ROUTES.headphones.label,
     },
-    { // speakers
-        id: ROUTES.Speakers.id,
-        slug: ROUTES.Speakers.slug,
-        route: ROUTES.Speakers.route,
+    {
+        // speakers
+        id: ROUTES.speakers.id,
+        slug: ROUTES.speakers.slug,
+        route: ROUTES.speakers.route,
         image: 'category-speakers.png',
-        title: ROUTES.Speakers.label,
+        title: ROUTES.speakers.label,
     },
-    { // earphones
-        id: ROUTES.Earphones.id,
-        slug: ROUTES.Earphones.slug,
-        route: ROUTES.Earphones.route,
+    {
+        // earphones
+        id: ROUTES.earphones.id,
+        slug: ROUTES.earphones.slug,
+        route: ROUTES.earphones.route,
         image: 'category-earphones.png',
-        title: ROUTES.Earphones.label,
+        title: ROUTES.earphones.label,
     },
 ] as const
