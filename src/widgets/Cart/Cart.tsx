@@ -81,6 +81,7 @@ export default function Cart({ isOpen, onClose, className }: CartProps) {
                                         as='link'
                                         href={`${ROUTES[item.category as keyof typeof ROUTES].route}/${item.slug}`}
                                         variant='empty'
+                                        className={cls['cart-content__product--link']}
                                         >
                                             <ResponsiveImage
                                             mobile={`/images/mobile/products/image-${item.image}`}
