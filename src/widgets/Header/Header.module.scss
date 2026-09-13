@@ -91,7 +91,7 @@
     }
 
     &__cart {
-        //
+        position: relative;
 
         &--disabled {
             pointer-events: none;
@@ -99,6 +99,26 @@
             & svg path {
                 fill: var(--bg-i-secondary);
             }
+        }
+
+        &--quantity {
+            @include size(width, full, 20, 20);
+            @include size(height, full, 20, 20);
+
+            position: absolute;
+            top: -.5rem;
+            right: -.5rem;
+
+            // @include space(padding, m0, m3, m0, m3);
+
+            @include flex($justify: center, $align: center);
+
+            @include typography(subtitle);
+            color: var(--text-primary);
+
+            border-radius: get-radius(circle);
+
+            background-color: var(--bg-i-accent-primary);
         }
     }
 
