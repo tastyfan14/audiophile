@@ -14,6 +14,7 @@ import Overlay from '@/shared/ui/Overlay'
 import Container from '@/shared/ui/Layout/ui/Container'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
+import { useCartStore } from '@/entities/cart/model/store'
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState<'burger' | 'cart' | null>(null)
@@ -21,6 +22,8 @@ export default function Header() {
     const pathname = usePathname()
 
     const isCheckout = pathname.startsWith('/checkout')
+
+    const items = useCartStore(state => state.items)
     return (
         <>
             <header className={cls.header}>
@@ -51,6 +54,8 @@ export default function Header() {
                     disabled={isCheckout && true}
                     >
                         <ICart />
+
+                        {items.length > 0 && !isCheckout && <span className={cls['header__cart--quantity']}>{items.length}</span>}
                     </Button>
                 </Container>
             </header>
