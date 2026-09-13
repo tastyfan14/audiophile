@@ -1,0 +1,118 @@
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/mixins' as *;
+@use '@/shared/styles/functions' as *;
+
+//
+
+.product-card {
+    @include flex($direction: column, $align: center, $gap: 7xl);
+
+    overflow: hidden;
+
+    @include breakpoint(desktop) {
+        @include flex($direction: row, $justify: space-between, $align: center, $gap: l10);
+    };
+
+    &.reverse {
+        //
+
+        @include breakpoint(desktop) {
+            .product-card__picture {
+                order: 2;
+            }
+
+            .product-card__overview {
+                order: 1;
+            }
+        };
+    }
+
+    &__picture {
+        @include size(width, full, 327, 357);
+        @include size(height, full, 300, 330);
+
+        position: relative;
+
+        pointer-events: none;
+
+        overflow: hidden;
+
+        background-color: var(--bg-tertiary);
+
+        border-radius: get-radius(3xs);
+
+        @include breakpoint(laptop) {
+            @include size(width, full, 689, 749);
+            @include size(height, full, 300, 360);
+        }
+
+        @include breakpoint(desktop) {
+            @include size(width, full, 540);
+            @include size(height, full, 560);
+        }
+
+        & img {
+            object-fit: cover;
+            object-position: 50% 30%;
+        }
+    }
+
+    &__overview {
+        @include flex($direction: column, $align: center, $gap: 3xl);
+
+        @include breakpoint(desktop) {
+            @include flex($direction: column, $align: start, $gap: 7xl);
+
+            width: 80%;
+        };
+
+        &--title, &--desc {
+            text-align: center;
+
+            @include breakpoint(desktop) {
+                text-align: start;
+            };
+        }
+
+        &--title {
+            @include typography(h4);
+            color: var(--text-secondary);
+            text-transform: uppercase;
+
+            margin-bottom: get-space(m2);
+
+            @include breakpoint(laptop) {
+                width: 50%;
+
+                margin-top: -.5rem;
+
+                @include typography(h2);
+            };
+
+            @include breakpoint(desktop) {
+                width: 100%;
+
+                margin-top: -1rem;
+            };
+        }
+
+        &--desc {
+            width: 70%;
+
+            @include typography(body);
+            color: var(--text-paragraph);
+
+            margin-bottom: get-space(m0);
+
+            @include breakpoint(laptop) {
+                width: 60%;
+            };
+
+            @include breakpoint(desktop) {
+                width: 90%;
+
+                margin-bottom: get-space(m2);
+            };
+        }
+    }
+}
