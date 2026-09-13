@@ -20,7 +20,6 @@ export default function ResponsiveImage({ mobile, laptop, desktop, alt, classNam
                 alt={alt}
                 fill
                 sizes='100%'
-                style={{ objectFit: 'cover' }}
                 {...props}
                 />
             </picture>
