@@ -4,14 +4,14 @@ import Button from '../Button'
 import clsx from 'clsx'
 
 export default function Counter({ value, onChange, className }: CounterProps) {
-    const decrement = () => onChange(Math.max(1, value - 1))
+    const decrement = () => onChange(Math.max(0, value - 1))
     const increment = () => onChange(value + 1)
     return (
         <div className={clsx(cls.counter, className)}>
             <Button
             variant='additional'
             className={cls['counter__button']}
-            disabled={value === 1}
+            disabled={value === 0}
             aria-label='Decrease quantity'
             onClick={decrement}
             >
