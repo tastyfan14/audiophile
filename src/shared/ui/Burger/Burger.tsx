@@ -1,25 +1,13 @@
 import clsx from 'clsx'
 import cls from './Burger.module.scss'
 import { FocusTrap } from 'focus-trap-react'
-import { useEffect } from 'react'
-import { useLockBodyScroll } from '@/shared/lib/useLockBodyScroll'
 import type { BurgerProps } from './types'
 import Container from '@/shared/ui/Layout/ui/Container'
+import { useEscapeKey } from '@/shared/lib/useEscapeKey'
 
 export default function Burger({ isOpen, onClose, className, children }: BurgerProps) {
-    useLockBodyScroll(isOpen)
+    useEscapeKey({ isOpen, onClose })
 
-    useEffect(() => {
-        const handleEscape = (e: KeyboardEvent) => {
-            if (e.key === 'Escape' && isOpen) {
-                onClose()
-            }
-        }
-
-        window.addEventListener('keydown', handleEscape)
-        
-        return () => window.removeEventListener('keydown', handleEscape)
-    }, [isOpen, onClose])
     return (
         <FocusTrap
         active={isOpen}
