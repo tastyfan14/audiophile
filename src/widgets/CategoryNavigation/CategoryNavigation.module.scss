@@ -13,7 +13,7 @@
         @include flex($direction: column, $justify: center, $align: center, $gap: l3);
 
         @include breakpoint(laptop) {
-            @include flex($justify: space-between, $align: center, $gap: xl);
+            @include flex($justify: space-between, $align: center, $gap: xs);
         };
 
         @include breakpoint(desktop) {
