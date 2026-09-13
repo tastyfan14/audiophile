@@ -11,19 +11,19 @@ export default function SiteNavigation({ className }: { className?: string }) {
         >
             <ul>
                 <li className={clsx(cls['navigation__li'])}>
-                    <Link href={ROUTES.Home.route}>{ROUTES.Home.label}</Link>
+                    <Link href={ROUTES.home.route}>{ROUTES.home.label}</Link>
                 </li>
 
                 <li className={clsx(cls['navigation__li'])}>
-                    <Link href={ROUTES.Headphones.route}>{ROUTES.Headphones.label}</Link>
+                    <Link href={ROUTES.headphones.route}>{ROUTES.headphones.label}</Link>
                 </li>
 
                 <li className={clsx(cls['navigation__li'])}>
-                    <Link href={ROUTES.Speakers.route}>{ROUTES.Speakers.label}</Link>
+                    <Link href={ROUTES.speakers.route}>{ROUTES.speakers.label}</Link>
                 </li>
 
                 <li className={clsx(cls['navigation__li'])}>
-                    <Link href={ROUTES.Earphones.route}>{ROUTES.Earphones.label}</Link>
+                    <Link href={ROUTES.earphones.route}>{ROUTES.earphones.label}</Link>
                 </li>
             </ul>
         </nav>
