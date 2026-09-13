@@ -29,29 +29,48 @@
         
         background-blend-mode: difference;
 
-        background-color: var(--bg-secondary);
-        background-image: url('/images/mobile/hero/hero.jpg');
-        background-repeat: no-repeat;
-        background-size: rem(387) rem(617);
-        background-position: 50% 110%;
+        position: relative;
+
+        overflow: hidden;
 
         @include breakpoint(laptop) {
             @include space(padding, l10, null, l14, null);
-
-            background-image: url('/images/laptop/hero/hero.jpg');
-            background-size: rem(768) rem(738);
-            background-position: 50% 110%;
         };
 
         @include breakpoint(desktop) {
             @include flex($direction: column, $justify: center, $align: start);
 
             @include space(padding, l11, null, l15, null);
-
-            background-image: url('/images/desktop/hero/hero.jpg');
-            background-size: rem(1538) rem(788);
-            background-position: 52% 100%;
         };
+    }
+
+    &__picture {
+        position: absolute;
+        z-index: 1;
+        top: -8%;
+        left: -1%;
+        
+        mix-blend-mode: difference;
+        // blend
+        // background-blend-mode: difference;
+
+        transform: scale(1.15);
+
+        @include breakpoint(desktop) {
+            transform: scale(1.35);
+        };
+
+        width: 100%;
+        height: 100%;
+
+        & img {
+            object-fit: contain;
+        }
+    }
+
+    &__sub, &__title, &__desc, &__button {
+        position: relative;
+        z-index: 2;
     }
 
     &__sub {
