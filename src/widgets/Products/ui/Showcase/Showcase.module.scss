@@ -1,0 +1,280 @@
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/mixins' as *;
+@use '@/shared/styles/functions' as *;
+
+.showcase {
+    @include flex($direction: column, $gap: 3xl);
+    @include space(margin, 0, null, s1, null);
+
+    @include breakpoint(laptop) {
+        @include space(margin, 0, null, l9, null);
+
+        gap: get-space(7xl);
+    }
+
+    @include breakpoint(desktop) {
+        @include space(margin, 0, null, s2, null);
+
+        gap: get-space(l1);
+    }
+
+    //
+
+    &-item {
+        @include size(width, full, get-breakpoint(mobileIn), get-breakpoint(mobileIn));
+
+        @include space(margin, 0, auto, 0, auto);
+
+        @include flex($direction: column, $justify: center, $align: start, $gap: 3xl);
+
+        position: relative;
+        overflow: hidden;
+
+        border-radius: get-radius(3xs);
+
+        & > * {
+            z-index: 2;
+        }
+
+        @include breakpoint(laptop) {
+            @include size(width, full, get-breakpoint(mobileIn), 719);
+        };
+
+        @include breakpoint(desktop) {
+            @include size(width, full, get-breakpoint(mobileIn), get-breakpoint(desktopIn));
+        };
+
+        //
+
+        &__accent {
+            @include flex($direction: column, $justify: center, $align: center, $gap: 7xl);
+
+            @include space(padding, l3, 3xl, l3, 3xl);
+
+            background-color: var(--bg-accent-primary);
+
+            @include breakpoint(desktop) {
+                @include flex($justify: space-between, $gap: s4);
+
+                @include space(padding, 7xl, 3xl, 7xl, 3xl);
+            };
+
+            &--content {
+                @include flex($direction: column, $justify: center, $align: center, $gap: 7xl);
+
+                @include breakpoint(desktop) {
+                    @include flex($direction: column, $justify: center, $align: start, $gap: l2);
+                };
+            }
+        }
+
+        &__default {
+            @include space(padding, l8, 3xl, l8, 3xl);
+
+            background: linear-gradient(to left bottom, var(--bg-tertiary), var(--bg-tertiary), #E4E4E4);
+
+            @include breakpoint(laptop) {
+                @include space(padding, l8, l3, l8, l3);
+            };
+
+            @include breakpoint(desktop) {
+                @include space(padding, l8, l6, l8, l6);
+            };
+        }
+
+        &__double {
+            @include flex($direction: column, $gap: 3xl);
+
+            @include breakpoint(laptop) {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                align-items: stretch;
+                gap: get-space(sm);
+            };
+
+            @include breakpoint(desktop) {
+                gap: get-space(7xl);
+            };
+
+            &--content {
+                @include flex($direction: column, $gap: l0);
+                @include size(width, full);
+                @include space(padding, l2, 7xl, l1, 7xl);
+
+                overflow: hidden;
+                border-radius: get-radius(3xs);
+                background-color: var(--bg-tertiary);
+
+                @include breakpoint(laptop) {
+                    @include flex($direction: column, $justify: center, $gap: l0);
+                    @include space(padding, l2, l0, l1, l0);
+                };
+
+                @include breakpoint(desktop) {
+                    @include space(padding, l6, l6, l6, l6);
+                };
+            }
+        }
+
+        //
+
+        &__picture {
+            width: 100%;
+            height: 100%;
+
+            position: relative;
+            z-index: 1;
+
+            overflow: hidden;
+
+            border-radius: get-radius(3xs);
+
+            &--accent {
+                @include size(width, full, 172, 172);
+                @include size(height, full, 207, 207);
+
+                @include breakpoint(laptop) {
+                    @include size(width, full, 197);
+                    @include size(height, full, 237, 237);
+
+                    margin-bottom: get-space(7xl);
+                };
+
+                @include breakpoint(desktop) {
+                    @include size(width, full, 410);
+                    @include size(height, full, 493, 493);
+
+                    top: rem(76);
+                    left: 10%;
+                };
+            }
+
+            &--default {
+                @include size(width, full, get-breakpoint(mobileIn));
+                @include size(height, full, 320, 320);
+
+                position: absolute;
+                inset: 0;
+
+                @include breakpoint(laptop) {
+                    @include size(width, full, get-breakpoint(laptopIn));
+                };
+
+                @include breakpoint(desktop) {
+                    @include size(width, full, get-breakpoint(desktopIn));
+                };
+            }
+
+            &--double {
+                @include size(width, full, 327);
+                @include size(height, full, 200, 200);
+
+                @include breakpoint(laptop) {
+                    @include size(width, full, null);
+                    @include size(height, full, 320, 320);
+                };
+            }
+        }
+
+        &__circle {
+            width: 100%;
+            height: 100%;
+
+            position: absolute;
+            top: 0;
+            left: 50%;
+            z-index: 1;
+            transform: translate(-50%, -16%);
+
+            @include breakpoint(laptop) {
+                transform: translate(-50%, -10%);
+            };
+
+            @include breakpoint(desktop) {
+                transform: translate(-70%, 5%) scale(1.3);
+            };
+
+            & circle {
+                stroke: var(--border-tertiary);
+
+                @include breakpoint(desktop) {
+                    transform: translateY(30%)
+                };
+            }
+        }
+
+        &__title {
+            @include typography(h3);
+
+            color: var(--text-secondary);
+
+            &--accent {
+                @include typography(h2);
+                color: var(--text-primary);
+                text-align: center;
+
+                @include breakpoint(laptop) {
+                    @include typography(h1);
+                    color: var(--text-primary);
+
+                    width: 50%;
+                };
+
+                @include breakpoint(desktop) {
+                    width: 80%;
+
+                    text-align: left;
+                };
+            }
+        }
+
+        &__desc {
+            @include typography(body);
+
+            color: #F5DED2;
+            text-align: center;
+
+            @include breakpoint(laptop) {
+                width: 40%;
+            };
+
+            &--accent {
+                @include breakpoint(desktop) {
+                    width: 90%;
+
+                    margin-block: rem(-16);
+
+                    text-align: left;
+                };
+            }
+        }
+
+        &__button {
+            width: max-content;
+
+            &--accent {
+                background-color: var(--bg-secondary);
+
+                color: var(--text-primary);
+
+                transition: background-color 0.1s linear, color 0.1s linear, border-color 0.1s linear;
+
+                @include breakpoint(laptop) {
+                    margin-bottom: get-space(m2);
+                };
+
+                @include breakpoint(desktop) {
+                    width: max-content;
+                };
+
+                &:hover {
+                    background-color: var(--bg-primary);
+
+                    border-color: var(--border-tertiary);
+
+                    color: var(--text-secondary);
+                }
+            }
+        }
+    }
+}
