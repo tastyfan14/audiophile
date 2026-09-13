@@ -8,7 +8,10 @@ type Props = {
 
 export default async function List({ products }: Props) {
     return (
-        <ul className={cls.list}>
+        <ul
+        aria-label='Product list'
+        className={cls.list}
+        >
             {products.map((product, index) => {
                 return (
                     <ProductCard
