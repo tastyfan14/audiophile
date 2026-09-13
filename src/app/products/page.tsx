@@ -5,10 +5,10 @@ import Banner from '@/widgets/Banner/Banner'
 import CategoryNavigation from '@/widgets/CategoryNavigation/CategoryNavigation'
 import HeroPage from '@/widgets/HeroPage/HeroPage'
 
-export default function Products() {
+export default function ProductsPage() {
     return (
         <PageWrapper>
-            <HeroPage title={ROUTES.Products.label} />
+            <HeroPage title={ROUTES.products.label} />
 
             <MainLayout>
                 <CategoryNavigation variant='page' />
