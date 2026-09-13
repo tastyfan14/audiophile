@@ -17,11 +17,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
     title: 'Audiophile',
     description: 'Audiophile e-commerce website created by tasty_fan14.',
-    icons: {
-        icon: 'favicon-32x32.png'
-    },
 };
-
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
     return (
