@@ -1,0 +1,23 @@
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/mixins' as *;
+@use '@/shared/styles/functions' as *;
+
+//
+
+.product-badge {
+    @include flex($justify: center, $align: center);
+    column-gap: get-space(3xl);
+    row-gap: get-space(xs);
+    flex-wrap: wrap;
+
+    @include breakpoint(desktop) {
+        @include flex($justify: start, $align: center);
+        flex-wrap: wrap;
+    };
+
+    &__item {
+        @include typography(overline);
+        color: var(--text-accent-primary);
+        text-transform: uppercase;
+    }
+}
