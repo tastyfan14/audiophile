@@ -84,7 +84,7 @@
             @include space(margin, m3, 0, m3, 0);
 
             @include breakpoint(postMobile) {
-                @include flex($direction: column, $justify: center, $align: center, $gap: 4xl);
+                @include flex($direction: column, $justify: center, $align: center, $gap: 3xl);
             }
         }
 
@@ -97,7 +97,7 @@
 
             align-items: center;
 
-            @include space(margin, m3, 0, m3, 0);
+            @include space(margin, m0, 0, m0, 0);
 
             @include breakpoint(postMobile) {
                 @include flex($align: center, $gap: xl);
@@ -108,6 +108,19 @@
                 outline-offset: get-space(m0);
 
                 border-radius: get-radius(6xs);
+            }
+
+            &--link {
+                transition: transform .1s linear;
+
+                &:focus-visible {
+                    outline: rem(2) solid var(--bg-accent-primary);
+                    border-radius: get-radius(3xs);
+                }
+
+                &:active {
+                    transform: scale(.96);
+                }
             }
 
             &--picture {
