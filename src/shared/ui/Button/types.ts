@@ -4,6 +4,7 @@ type ButtonVariants =
     | 'tertiary'
     | 'icon'
     | 'additional'
+    | 'empty'
 
 type Basic = {
     variant: ButtonVariants
