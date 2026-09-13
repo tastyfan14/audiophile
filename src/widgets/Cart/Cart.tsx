@@ -9,28 +9,16 @@ import { FocusTrap } from 'focus-trap-react'
 import { ROUTES } from '@/shared/config/constants'
 import type { CartProps } from './types'
 import { useCartStore } from '@/entities/cart/model/store'
-import { useEffect } from 'react'
-import { useLockBodyScroll } from '@/shared/lib/useLockBodyScroll'
+import { useEscapeKey } from '@/shared/lib/useEscapeKey'
 
 export default function Cart({ isOpen, onClose, className }: CartProps) {
-    useLockBodyScroll(isOpen)
-
-    useEffect(() => {
-        const handleEscape = (e: KeyboardEvent) => {
-            if (e.key === 'Escape' && isOpen) {
-                onClose()
-            }
-        }
-
-        window.addEventListener('keydown', handleEscape)
-
-        return () => window.removeEventListener('keydown', handleEscape)
-    }, [isOpen, onClose])
+    useEscapeKey({ isOpen, onClose })
 
     const items = useCartStore(state => state.items)
     const updateQuantity = useCartStore(state => state.updateQuantity)
     const clearCart = useCartStore(state => state.clearCart)
     const reduce = items.reduce((acc, item) => acc + item.price * item.quantity, 0)
+
     return (
         <FocusTrap
         active={isOpen}
@@ -54,7 +42,7 @@ export default function Cart({ isOpen, onClose, className }: CartProps) {
 
                         <Button
                         as='link'
-                        href={ROUTES.Products.route}
+                        href={ROUTES.products.route}
                         variant='secondary'
                         className={cls['cart-empty__button']}
                         onClick={onClose}
@@ -82,22 +70,29 @@ export default function Cart({ isOpen, onClose, className }: CartProps) {
                         </div>
 
                         {/* Here are the products themselves */}
-                        <div className={clsx(cls['cart-content__products'])}>
+                        <ul className={clsx(cls['cart-content__products'])}>
                             {items.map((item) => {
                                 return (
-                                    <div
+                                    <li
                                     key={item.id}
-                                    className={cls['cart-content__product']}>
-                                        <ResponsiveImage
-                                        mobile={`/images/mobile/products/image-${item.image}`}
-                                        alt={item.title}
-                                        className={cls['cart-content__product--image']}
-                                        loading='lazy'
-                                        />
+                                    className={cls['cart-content__product']}
+                                    >
+                                        <Button
+                                        as='link'
+                                        href={`${ROUTES[item.category as keyof typeof ROUTES].route}/${item.slug}`}
+                                        variant='empty'
+                                        >
+                                            <ResponsiveImage
+                                            mobile={`/images/mobile/products/image-${item.image}`}
+                                            alt=''
+                                            className={cls['cart-content__product--picture']}
+                                            loading='lazy'
+                                            />
+                                        </Button>
 
                                         <div className={cls['cart-content__product--overview']}>
-                                            <h3 className={cls['cart-content__product--title']}>{item.title}</h3>
-                                            <h4 className={cls['cart-content__product--price']}>$ {item.price}</h4>
+                                            <h3 className={cls['cart-content__product--title']}>{item.shortTitle}</h3>
+                                            <h4 className={cls['cart-content__product--price']}>$ {item.price.toLocaleString('en-US')}</h4>
                                         </div>
 
                                         <Counter
@@ -105,26 +100,26 @@ export default function Cart({ isOpen, onClose, className }: CartProps) {
                                         onChange={(quantity) => updateQuantity(item.id, quantity)}
                                         className={cls['cart-content__product--counter']}
                                         />
-                                    </div>
+                                    </li>
                                 )
                             })}
-                        </div>
+                        </ul>
 
                         {/* Cta */}
                         <div className={cls['cart-content__cta']}>
                             <h2 className={cls['cart-content__cta--title']}>TOTAL</h2>
-                            <h3 className={cls['cart-content__cta--price']}>$ {reduce}</h3>
+                            <h3 className={cls['cart-content__cta--price']}>$ {reduce.toLocaleString('en-US')}</h3>
                         </div>
 
                         {/* Go to checkout */}
                         <Button
                         as='link'
-                        href={ROUTES.Checkout.route}
+                        href={ROUTES.checkout.route}
                         variant='primary'
                         className={cls['cart-content__button']}
                         onClick={onClose}
                         >
-                            {ROUTES.Checkout.label}
+                            {ROUTES.checkout.label}
                         </Button>
                     </div>
                 )
