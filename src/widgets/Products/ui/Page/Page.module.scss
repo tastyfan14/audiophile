@@ -1,0 +1,215 @@
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/mixins' as *;
+@use '@/shared/styles/functions' as *;
+
+//
+
+%width {
+    @include size(width, full, get-breakpoint(mobileIn), 327);
+
+    // special
+    @media (min-width: rem(550)) {
+        @include size(width, full, get-breakpoint(mobileIn), 427);
+    };
+    //
+
+    @include breakpoint(laptop) {
+        @include size(width, full, null, get-breakpoint(desktopIn));
+    };
+
+    // special
+    @media (min-width: rem(1050)) {
+    };
+    //
+
+    @include breakpoint(desktop) {
+    };
+}
+
+//
+
+.page-wrapper {
+    @extend %width;
+}
+
+.page {
+    @include space(margin, 3xl, 0, 0, 0);
+
+    @include flex($direction: column, $align: start, $gap: l7);
+
+    @include breakpoint(laptop) {
+        @include space(margin, m4, 0, 0, 0);
+
+        gap: get-space(l11);
+    };
+
+    @include breakpoint(desktop) {
+        @include space(margin, 3xl, 0, 0, 0);
+
+        gap: get-space(l15);
+    }
+
+    //
+
+    &__button {
+        @include space(margin, 7xl, 0, 0, 0);
+
+        @include breakpoint(laptop) {
+            @include space(margin, l1, 0, 0, 0);
+        };
+
+        @include breakpoint(desktop) {
+            @include space(margin, l5, 0, 0, 0);
+        }
+    }
+
+    &-content {
+        @include flex($direction: column, $align: start, $gap: 3xl);
+
+        @include breakpoint(laptop) {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: get-space(l4);
+        };
+
+        @include breakpoint(desktop) {
+            column-gap: get-space(l10);
+            row-gap: get-space(4xl);
+        };
+
+        &__picture {
+            @include size(width, full, 327, 527);
+            @include size(height, full, 327, 427);
+
+            position: relative;
+
+            pointer-events: none;
+
+            @include space(margin, m2, 0, m2, 0);
+
+            @include breakpoint(laptop) {
+                grid-row: span 7 / span 7;
+                grid-column-start: 1;
+                grid-row-start: 2;
+
+                @include size(width, full, 281, 540);
+                @include size(height, full, 480, 560);
+            };
+
+            @include breakpoint(desktop) {
+                @include size(width, full, 540, 540);
+                @include size(height, full, 560, 560);
+            };
+
+            border-radius: get-radius(3xs);
+
+            overflow: hidden;
+
+            & img {
+                object-fit: cover;
+            }
+        }
+
+        &__badges {
+            @include flex();
+            row-gap: get-space(xs);
+            column-gap: get-space(7xl);
+            flex-wrap: wrap;
+
+            @include breakpoint(laptop) {
+                grid-column-start: 2;
+                grid-row-start: 3;
+
+                margin-bottom: rem(-8);
+            };
+
+            &--stock {
+                @include typography(overline);
+                color: var(--text-error);
+                text-transform: uppercase;
+            }
+        }
+
+        &__title {
+            @include typography(h5);
+            color: var(--text-secondary);
+            text-transform: uppercase;
+
+            @include breakpoint(laptop) {
+                @include typography(h4);
+                color: var(--text-secondary);
+
+                grid-column-start: 2;
+                grid-row-start: 4;
+            };
+
+            @include breakpoint(desktop) {
+                @include typography(h2);
+                color: var(--text-secondary);
+
+                width: 90%;
+            };
+        }
+
+        &__desc {
+            @include typography(body);
+            color: var(--text-paragraph);
+
+            @include breakpoint(laptop) {
+                grid-column-start: 2;
+                grid-row-start: 5;
+
+                @include space(margin, m1, 0, m0, 0);
+            };
+        }
+
+        &__price {
+            @include typography(h6);
+            color: var(--text-secondary);
+
+            @include space(margin, m0, 0, m2, 0);
+
+            @include breakpoint(laptop) {
+                grid-column-start: 2;
+                grid-row-start: 6;
+
+                @include space(margin, m1, 0, xs, 0);
+            };
+        }
+
+        &__interactive {
+            @include flex($align: stretch, $gap: lg);
+
+            @include breakpoint(laptop) {
+                grid-column-start: 2;
+                grid-row-start: 7;
+            };
+
+            &--disabled {
+                background-color: var(--bg-accent-primary-hover);
+                border-color: var(--border-primary-hover);
+            }
+        }
+
+        &__shortly {
+            width: 100%;
+
+            @include flex($direction: column, $gap: l7);
+
+            margin-inline: auto;
+
+            @include breakpoint(laptop) {
+                gap: get-space(l11);
+            };
+
+            @include breakpoint(desktop) {
+                display: grid;
+                grid-template-columns: 1fr max-content;
+
+                padding-right: get-space(l12);
+
+                gap: get-space(l12);
+            };
+        }
+    }
+}
