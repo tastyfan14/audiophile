@@ -1,0 +1,53 @@
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/mixins' as *;
+@use '@/shared/styles/functions' as *;
+
+//
+
+.include {
+    @include flex($direction: column, $gap: 7xl);
+
+    @include breakpoint(laptop) {
+        @include flex($direction: row, $justify: space-between, $gap: l0);
+
+        @include space(margin, null, l10, null, null);
+    };
+
+    @include breakpoint(desktop) {
+        width: max-content;
+        height: max-content;
+
+        @include flex($direction: column, $gap: l0);
+
+        margin: 0;
+    };
+
+    &__title {
+        @include typography(h5);
+        color: var(--text-secondary);
+        text-transform: uppercase;
+
+        @include breakpoint(laptop) {
+            @include typography(h3);
+            color: var(--text-secondary);
+        };
+    }
+
+    &__cards {
+        @include flex($direction: column, $gap: sm);
+    }
+
+    &__card {
+        @include flex($direction: row, $gap: 3xl);
+
+        &--quantity {
+            @include typography(h6);
+            color: var(--text-accent-primary);
+        }
+
+        &--item {
+            @include typography(body);
+            color: var(--text-paragraph);
+        }
+    }
+}
