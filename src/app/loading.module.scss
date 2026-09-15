@@ -1,0 +1,72 @@
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/mixins' as *;
+@use '@/shared/styles/functions' as *;
+
+//
+
+%skeleton {
+    background: linear-gradient(
+        90deg,
+        #E5E5E5,
+        #F5F5F5,
+        #E5E5E5,
+    );
+    background-size: 200% 100%;
+
+    animation: skeleton 1.5s infinite linear;
+}
+
+.loading {
+    @include flex($gap: s0);
+
+    @include space(padding, s0, null, s0, null);
+
+    &-row, &-column, &-double {
+        @include size(width, full);
+    }
+
+    &-row {
+        @include flex($justify: space-between, $align: center, $gap: l0);
+
+        &__block {
+            @extend %skeleton;
+
+            width: 100%;
+            height: rem(200);
+        }
+    }
+
+    &-column {
+        @include flex($direction: column, $justify: center, $align: center, $gap: l0);
+
+        &__block {
+            @extend %skeleton;
+
+            width: 100%;
+            height: rem(500);
+        }
+    }
+
+    &-double {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: get-space(l0);
+
+        &__block {
+            @extend %skeleton;
+
+            width: 100%;
+            height: rem(500);
+        }
+    }
+}
+
+@keyframes skeleton {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
