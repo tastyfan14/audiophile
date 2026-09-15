@@ -27,7 +27,8 @@ export const checkoutSchema = z.object({
     address: z
         .string()
         .trim()
-        .min(5, 'Address is required'),
+        .min(5, 'Address is required')
+        .max(250, 'Address must be less than 250 characters'),
     city: z
         .string()
         .trim()
