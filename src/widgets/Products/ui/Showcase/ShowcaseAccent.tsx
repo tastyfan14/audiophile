@@ -28,8 +28,9 @@ export default function ShowcaseAccent({ item }: { item: Extract<ProductShowcase
                 <Button
                 as='link'
                 href={`${ROUTES[item.category as keyof typeof ROUTES].route}/${item.slug}`}
-                variant='secondary'
-                className={cls['showcase-item__button--accent']}
+                variant='secondary-inverted'
+                className={cls['showcase-item__button']}
+                aria-label={`See ${item.title} product`}
                 >
                     See Product
                 </Button>

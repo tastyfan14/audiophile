@@ -25,6 +25,7 @@ export default function ShowcaseDouble({ item }: { item: Extract<ProductShowcase
                 href={`${ROUTES[item.category as keyof typeof ROUTES].route}/${item.slug}`}
                 variant='secondary'
                 className={cls['showcase-item__button']}
+                aria-label={`See ${item.title} product`}
                 >
                     See Product
                 </Button>
