@@ -46,6 +46,7 @@ export default function Recommendation({ recommendations }: Props) {
                             href={`${ROUTES[recommendation.category as keyof typeof ROUTES].route}/${recommendation.slug}`}
                             variant='primary'
                             className={cls['recommendation__card--button']}
+                            aria-label={`See ${recommendation.title} product`}
                             >
                                 See Product
                             </Button>
