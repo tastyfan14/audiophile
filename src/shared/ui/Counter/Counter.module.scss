@@ -4,19 +4,36 @@
 //
 
 .counter {
-    @include flex($align: center, $gap: sm);
-    @include space(padding, m3, sm, m3, sm);
     background-color: var(--bg-tertiary);
 
-    &__value {
-        @include font(bold, var(--font-manrope), var(--text-secondary), auto, 3xl);
-        font-size: get-font-size(sm);
+    &-cart {
+        @include space(padding, m2, xs, m2, xs);
 
-        @include space(margin, 0, m0, 0, m1);
+        @include flex($align: center, $gap: sm);
 
-        max-width: 6ch;
-        text-align: center;
-        font-variant-numeric: tabular-nums;
+        &__value {
+            @include font(bold, var(--font-manrope), var(--text-secondary), auto, 3xl);
+            font-size: get-font-size(sm);
+
+            max-width: 4ch;
+            text-align: center;
+            font-variant-numeric: tabular-nums;
+        }
+    }
+
+    &-page {
+        @include space(padding, m2, md, m2, md);
+
+        @include flex($align: center, $gap: xl);
+
+        &__value {
+            @include font(bold, var(--font-manrope), var(--text-secondary), auto, 3xl);
+            font-size: get-font-size(sm);
+
+            max-width: 6ch;
+            text-align: center;
+            font-variant-numeric: tabular-nums;
+        }
     }
 
     &__button {
