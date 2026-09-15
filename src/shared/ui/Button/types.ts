@@ -1,6 +1,7 @@
 type ButtonVariants =
     | 'primary'
     | 'secondary'
+    | 'secondary-inverted'
     | 'tertiary'
     | 'icon'
     | 'additional'

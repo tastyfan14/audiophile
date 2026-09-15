@@ -21,7 +21,7 @@
     }
 }
 
-.primary, .secondary {
+.primary, .secondary, .secondary-inverted {
     @extend %btn;
 
     @include space(padding, md, 7xl, md, 7xl);
@@ -60,6 +60,36 @@
         color: var(--text-primary);
 
         background-color: var(--bg-secondary);
+    }
+
+    &:focus-visible {
+        outline: rem(2) solid var(--bg-secondary);
+    }
+}
+
+.secondary-inverted {
+    background-color: var(--bg-secondary);
+
+    color: var(--text-primary);
+
+    border: rem(1) solid var(--border-secondary);
+
+    transition: background-color .1s linear, color .1s linear, border-color 0.1s linear, transform .1s linear;
+
+    @include breakpoint(laptop) {
+        margin-bottom: get-space(m2);
+    };
+
+    @include breakpoint(desktop) {
+        width: max-content;
+    };
+
+    &:hover {
+        background-color: var(--bg-primary);
+
+        border-color: var(--border-tertiary);
+
+        color: var(--text-secondary);
     }
 
     &:focus-visible {
