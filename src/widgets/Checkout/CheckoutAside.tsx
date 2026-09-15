@@ -49,7 +49,7 @@ export default function CheckoutAside({ total, vat, grandTotal, isSubmit }: Chec
             type='submit'
             form='checkout-form'
             className={cls['checkout-aside__button']}
-            disabled={isSubmit}
+            loading={isSubmit}
             >
                 {isSubmit ? <Spinner /> : 'CONTINUE & PAY'}
             </Button>
