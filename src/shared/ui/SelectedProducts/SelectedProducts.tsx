@@ -17,54 +17,64 @@ export default function SelectedProducts({ variant }: SelectedProductsProps) {
         <>
             {variant === 'first'
                 ? (
-                    <ul className={clsx(cls['selected-items'])}>
+                    <ul className={clsx(cls['selected-items'], cls['selected-items--first'])}>
                         <li
                         key={FirstItem.id}
-                        className={cls['selected-item']}
+                        className={clsx(cls['selected-item'], variant === 'first' && cls['selected-item--first'])}
                         >
-                            <Button
-                            as='link'
-                            href={`${ROUTES[FirstItem.category as keyof typeof ROUTES].route}/${FirstItem.slug}`}
-                            variant='empty'
-                            className={cls['selected-item__link']}
-                            >
-                                <ResponsiveImage
-                                mobile={`/images/mobile/products/image-${FirstItem.image}`}
-                                alt=''
-                                className={cls['selected-item__picture']}
-                                loading='lazy'
-                                />
-                            </Button>
+                            <ResponsiveImage
+                            mobile={`/images/mobile/products/image-${FirstItem.image}`}
+                            alt=''
+                            className={clsx(cls['selected-item__picture'], cls['selected-item__picture--overlay'])}
+                            loading='lazy'
+                            />
 
                             <div className={cls['selected__overview']}>
                                 <h3 className={cls['selected-item__overview--title']}>{FirstItem.shortTitle}</h3>
                                 <p className={cls['selected-item__overview--price']}>$ {FirstItem.price.toLocaleString('en-US')}</p>
                             </div>
 
-                            <span className={clsx(cls['selected-item__quantity'])}>x{FirstItem.quantity}</span>
+                            <span className={clsx(cls['selected-item__quantity'], cls['selected-item__quantity--overlay'])}>x{FirstItem.quantity}</span>
                         </li>
                     </ul>
                 ) : (
-                    <ul className={clsx(cls['selected-items'])}>
+                    <ul
+                    className={clsx(
+                        cls['selected-items'],
+                        variant === 'summary' && cls['selected-items--summary'],
+                        variant === 'overlay' && cls['selected-items--overlay']
+                    )}
+                    >
                         {items.map((item) => {
                             return (
                                 <li
                                 key={item.id}
-                                className={cls['selected-item']}
+                                className={clsx(cls['selected-item'], variant === 'overlay' && cls['selected-item--overlay'])}
                                 >
-                                    <Button
-                                    as='link'
-                                    href={`${ROUTES[item.category as keyof typeof ROUTES].route}/${item.slug}`}
-                                    variant='empty'
-                                    className={cls['selected-item__link']}
-                                    >
-                                        <ResponsiveImage
-                                        mobile={`/images/mobile/products/image-${item.image}`}
-                                        alt=''
-                                        className={cls['selected-item__picture']}
-                                        loading='lazy'
-                                        />
-                                    </Button>
+                                    {variant === 'overlay'
+                                        ? (
+                                            <ResponsiveImage
+                                            mobile={`/images/mobile/products/image-${item.image}`}
+                                            alt={`${item.shortTitle} product`}
+                                            className={clsx(cls['selected-item__picture'], variant === 'overlay' && cls['selected-item__picture--overlay'])}
+                                            loading='lazy'
+                                            />
+                                        ) : (
+                                            <Button
+                                            as='link'
+                                            href={`${ROUTES[item.category as keyof typeof ROUTES].route}/${item.slug}`}
+                                            variant='empty'
+                                            className={cls['selected-item__link']}
+                                            >
+                                                <ResponsiveImage
+                                                mobile={`/images/mobile/products/image-${item.image}`}
+                                                alt={`${item.shortTitle} product`}
+                                                className={cls['selected-item__picture']}
+                                                loading='lazy'
+                                                />
+                                            </Button>
+                                        )
+                                    }
 
                                     <div className={cls['selected__overview']}>
                                         <h3 className={cls['selected-item__overview--title']}>{item.shortTitle}</h3>
@@ -79,7 +89,7 @@ export default function SelectedProducts({ variant }: SelectedProductsProps) {
                                         className={cls['selected-item__counter']}
                                         />
                                     ) : (
-                                        <span className={clsx(cls['selected-item__quantity'])}>x{item.quantity}</span>
+                                        <span className={clsx(cls['selected-item__quantity'], variant === 'overlay' && cls['selected-item__quantity--overlay'])}>x{item.quantity}</span>
                                     )}
                                 </li>
                             )

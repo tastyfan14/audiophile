@@ -19,6 +19,18 @@
             @include flex($direction: column, $justify: center, $align: center, $gap: 3xl);
         }
 
+        &--first, &--summary, &--overlay {
+            @include space(margin, 0, 0, 0, 0);
+        }
+
+        &--summary {
+            gap: get-space(xl);
+        }
+
+        &--overlay {
+            gap: get-space(xs);
+        }
+
         &__empty {
             @include typography(body);
             color: var(--text-paragraph);
@@ -29,8 +41,8 @@
         @include size(width, full);
 
         display: grid;
-        grid-template-columns: 3fr 7fr;
-        row-gap: get-space(md);
+        grid-template-columns: max-content 1fr max-content;
+        gap: get-space(md);
 
         align-items: center;
 
@@ -45,6 +57,10 @@
             outline-offset: get-space(m0);
 
             border-radius: get-radius(6xs);
+        }
+
+        &--overlay, &--first {
+            gap: get-space(xs);
         }
 
         &__link {
@@ -71,6 +87,11 @@
             position: relative;
 
             border-radius: get-radius(3xs);
+
+            &--overlay {
+                @include size(width, full, 50, 50);
+                @include size(height, full, 50, 50);
+            }
         }
 
         &__overview {
@@ -83,7 +104,6 @@
                 font-size: rem(15);
 
                 @include breakpoint(postMobile) {
-                    max-width: 16ch;
                     overflow: hidden;
                     text-overflow: ellipsis;
                     display: -webkit-box;
@@ -122,6 +142,10 @@
             align-self: start;
 
             margin-left: auto;
+
+            &--overlay {
+                padding-top: 0;
+            }
         }
     }
 }
