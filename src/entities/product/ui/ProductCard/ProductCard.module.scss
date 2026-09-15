@@ -66,6 +66,24 @@
             width: 80%;
         };
 
+        &--badges {
+            @include flex($justify: center, $align: center);
+            row-gap: get-space(xs);
+            column-gap: get-space(7xl);
+            flex-wrap: wrap;
+
+            @include breakpoint(desktop) {
+                @include flex($justify: start);
+                flex-wrap: wrap;
+            };
+        }
+
+        &--stock {
+            @include typography(overline);
+            color: var(--text-error);
+            text-transform: uppercase;
+        }
+
         &--title, &--desc {
             text-align: center;
 

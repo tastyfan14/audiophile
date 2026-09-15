@@ -9,11 +9,13 @@ import ResponsiveImage from '@/shared/ui/ResponsiveImage'
 import Button from '@/shared/ui/Button'
 
 type ProductCardProps = {
-    product: Pick<Product, 'id' | 'slug' | 'category' | 'badges' | 'image' | 'title' | 'desc'>
+    product: Pick<Product, 'id' | 'slug' | 'category' | 'badges' | 'image' | 'title' | 'desc' | 'stock'>
     reverse?: boolean
 }
 
 export default function ProductCard({ product, reverse = false }: ProductCardProps) {
+    const isStock = product.stock > 0
+
     return (
         <li className={clsx(cls['product-card'], {[cls.reverse]: reverse})}>
             <ResponsiveImage
@@ -26,7 +28,11 @@ export default function ProductCard({ product, reverse = false }: ProductCardPro
             />
 
             <div className={cls['product-card__overview']}>
-                <ProductBadge badges={product.badges} />
+                <div className={cls['product-card__overview--badges']}>
+                    {!isStock && <span className={cls['product-card__overview--stock']}>Out of stock</span>}
+
+                    <ProductBadge badges={product.badges} />
+                </div>
 
                 <h2 className={cls['product-card__overview--title']}>{product.title}</h2>
                 <p className={cls['product-card__overview--desc']}>{product.desc}</p>
@@ -35,6 +41,7 @@ export default function ProductCard({ product, reverse = false }: ProductCardPro
                 as='link'
                 href={`${ROUTES[product.category as keyof typeof ROUTES].route}/${product.slug}`}
                 variant='primary'
+                aria-label={`See ${product.title} product`}
                 >
                     See Product
                 </Button>
