@@ -1,3 +1,3 @@
 export type SelectedProductsProps = {
-    variant: 'cart' | 'summary' | 'first'
+    variant: 'cart' | 'summary' | 'overlay' | 'first'
 }
