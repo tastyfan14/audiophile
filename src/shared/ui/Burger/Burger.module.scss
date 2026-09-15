@@ -11,11 +11,6 @@
 
     background-color: var(--bg-primary);
 
-    max-height: calc(100dvh - rem(200));
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-
     position: relative;
     top: 0;
 
