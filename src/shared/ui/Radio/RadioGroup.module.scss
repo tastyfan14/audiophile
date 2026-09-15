@@ -6,21 +6,5 @@
 .radio-group {
     @include size(width, full);
 
-    @include flex($direction: column, $gap: m3);
-
-    @include space(margin, 3xl, 0, 7xl, 0);
-
-    @include breakpoint(laptop) {
-        gap: get-space(m3);
-
-        @include space(margin, 7xl, 0, 7xl, 0);
-    }
-
-    @include breakpoint(desktop) {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(1, 1fr);
-        align-items: center;
-        gap: get-space(md);
-    }
+    @include flex($direction: column, $gap: md);
 }
