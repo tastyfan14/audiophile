@@ -1,0 +1,514 @@
+@use '@/shared/styles/tokens' as *;
+@use '@/shared/styles/mixins' as *;
+@use '@/shared/styles/functions' as *;
+
+//
+
+.checkout {
+    @include size(width, full, get-breakpoint(mobileIn));
+    @include size(height, full);
+
+    @include space(margin, 7xl, 0, l8, 0);
+
+    @include flex($direction: column, $gap: 7xl);
+
+    @include breakpoint(laptop) {
+        @include space(margin, l1, 0, l10, 0);
+    };
+
+    @include breakpoint(desktop) {
+        @include space(margin, l5, 0, l11, 0);
+
+        gap: get-space(l0);
+
+        display: grid;
+        grid-template-columns: 1fr max-content;
+    }
+
+    &__button {
+        margin-right: auto;
+
+        @include breakpoint(desktop) {
+            grid-column: span 2 / span 2;
+        };
+    }
+
+    // common
+    &-empty, &-form, &-aside, &-success {
+        background-color: var(--bg-primary);
+
+        border-radius: get-radius(3xs);
+        overflow: hidden;
+    }
+
+    &-success {
+        @include size(width, max-content, get-breakpoint(mobileIn), get-breakpoint(mobileIn));
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        @include breakpoint(postMobile) {
+            @include size(width, max-content, 327, 377);
+        };
+
+        @include breakpoint(laptop) {
+            @include size(width, max-content, 540, 540);
+        };
+
+        &__content {
+            @include flex($direction: column, $gap: 3xl);
+
+            @include space(padding, 7xl, 7xl, 7xl, 7xl);
+
+            @include breakpoint(laptop) {
+                gap: get-space(l0);
+
+                @include space(padding, l1, l1, l1, l1);
+            };
+        }
+
+        &__icon {
+            //
+
+            & circle {
+                fill: var(--bg-i-accent-primary);
+            }
+
+            & path {
+                stroke: var(--bg-i-primary);
+            }
+        }
+
+        &__title {
+            @include typography(h5);
+            color: var(--text-secondary);
+            line-height: rem(28);
+            letter-spacing: rem(.96);
+            text-transform: uppercase;
+
+            @include breakpoint(laptop) {
+                @include typography(h3);
+
+                margin-top: rem(-8);
+                margin-bottom: rem(-8);
+            };
+        }
+
+        &__desc {
+            @include typography(body);
+            color: var(--text-paragraph);
+
+            margin-top: rem(-4);
+            margin-bottom: rem(-4);
+        }
+
+        &__items {
+            overflow: hidden;
+
+            border-radius: get-radius(3xs);
+
+            @include flex($direction: column);
+
+            @include breakpoint(laptop) {
+                display: grid;
+                grid-template-columns: 1fr max-content;
+
+                margin-bottom: get-space(m2);
+            };
+
+            &-voucher {
+                background-color: var(--bg-tertiary);
+
+                @include space(padding, 3xl, 3xl, xl, 3xl);
+
+                @include flex($direction: column, $justify: center, $gap: xs);
+
+                @include breakpoint(laptop) {
+                    @include space(padding, md, 3xl, md, 3xl);
+                };
+
+                @include breakpoint(desktop) {
+                    @include space(padding, md, 3xl, md, xl);
+                };
+
+                &--products {
+                    @include flex($align: center, $gap: 3xl);
+                }
+
+                &--picture {
+                    @include size(width, full, 50, 50);
+                    @include size(height, full, 50, 50);
+
+                    border-radius: get-radius(3xs);
+
+                    position: relative;
+                }
+
+                &--title {
+                    @include typography(subtitle);
+                    font-size: get-font-size(md);
+                    color: var(--text-secondary);
+                    text-transform: uppercase;
+
+                    @include breakpoint(postMobile) {
+                        max-width: 16ch;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                    }
+                }
+
+                &--price {
+                    @include typography(subtitle);
+                    color: var(--text-paragraph);
+                }
+
+                &--quantity {
+                    @include typography(subtitle);
+                    font-size: get-font-size(md);
+                    color: var(--text-paragraph);
+
+                    align-self: flex-start;
+                    margin-left: auto;
+                }
+
+                &--line {
+                    width: 100%;
+                    height: rem(1);
+
+                    background-color: var(--border-primary);
+                }
+
+                &--others {
+                    width: max-content;
+
+                    @include typography(subtitle);
+                    letter-spacing: rem(-.24);
+                    color: var(--text-paragraph);
+                    font-size: get-font-size(xs);
+
+                    margin-inline: auto;
+
+                    transition: color .1s linear, transform .1s linear;
+
+                    &:hover {
+                        color: var(--bg-accent-primary);
+                    }
+
+                    &:focus-visible {
+                        outline: rem(2) solid var(--bg-accent-primary);
+                        outline-offset: get-space(m0);
+                    }
+
+                    &:active {
+                        transform: scale(.96);
+                    }
+                }
+            }
+
+            // grand total
+            &-total {
+                background-color: var(--bg-secondary);
+
+                @include space(padding, xl, 3xl, 3xl, 3xl);
+
+                @include flex($direction: column, $gap: m3);
+
+                @include breakpoint(laptop) {
+                    @include space(padding, md, l3, xl, 5xl);
+
+                    @include flex($direction: column, $justify: center, $gap: m3);
+                };
+
+                @include breakpoint(desktop) {
+                    @include space(padding, l1, l2, l1, l0);
+                };
+
+                &--centered {
+                    margin-top: auto;
+                }
+
+                &--title {
+                    @include typography(body);
+                    color: var(--text-paragraph);
+
+                    white-space: nowrap;
+                }
+
+                &--price {
+                    @include typography(h6);
+                    color: var(--text-primary);
+                }
+            }
+        }
+    }
+
+    // if cart is empty
+    &-empty {
+        @include flex($direction: column, $align: center, $gap: 7xl);
+
+        @include space(padding, l4, 7xl, l4, 7xl);
+
+        @include breakpoint(laptop) {
+            @include space(padding, l4, l12, l4, l12);
+        };
+
+        @include breakpoint(desktop) {
+            @include space(padding, l4, l9, l4, l9);
+        };
+
+        &__icon {
+            width: rem(150);
+            height: rem(150);
+            background-color: var(--bg-tertiary);
+            border-radius: 50%;
+
+            position: relative;
+
+            @include space(margin, 0, 0, xl, 0);
+
+            @include flex($justify: center, $align: center);
+
+            & svg {
+                top: 50%;
+                left: 50%;
+
+                transform: translate(-8%, -4%) scale(2.5);
+
+                & path {
+                    fill: var(--bg-i-secondary);
+                }
+            }
+        }
+        
+        &__title {
+            @include typography(h2);
+            color: var(--text-secondary);
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        &__desc {
+            @include typography(body);
+            color: var(--text-paragraph);
+            text-align: center;
+
+            @include breakpoint(laptop) {
+                width: 80%;
+            };
+
+            @include breakpoint(desktop) {
+                width: 50%;
+            };
+        }
+
+        &__button {
+            align-self: center;
+
+            @include breakpoint(laptop) {
+                width: 60%;
+            };
+
+            @include breakpoint(desktop) {
+                width: 40%;
+            };
+        }
+    }
+
+
+    // form section
+    &-form {
+        @include size(width, full);
+
+        @include flex($direction: column, $gap: l0);
+
+        @include space(padding, 3xl, 3xl, 3xl, 3xl);
+
+        @include breakpoint(laptop) {
+            @include space(padding, 7xl, 7xl, 7xl, 7xl);
+
+            @include flex($direction: column, $gap: l0);
+        };
+
+        @include breakpoint(desktop) {
+            @include space(padding, l1, l1, l1, l1);
+        };
+
+        &__title {
+            @include typography(h4);
+            color: var(--text-secondary);
+            text-transform: uppercase;
+
+            @include breakpoint(laptop) {
+                @include typography(h3);
+                color: var(--text-secondary);
+            };
+        }
+    }
+
+    &-step {
+        @include flex($direction: column, $gap: xl);
+
+        &__title {
+            @include typography(subtitle);
+            color: var(--text-accent-primary);
+            text-transform: uppercase;
+        }
+
+        &__fields {
+            @include flex($direction: column, $gap: 3xl);
+
+            & label {
+                @include space(margin, 0, 0, m2, 0);
+            }
+
+            & input {
+                @include size(width, full);
+            }
+
+            &--billing {
+                //
+
+                @include breakpoint(laptop) {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    grid-template-rows: repeat(2, auto-fit);
+                    column-gap: get-space(md);
+                };
+            }
+
+            &--shipping {
+                //
+
+                @include breakpoint(laptop) {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    grid-template-rows: repeat(3, 1fr);
+                    column-gap: get-space(md);
+                };
+
+                & label:nth-of-type(1) {
+                    @include breakpoint(laptop) {
+                        grid-column: span 2 / span 2;
+                    };
+                }
+
+                & label:nth-of-type(2) {
+                    @include breakpoint(laptop) {
+                        grid-row-start: 2;
+                    };
+                }
+
+                & label:nth-of-type(3) {
+                    @include breakpoint(laptop) {
+                        grid-row-start: 2;
+                    };
+                }
+            }
+        }
+
+        &__payment {
+            @include flex($direction: column, $gap: xl);
+
+            &--emoney, &--cash {
+                @include space(margin, 7xl, 0, 0, 0);
+            }
+
+            &--emoney {
+                @include flex($direction: column, $gap: 3xl);
+
+                @include breakpoint(laptop) {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    grid-template-rows: repeat(1, 1fr);
+                    column-gap: get-space(md);
+                };
+            }
+
+            &--cash {
+                @include flex($align: center, $gap: 7xl);
+
+                & svg {
+                    flex-shrink: 0;
+                
+                    & path {
+                        fill: var(--bg-i-accent-primary)
+                    }
+                }
+
+                & p {
+                    @include typography(body);
+                    color: var(--text-paragraph);
+                }
+            }
+        }
+    }
+
+    // summary
+    &-aside {
+        @include size(height, max-content);
+
+        @include space(padding, 3xl, 3xl, 3xl, 3xl);
+
+        @include flex($direction: column, $gap: 7xl);
+
+        @include breakpoint(desktop) {
+            @include size(width, full, 350, 350);
+
+            @include space(padding, 7xl, 7xl, 7xl, 7xl);
+        };
+
+        &__title {
+            @include typography(h6);
+            color: var(--text-secondary);
+
+            text-transform: uppercase;
+        }
+
+        &__dl {
+            display: grid;
+            grid-template-columns: max-content 1fr;
+        }
+
+        &__dt {
+            @include typography(body);
+            color: var(--text-paragraph);
+            text-transform: uppercase;
+
+            & strong {
+                @include typography(body);
+            }
+        }
+
+        &__dt:nth-last-of-type(1) {
+            @include space(margin, 3xl, 0, 0, 0);
+
+            @include breakpoint(desktop) {
+                @include space(margin, 7xl, 0, 0, 0);
+            };
+        }
+
+        &__dd {
+            @include typography(h6);
+            color: var(--text-secondary);
+            text-transform: uppercase;
+
+            justify-self: end;
+
+            &--accent {
+                color: var(--text-accent-primary);
+
+                @include space(margin, 3xl, 0, 0, 0);
+
+                @include breakpoint(desktop) {
+                    @include space(margin, 7xl, 0, 0, 0);
+                };
+            }
+        }
+    }
+}
