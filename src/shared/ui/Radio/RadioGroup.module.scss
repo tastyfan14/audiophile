@@ -7,4 +7,48 @@
     @include size(width, full);
 
     @include flex($direction: column, $gap: md);
+
+    @include breakpoint(desktop) {
+        @include flex($direction: row, $justify: space-between);
+    }
+
+    &-overview {
+        @include flex($justify: space-between, $align: center, $gap: m4);
+
+        @include breakpoint(desktop) {
+            @include flex($direction: column, $justify: start, $align: start, $gap: m4);
+        }
+
+        &__title {
+            @include typography(subtitle);
+            line-height: 1.4;
+            letter-spacing: rem(-.24);
+            color: var(--text-secondary);
+            font-size: get-font-size(xs);
+
+            &--error {
+                color: var(--text-error);
+            }
+        }
+
+        &__error {
+            @include typography(body);
+            line-height: 1.4;
+            letter-spacing: rem(-.24);
+            color: var(--text-error);
+            font-size: get-font-size(xs);
+
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    }
+
+    &__options {
+        @include flex($direction: column, $gap: md);
+
+        @include breakpoint(desktop) {
+            width: calc(50% - (get-space(md) / 2));
+        }
+    }
 }
