@@ -47,23 +47,48 @@ export const checkoutSchema = z.object({
 
     // third section
     payment: z
-        .discriminatedUnion('paymentMethod', [
-            z.object({
-                paymentMethod: z.literal('emoney'),
-                eMoneyNumber: z
-                    .string()
-                    .trim()
-                    .min(1, 'Number is required')
-                    .regex(/^\d+$/, 'E-Money number must contain only numbers'),
-                eMoneyPin: z
-                    .string()
-                    .trim()
-                    .min(1, 'Pin is required')
-                    .regex(/^\d+$/, 'E-Money PIN must contain only numbers'),
-            }),
+        .object({
+            paymentMethod: z.enum(['emoney', 'cashondelivery']).optional(),
 
-            z.object({
-                paymentMethod: z.literal('cashondelivery'),
-            })
-        ]),
+            eMoneyNumber: z
+                .string()
+                .trim()
+                .min(1, 'Number is required')
+                .regex(/^\d+$/, 'E-Money number must contain only numbers')
+                .optional(),
+
+            eMoneyPin: z
+                .string()
+                .trim()
+                .min(1, 'Pin is required')
+                .regex(/^\d+$/, 'E-Money PIN must contain only numbers')
+                .optional(),
+        })
+        .superRefine((data, ctx) => {
+            if (!data.paymentMethod) {
+                ctx.addIssue({
+                    code: 'custom',
+                    path: ['paymentMethod'],
+                    message: 'Payment method is required',
+                })
+            }
+
+            if (data.paymentMethod === 'emoney') {
+                if (!data.eMoneyNumber) {
+                    ctx.addIssue({
+                        code: 'custom',
+                        path: ['eMoneyNumber'],
+                        message: 'Number is required',
+                    })
+                }
+
+                if (!data.eMoneyPin) {
+                    ctx.addIssue({
+                        code: 'custom',
+                        path: ['eMoneyPin'],
+                        message: 'Pin is required',
+                    })
+                }
+            }
+        })
 })
