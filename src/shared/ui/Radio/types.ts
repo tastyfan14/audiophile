@@ -6,11 +6,15 @@ type RadioGroupRenderProps<T> = {
 }
 
 export type RadioGroupProps<T extends { id: string }> = {
+    title: string
     name?: string
     value?: string
     onChange: (value: string) => void
     options: T[]
     renderCard: (props: RadioGroupRenderProps<T>) => React.ReactNode
+    errorId: string
+    errorMessage: string | undefined
+    className?: string
 }
 
 export type RadioCardProps = {
