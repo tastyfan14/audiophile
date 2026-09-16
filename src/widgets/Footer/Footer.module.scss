@@ -110,7 +110,7 @@
     &__desc {
         @include typography(body);
         font-size: get-font-size(md);
-        color: var(--text-tertiary);
+        color: var(--text-paragraph);
         text-align: center;
 
         @include breakpoint(laptop) {
@@ -136,7 +136,7 @@
         @include typography(subtitle);
         letter-spacing: 0;
         font-size: get-font-size(md);
-        color: var(--text-tertiary);
+        color: var(--text-paragraph);
         text-align: center;
 
         @include breakpoint(laptop) {
