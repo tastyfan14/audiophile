@@ -19,44 +19,91 @@
 .loading {
     @include flex($gap: s0);
 
-    @include space(padding, s0, null, s0, null);
+    @include space(padding, null, null, s0, null);
 
-    &-row, &-column, &-double {
+    &-single, &-row, &-column, &-double {
         @include size(width, full);
     }
 
-    &-row {
-        @include flex($justify: space-between, $align: center, $gap: l0);
+    &-single {
+        //
 
         &__block {
             @extend %skeleton;
 
             width: 100%;
-            height: rem(200);
+            height: rem(500);
+
+            @include breakpoint(laptop) {
+                height: rem(550);
+            };
+
+            @include breakpoint(desktop) {
+                height: rem(600);
+            }
+        }
+    }
+
+    &-row {
+        @include flex($direction: column, $justify: space-between, $align: center, $gap: l0);
+
+        @include breakpoint(laptop) {
+            @include flex($justify: space-between, $align: center, $gap: l0);
+        }
+
+        &__block {
+            @extend %skeleton;
+
+            width: 100%;
+            height: rem(160);
+
+            @include breakpoint(desktop) {
+                height: rem(200);
+            }
         }
     }
 
     &-column {
-        @include flex($direction: column, $justify: center, $align: center, $gap: l0);
+        @include flex($direction: column, $justify: center, $align: center, $gap: l2);
 
         &__block {
             @extend %skeleton;
 
             width: 100%;
-            height: rem(500);
+            height: rem(400);
+
+            @include breakpoint(laptop) {
+                height: rem(450);
+            };
+
+            @include breakpoint(desktop) {
+                height: rem(500);
+            }
         }
     }
 
     &-double {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: get-space(l0);
+        @include flex($direction: column, $justify: center, $align: center, $gap: l2);
+
+        @include breakpoint(desktop) {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: get-space(l0);
+        }
 
         &__block {
             @extend %skeleton;
 
             width: 100%;
-            height: rem(500);
+            height: rem(300);
+
+            @include breakpoint(laptop) {
+                height: rem(400);
+            };
+
+            @include breakpoint(desktop) {
+                height: rem(500);
+            }
         }
     }
 }
@@ -68,5 +115,14 @@
 
     100% {
         background-position: -200% 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .loading-single__block,
+    .loading-row__block,
+    .loading-column__block,
+    .loading-double__block {
+        animation: none;
     }
 }
