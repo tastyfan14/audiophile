@@ -7,7 +7,11 @@ export default function Loading() {
     return (
         <AppLayout>
             <PageWrapper>
-                <MainLayout className={cls.loading}>
+                <MainLayout className={cls.loading} aria-label='Loading content' aria-busy='true' aria-live='polite'>
+                    <div className={cls['loading-single']}>
+                        <div className={cls['loading-single__block']} />
+                    </div>
+
                     <div className={cls['loading-row']}>
                         <div className={cls['loading-row__block']} />
                         <div className={cls['loading-row__block']} />
