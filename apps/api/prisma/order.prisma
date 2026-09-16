@@ -1,0 +1,62 @@
+// order schemas
+
+model Order {
+  id String @id @default(cuid())
+
+  name  String
+  email String
+  phone String
+
+  address String
+  city    String
+  zip     String
+  country String
+
+  paymentMethod PaymentMethod
+
+  status OrderStatus @default(PENDING)
+
+  total      Decimal @db.Decimal(10, 2)
+  shipping   Decimal @db.Decimal(10, 2)
+  vat        Decimal @db.Decimal(10, 2)
+  grandTotal Decimal @map("grand_total") @db.Decimal(10, 2)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  items OrderItem[]
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id String @id @default(cuid())
+
+  orderId String @map("order_id")
+  order   Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  productId String  @map("product_id")
+  product   Product @relation(fields: [productId], references: [id])
+
+  quantity Int
+  price    Decimal @db.Decimal(10, 2)
+
+  @@map("order_item")
+}
+
+enum PaymentMethod {
+  E_MONEY
+  CASH_ON_DELIVERY
+
+  @@map("payment_method")
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+
+  @@map("order_status")
+}

@@ -1,8 +1,5 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
+node_modules/
+.pnp/
 .pnp.*
 .yarn/*
 !.yarn/patches
@@ -10,32 +7,77 @@
 !.yarn/releases
 !.yarn/versions
 
-# testing
-/coverage
+.pnpm-debug.log*
+pnpm-debug.log*
+.npmrc.local
 
-# next.js
-/.next/
-/out/
+.turbo/
 
-# production
-/build
+.next/
+out/
 
-# misc
-.DS_Store
-*.pem
+# Next.js build output
+build/
 
-# debug
+*.tsbuildinfo
+next-env.d.ts
+
+coverage/
+.nyc_output/
+
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Keep example environment files
+!.env.example
+
+# Prisma generated client
+**/generated/prisma/
+
+# Prisma local database files, if ever used
+**/*.db
+**/*.db-journal
+**/*.db-shm
+**/*.db-wal
+
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
+pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
 
-# vercel
-.vercel
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/tasks.json
+!.vscode/launch.json
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+.idea/
+*.iml
+
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+dist/
+.cache/
+.parcel-cache/
+.eslintcache/
+
+.vercel/
+
+*.pem
+
+.git.frontend-backup/

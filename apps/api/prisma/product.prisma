@@ -1,0 +1,107 @@
+// product schemas
+
+model Product {
+  id   String @id @default(cuid())
+  slug String @unique
+
+  categoryId String          @map("category_id")
+  category   ProductCategory @relation(fields: [categoryId], references: [id])
+
+  image String
+  title String  @db.VarChar(100)
+  shortTitle String @db.VarChar(25)
+  desc  String  @db.VarChar(1000)
+  price Decimal @db.Decimal(10, 2)
+
+  stock Int @default(0)
+
+  badges   ProductBadgeOnProduct[]
+  features ProductFeature[]
+  includes ProductInclude[]
+  gallery  ProductGallery[]
+
+  recommendations   ProductRecommendation[] @relation("recommendations")
+  recommendationsIn ProductRecommendation[] @relation("recommendationsIn")
+
+  orderItems OrderItem[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("products")
+}
+
+model ProductCategory {
+  id    String @id
+
+  products Product[]
+
+  @@map("product_categories")
+}
+
+model ProductBadge {
+  id    String @id @default(cuid())
+  label String @db.VarChar(50)
+
+  products ProductBadgeOnProduct[]
+
+  @@map("product_badges")
+}
+
+model ProductBadgeOnProduct {
+  productId String @map("product_id")
+  badgeId   String @map("badge_id")
+
+  product Product      @relation(fields: [productId], references: [id])
+  badge   ProductBadge @relation(fields: [badgeId], references: [id])
+
+  @@id([productId, badgeId])
+  @@map("product_badges_on_products")
+}
+
+model ProductFeature {
+  id   String @id @default(cuid())
+  desc String @db.VarChar(1000)
+
+  productId String  @map("product_id")
+  product   Product @relation(fields: [productId], references: [id])
+
+  @@map("product_features")
+}
+
+model ProductInclude {
+  id       String @id @default(cuid())
+  quantity Int
+  title    String @db.VarChar(50)
+
+  productId String  @map("product_id")
+  product   Product @relation(fields: [productId], references: [id])
+
+  @@map("product_includes")
+}
+
+model ProductGallery {
+  id      String @id @default(cuid())
+  mobile  String
+  laptop  String
+  desktop String
+  alt     String @db.VarChar(100)
+
+  productId String  @map("product_id")
+  product   Product @relation(fields: [productId], references: [id])
+
+  @@map("product_gallery")
+}
+
+model ProductRecommendation {
+  id String @id @default(cuid())
+
+  productId        String @map("product_id")
+  recommendationId String @map("recommendation_id")
+
+  product        Product @relation("recommendations", fields: [productId], references: [id])
+  recommendation Product @relation("recommendationsIn", fields: [recommendationId], references: [id])
+
+  @@unique([productId, recommendationId])
+  @@map("product_recommendations")
+}

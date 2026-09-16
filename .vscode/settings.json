@@ -1,0 +1,12 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[prisma]": {
+        "editor.defaultFormatter": "Prisma.prisma"
+    },
+    "js/ts.suggest.autoImports": true,
+    "js/ts.preferences.includePackageJsonAutoImports": "on",
+    "js/ts.tsdk.path": "node_modules/typescript/lib",
+    "editor.quickSuggestions": {
+        "strings": true
+    }
+}
