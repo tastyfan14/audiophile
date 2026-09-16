@@ -15,6 +15,7 @@ import Container from '@/shared/ui/Layout/ui/Container'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { useCartStore } from '@/entities/cart/model/store'
+import { useSyncStock } from '@/shared/lib/useSyncStock'
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState<'burger' | 'cart' | null>(null)
@@ -24,6 +25,19 @@ export default function Header() {
     const isCheckout = pathname.startsWith('/checkout')
 
     const items = useCartStore(state => state.items)
+
+    const { syncStock, isSyncing } = useSyncStock()
+
+    const handleSyncStock = async () => {
+        await syncStock(items.map(item => item.id))
+    }
+
+    const handleCartOpen = () => {
+        setIsOpen(prev => prev === 'cart' ? null : 'cart')
+
+        handleSyncStock()
+    }
+
     return (
         <>
             <header className={cls.header}>
@@ -50,7 +64,7 @@ export default function Header() {
                     aria-label='Open cart'
                     aria-controls='cart'
                     aria-expanded={isOpen === 'cart'}
-                    onClick={() => setIsOpen(prev => prev === 'cart' ? null : 'cart')}
+                    onClick={handleCartOpen}
                     disabled={isCheckout && true}
                     >
                         <ICart />
@@ -78,6 +92,7 @@ export default function Header() {
                     {isOpen === 'cart' && !isCheckout && (
                         <Container>
                             <Cart
+                            isSyncing={isSyncing}
                             isOpen={isOpen === 'cart'}
                             onClose={() => setIsOpen(null)}
                             />
