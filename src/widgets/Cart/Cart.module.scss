@@ -11,11 +11,6 @@
 
     background-color: var(--bg-primary);
 
-    max-height: calc(100dvh - rem(200));
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-
     position: relative;
     float: right;
     margin-top: get-space(3xl);
@@ -60,6 +55,12 @@
 
     &-content {
         //
+
+        &--loading {
+            @include flex($justify: center, $align: center);
+
+            @include space(padding, l0, null, l0, null);
+        }
         
         &__interactive {
             @include flex($justify: space-between, $align: center);
@@ -72,108 +73,6 @@
             
             &--button {
                 text-decoration: rem(.5) underline;
-            }
-        }
-
-        &__products {
-            display: grid;
-            grid-template-columns: repeat(1, 1fr);
-            grid-template-rows: repeat(auto-fit, 1fr);
-            gap: get-space(l0);
-
-            @include space(margin, m3, 0, m3, 0);
-
-            @include breakpoint(postMobile) {
-                @include flex($direction: column, $justify: center, $align: center, $gap: 3xl);
-            }
-        }
-
-        &__product {
-            @include size(width, full);
-
-            display: grid;
-            grid-template-columns: 3fr 7fr;
-            row-gap: get-space(md);
-
-            align-items: center;
-
-            @include space(margin, m0, 0, m0, 0);
-
-            @include breakpoint(postMobile) {
-                @include flex($align: center, $gap: xl);
-            }
-
-            &:focus-visible {
-                outline: rem(2) solid var(--bg-i-accent-primary);
-                outline-offset: get-space(m0);
-
-                border-radius: get-radius(6xs);
-            }
-
-            &--link {
-                transition: transform .1s linear;
-
-                &:focus-visible {
-                    outline: rem(2) solid var(--bg-accent-primary);
-                    border-radius: get-radius(3xs);
-                }
-
-                &:active {
-                    transform: scale(.96);
-                }
-            }
-
-            &--picture {
-                @include size(width, full, 64, 64);
-                @include size(height, full, 64, 64);
-
-                background-color: var(--bg-tertiary);
-
-                overflow: hidden;
-
-                position: relative;
-
-                border-radius: get-radius(3xs);
-            }
-
-            &--overview {
-                @include flex($direction: column);
-            }
-
-            &--title {
-                @include typography(subtitle);
-                color: var(--text-secondary);
-                text-transform: uppercase;
-                font-size: rem(15);
-
-                @include breakpoint(postMobile) {
-                    max-width: 16ch;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    display: -webkit-box;
-                    -webkit-line-clamp: 2;
-                    line-clamp: 2;
-                    -webkit-box-orient: vertical;
-                }
-            }
-
-            &--price {
-                @include typography(subtitle);
-                letter-spacing: 0;
-                color: var(--text-paragraph);
-                font-size: rem(15);
-            }
-
-            &--counter {
-                @include breakpoint(null, postMobile) {
-                    width: 100%;
-
-                    justify-content: center;
-                };
-
-                margin-left: auto;
-
-                grid-column: 1 / -1;
             }
         }
 
