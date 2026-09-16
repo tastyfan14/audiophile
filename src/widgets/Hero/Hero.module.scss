@@ -9,6 +9,8 @@
 
     background-color: var(--bg-secondary);
 
+    overflow: hidden;
+
     @include space(margin, 0, 0, s0, 0);
 
     @include breakpoint(laptop) {
@@ -30,8 +32,6 @@
         background-blend-mode: difference;
 
         position: relative;
-
-        overflow: hidden;
 
         @include breakpoint(laptop) {
             @include space(padding, l10, null, l14, null);
