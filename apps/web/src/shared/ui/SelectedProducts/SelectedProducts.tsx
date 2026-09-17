@@ -6,6 +6,7 @@ import ResponsiveImage from '../ResponsiveImage'
 import Button from '../Button'
 import Counter from '../Counter'
 import { SelectedProductsProps } from './types'
+import { formatPrice } from '@/shared/lib/formatPrice'
 
 export default function SelectedProducts({ variant }: SelectedProductsProps) {
     const items = useCartStore((state) => state.items)
@@ -31,7 +32,7 @@ export default function SelectedProducts({ variant }: SelectedProductsProps) {
 
                             <div className={cls['selected__overview']}>
                                 <h3 className={cls['selected-item__overview--title']}>{FirstItem.shortTitle}</h3>
-                                <p className={cls['selected-item__overview--price']}>$ {FirstItem.price.toLocaleString('en-US')}</p>
+                                <p className={cls['selected-item__overview--price']}>$ {formatPrice(FirstItem.price)}</p>
                             </div>
 
                             <span className={clsx(cls['selected-item__quantity'], cls['selected-item__quantity--overlay'])}>x{FirstItem.quantity}</span>
@@ -78,7 +79,7 @@ export default function SelectedProducts({ variant }: SelectedProductsProps) {
 
                                     <div className={cls['selected__overview']}>
                                         <h3 className={cls['selected-item__overview--title']}>{item.shortTitle}</h3>
-                                        <p className={cls['selected-item__overview--price']}>$ {item.price.toLocaleString('en-US')}</p>
+                                        <p className={cls['selected-item__overview--price']}>$ {formatPrice(item.price)}</p>
                                     </div>
 
                                     {variant === 'cart' ? (
