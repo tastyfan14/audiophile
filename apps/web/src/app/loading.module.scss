@@ -17,7 +17,7 @@
 }
 
 .loading {
-    @include flex($gap: s0);
+    @include flex($direction: column, $gap: s0);
 
     @include space(padding, null, null, s0, null);
 
