@@ -61,6 +61,11 @@
 
             @include space(padding, l0, null, l0, null);
         }
+
+        &--error {
+            @include typography(body);
+            color: var(--text-paragraph);
+        }
         
         &__interactive {
             @include flex($justify: space-between, $align: center);
