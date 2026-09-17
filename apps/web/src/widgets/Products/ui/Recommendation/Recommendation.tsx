@@ -1,28 +1,15 @@
-import type { ProductRecommendation } from '@/entities/product/model/types'
 import cls from './Recommendation.module.scss'
 import ResponsiveImage from '@/shared/ui/ResponsiveImage'
 import Button from '@/shared/ui/Button'
 import { ROUTES } from '@/shared/config/constants'
+import type { ProductRecommendationProps } from '../../model/types'
 
-type Props = {
-    recommendations: ProductRecommendation[]
-}
-
-export default function Recommendation({ recommendations }: Props) {
+export default function Recommendation({ recommendations }: ProductRecommendationProps) {
     return (
-        <section
-        className={cls.recommendation}
-        aria-labelledby='recommendations-title'
-        >
-            <h2
-            id='recommendations-title' className={cls['recommendation__title']}
-            >
-                You may also like
-            </h2>
+        <section className={cls.recommendation} aria-labelledby='recommendations-title'>
+            <h2 id='recommendations-title' className={cls['recommendation__title']}>You may also like</h2>
 
-            <ul
-            className={cls['recommendation__cards']}
-            >
+            <ul className={cls['recommendation__cards']}>
                 {recommendations.map((recommendation) => {
                     return (
                         <li
