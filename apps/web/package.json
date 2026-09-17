@@ -5,10 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "test": "vitest",
+    "test:run": "vitest run",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
+    "@audiophile/shared": "workspace:*",
     "@hookform/resolvers": "^5.9.1",
     "@tanstack/react-query": "^5.102.8",
     "axios": "^1.20.0",
@@ -22,8 +25,7 @@
     "react-hook-form": "^7.85.0",
     "sass": "^1.102.0",
     "zod": "^4.4.3",
-    "zustand": "^5.0.15",
-    "@audiophile/shared": "workspace:*"
+    "zustand": "^5.0.15"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -31,6 +33,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^5.0.1"
   }
 }
