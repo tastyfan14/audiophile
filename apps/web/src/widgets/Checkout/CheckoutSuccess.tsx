@@ -7,10 +7,10 @@ import Overlay from '@/shared/ui/Overlay'
 import { FocusTrap } from 'focus-trap-react'
 import cls from './Checkout.module.scss'
 import clsx from 'clsx'
-import { ROUTES } from '@/shared/config/constants'
 import { useState } from 'react'
 import { useEscapeKey } from '@/shared/lib/useEscapeKey'
 import { useCartStore } from '@/entities/cart/model/store'
+import BackToHome from '@/features/BackNavigation/ui/BackToHome'
 
 type CheckoutSuccessProps = {
     isOpen: boolean
@@ -99,13 +99,7 @@ export default function CheckoutSuccess({ isOpen, onClose, grandTotal }: Checkou
                         </div>
                     </div>
 
-                    <Button
-                    as='link'
-                    href={ROUTES.home.route}
-                    variant='primary'
-                    >
-                        Back to home
-                    </Button>
+                    <BackToHome variant='primary' />
                 </div>
             </FocusTrap>
         </Overlay>
