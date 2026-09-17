@@ -27,5 +27,5 @@ export type ProductPageProps = {
 }
 
 export type ProductListProps = {
-    products: Product[]
+    category: string
 }
