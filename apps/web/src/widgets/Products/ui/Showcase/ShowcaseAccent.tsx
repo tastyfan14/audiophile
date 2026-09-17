@@ -9,7 +9,7 @@ import { ROUTES } from '@/shared/config/constants'
 export default function ShowcaseAccent({ item }: { item: Extract<ProductShowcase, { variant: 'accent' }> }) {
     return (
         <article className={clsx(cls['showcase-item'], cls['showcase-item__accent'])}>
-            <IShowcaseCircle className={cls['showcase-item__circle']} />
+            <IShowcaseCircle className={cls['showcase-item__accent--circle']} />
 
             <ResponsiveImage
             mobile={`/images/mobile/products/showcase-${item.image}`}
