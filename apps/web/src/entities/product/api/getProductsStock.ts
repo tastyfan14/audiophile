@@ -1,5 +1,5 @@
 import { api } from '@/shared/api/api'
-import type { ProductStockDto } from './types'
+import type { ProductStockDto } from '@audiophile/shared'
 
 
 export const getProductsStock = async (productIds: string[]): Promise<ProductStockDto[]> => {
