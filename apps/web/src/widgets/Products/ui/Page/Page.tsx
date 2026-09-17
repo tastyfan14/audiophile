@@ -18,53 +18,56 @@ export default function Page({ product }: ProductPageProps) {
 
     const addItem = useCartStore(state => state.addItem)
 
+    const outOfStock = product.stock === 0
+
     const router = useRouter()
 
     return (
-        <section className={cls['page-wrapper']}>
+        <section className={cls.page}>
             <Button
             variant='additional'
-            className={cls['page__button']}
+            className={cls['page__back']}
             onClick={() => router.back()}
             >
                 Go Back
             </Button>
 
-            <div className={cls.page}>
-                <div className={cls['page-content']}>
+            <div className={cls['page-content']}>
+                <div className={cls['page-overview']}>
                     <ResponsiveImage
                     mobile={`/images/mobile/products/image-${product.image}`}
                     laptop={`/images/laptop/products/image-${product.image}`}
                     desktop={`/images/desktop/products/image-${product.image}`}
                     alt=''
-                    className={cls['page-content__picture']}
+                    className={cls['page-overview__picture']}
+                    preload
                     />
 
                     {product.badges.length > 0 && (
-                        <ProductBadge badges={product.badges} stock={product.stock} className={cls['page-content__badges']} />
+                        <ProductBadge badges={product.badges} stock={product.stock} className={cls['page-overview__badges']} />
                     )}
 
-                    <h1 className={cls['page-content__title']}>{product.title}</h1>
+                    <h1 className={cls['page-overview__title']}>{product.title}</h1>
 
-                    <p className={cls['page-content__desc']}>{product.desc}</p>
+                    <p className={cls['page-overview__desc']}>{product.desc}</p>
 
-                    <p className={cls['page-content__price']}>$ 
+                    <p className={cls['page-overview__price']}>$ 
                         <strong>
                             {product.price.toLocaleString('en-US')}
                         </strong>
                     </p>
 
-                    <div className={cls['page-content__interactive']}>
+                    <div className={cls['page-overview__interactive']}>
                         <Counter
                         value={quantity}
                         onChange={setQuantity}
                         variant='page'
-                        className={cls['page-content__interactive--counter']}
+                        className={outOfStock ? cls['page-overview__interactive--disabled'] : undefined}
                         />
 
                         <Button
                         variant='primary'
-                        className={product.stock === 0 ? cls['page-content__interactive--disabled'] : undefined}
+                        className={outOfStock ? cls['page-overview__interactive--disabled'] : undefined}
                         onClick={() => addItem({
                             id: product.id,
                             slug: product.slug,
@@ -76,14 +79,14 @@ export default function Page({ product }: ProductPageProps) {
 
                             quantity: quantity,
                         })}
-                        disabled={product.stock === 0}
+                        disabled={outOfStock ? true : false}
                         >
                             Add to Cart
                         </Button>
                     </div>
                 </div>
 
-                <div className={cls['page-content__shortly']}>
+                <div className={cls['page-overview__shortly']}>
                     <ProductFeature features={product.features} />
 
                     <ProductInclude includes={product.includes} />
