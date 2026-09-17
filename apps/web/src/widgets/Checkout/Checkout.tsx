@@ -1,12 +1,11 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import cls from './Checkout.module.scss'
 import clsx from 'clsx'
 import Label from '@/shared/ui/Label'
 import Input from '@/shared/ui/Input'
-import Button from '@/shared/ui/Button'
+import BackToPreviousPage from '@/features/BackNavigation/ui/BackToPreviousPage'
 import RadioCard from '@/shared/ui/Radio/RadioCard'
 import RadioGroup from '@/shared/ui/Radio/RadioGroup'
 import ICashOnDelivery from '@/shared/assets/icons/ICashOnDelivery'
@@ -21,6 +20,8 @@ import { useCartStore } from '@/entities/cart/model/store'
 import { calculateTotal, calculateVat, calculateGrandTotal } from '@/entities/cart/lib/calculations'
 import { CHECKOUT_PAYMENT_OPTIONS } from '@/entities/checkout/model/config'
 import { postCreateOrder } from '@/entities/checkout/api/postCreateOrder'
+import { useClearCartOnOrderComplete } from '@/features/Checkout/model/useClearCartOnOrderComplete'
+import { createOrderPayload } from '@/features/Checkout/model/createOrderPayload'
 
 export default function Checkout() {
     const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -45,28 +46,8 @@ export default function Checkout() {
         mode: 'onBlur',
     })
 
-    const router = useRouter()
-
     const onSubmit = async (data: CheckoutSchema) => {
-        await postCreateOrder({
-            name: data.name,
-            email: data.email,
-            phone: data.phone,
-            address: data.address,
-            city: data.city,
-            zip: data.zip,
-            country: data.country,
-
-            paymentMethod:
-                data.payment.paymentMethod === 'emoney'
-                    ? 'E_MONEY'
-                    : 'CASH_ON_DELIVERY',
-
-            items: items.map(item => ({
-                productId: item.id,
-                quantity: item.quantity,
-            })),
-        })
+        await postCreateOrder(createOrderPayload(data, items))
 
         setIsOrderCompleted(true)
 
@@ -75,20 +56,7 @@ export default function Checkout() {
         setIsOpen(true)
     }
 
-    useEffect(() => {
-        if (!isOrderCompleted) return
-
-        const handlePageHide = () => {
-            clearCart()
-        }
-        
-        window.addEventListener('pagehide', handlePageHide)
-
-        return () => {
-            window.removeEventListener('pagehide', handlePageHide)
-            clearCart()
-        }
-    }, [isOrderCompleted, clearCart])
+    useClearCartOnOrderComplete(isOrderCompleted)
 
     const handleSuccessClose = () => {
         setIsOpen(false)
@@ -96,16 +64,10 @@ export default function Checkout() {
     }
 
     return (
-        <section className={cls['checkout']}>
+        <section className={cls.checkout}>
             <CheckoutSuccess isOpen={isOpen} onClose={handleSuccessClose} grandTotal={grandTotal} />
 
-            <Button
-            variant='additional'
-            className={cls['checkout__button']}
-            onClick={() => router.back()}
-            >
-                Go Back
-            </Button>
+            <BackToPreviousPage className={cls['checkout__button']} />
 
             {items.length === 0
                 ?
