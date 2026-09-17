@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import type { Product } from '@/entities/product/model/types'
 import cls from './Page.module.scss'
 import { useCartStore } from '@/entities/cart/model/store'
 import ResponsiveImage from '@/shared/ui/ResponsiveImage'
@@ -12,17 +11,12 @@ import ProductFeature from '../Feature/Feature'
 import ProductGallery from '../Gallery/Gallery'
 import ProductInclude from '../Include/Include'
 import { useRouter } from 'next/navigation'
+import type { ProductPageProps } from '../../model/types'
 
-type Props = {
-    product: Product
-}
-
-export default function Page({ product }: Props) {
+export default function Page({ product }: ProductPageProps) {
     const [quantity, setQuantity] = useState(1)
 
     const addItem = useCartStore(state => state.addItem)
-
-    const isStock = product.stock > 0
 
     const router = useRouter()
 
@@ -47,13 +41,7 @@ export default function Page({ product }: Props) {
                     />
 
                     {product.badges.length > 0 && (
-                        <div
-                        className={cls['page-content__badges']}
-                        >
-                            {!isStock && <span className={cls['page-content__badges--stock']}>Out of stock</span>}
-
-                            <ProductBadge badges={product.badges.slice(0, 7)}  />
-                        </div>
+                        <ProductBadge badges={product.badges} stock={product.stock} className={cls['page-content__badges']} />
                     )}
 
                     <h1 className={cls['page-content__title']}>{product.title}</h1>
@@ -76,7 +64,7 @@ export default function Page({ product }: Props) {
 
                         <Button
                         variant='primary'
-                        className={!isStock ? cls['page-content__interactive--disabled'] : undefined}
+                        className={product.stock === 0 ? cls['page-content__interactive--disabled'] : undefined}
                         onClick={() => addItem({
                             id: product.id,
                             slug: product.slug,
@@ -88,7 +76,7 @@ export default function Page({ product }: Props) {
 
                             quantity: quantity,
                         })}
-                        disabled={!isStock}
+                        disabled={product.stock === 0}
                         >
                             Add to Cart
                         </Button>

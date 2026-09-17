@@ -111,23 +111,16 @@
         }
 
         &__badges {
-            @include flex();
-            row-gap: get-space(xs);
-            column-gap: get-space(7xl);
-            flex-wrap: wrap;
+            //
 
             @include breakpoint(laptop) {
                 grid-column-start: 2;
                 grid-row-start: 3;
 
+                justify-content: start !important;
+
                 margin-bottom: rem(-8);
             };
-
-            &--stock {
-                @include typography(overline);
-                color: var(--text-error);
-                text-transform: uppercase;
-            }
         }
 
         &__title {
