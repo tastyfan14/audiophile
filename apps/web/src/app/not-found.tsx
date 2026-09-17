@@ -1,7 +1,6 @@
 import cls from './not-found.module.scss'
-import { ROUTES } from '@/shared/config/constants'
-import Button from '@/shared/ui/Button'
 import MainLayout from '@/shared/ui/Layout/ui/MainLayout'
+import BackToHome from '@/features/BackNavigation/ui/BackToHome'
 
 export default function NotFound() {
     return (
@@ -11,14 +10,7 @@ export default function NotFound() {
             <h1 className={cls['not-found__title']}>Page not found</h1>
             <p className={cls['not-found__desc']}>{`The page you're looking for doesn't exist or has been moved.`}</p>
 
-            <Button
-            as='link'
-            href={ROUTES.home.route}
-            variant='secondary'
-            className={cls['not-found__button']}
-            >
-                Back to home
-            </Button>
+            <BackToHome variant='secondary' />
         </MainLayout>
     )
 }
