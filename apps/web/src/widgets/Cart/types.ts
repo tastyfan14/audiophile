@@ -1,7 +1,7 @@
 import type { ProductStockDto } from '@audiophile/shared'
 
 export type CartProps = {
-    stock: ProductStockDto[] | undefined
+    currentStock: ProductStockDto[] | undefined
 
     isLoading: boolean
     isFetching: boolean
