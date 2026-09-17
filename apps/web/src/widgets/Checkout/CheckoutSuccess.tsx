@@ -11,6 +11,7 @@ import { useState } from 'react'
 import { useEscapeKey } from '@/shared/lib/useEscapeKey'
 import { useCartStore } from '@/entities/cart/model/store'
 import BackToHome from '@/features/BackNavigation/ui/BackToHome'
+import { formatPrice } from '@/shared/lib/formatPrice'
 
 type CheckoutSuccessProps = {
     isOpen: boolean
@@ -93,7 +94,7 @@ export default function CheckoutSuccess({ isOpen, onClose, grandTotal }: Checkou
                             <p className={cls['checkout-success__items-total--price']}>
                                 ${' '}
                                 <strong>
-                                    {grandTotal.toLocaleString('en-US')}
+                                    {formatPrice(grandTotal)}
                                 </strong>
                             </p>
                         </div>
