@@ -15,6 +15,12 @@
         flex-wrap: wrap;
     };
 
+    &__stock {
+        @include typography(overline);
+        color: var(--text-error);
+        text-transform: uppercase;
+    }
+
     &__item {
         @include typography(overline);
         color: var(--text-accent-primary);

@@ -1,13 +1,16 @@
-import type { ProductBadge } from '../../model/types'
+import type { ProductBadgeProps } from '../../model/types'
 import cls from './ProductBadge.module.scss'
 
-type ProductBadgeProps = {
-    badges: ProductBadge[]
-}
-
-export default function ProductBadge({ badges }: ProductBadgeProps) {
+export default function ProductBadge({ badges, stock }: ProductBadgeProps) {
     return (
         <ul className={cls['product-badge']}>
+            {stock <= 50
+            ? (
+                <span className={cls['product-badge__stock']}>Only {stock} left</span>
+            ) : (
+                <span className={cls['product-badge__stock']}>Out of stock</span>
+            )}
+
             {badges.map((badge, index) => {
                 return (
                     <li
