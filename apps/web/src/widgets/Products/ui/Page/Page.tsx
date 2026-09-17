@@ -11,6 +11,7 @@ import ProductFeature from '../Feature/Feature'
 import ProductGallery from '../Gallery/Gallery'
 import ProductInclude from '../Include/Include'
 import type { ProductPageProps } from '../../model/types'
+import { formatPrice } from '@/shared/lib/formatPrice'
 
 export default function Page({ product }: ProductPageProps) {
     const [quantity, setQuantity] = useState(1)
@@ -38,9 +39,10 @@ export default function Page({ product }: ProductPageProps) {
 
                     <p className={cls['page-overview__desc']}>{product.desc}</p>
 
-                    <p className={cls['page-overview__price']}>$ 
+                    <p className={cls['page-overview__price']}>$
+                        {' '}
                         <strong>
-                            {product.price.toLocaleString('en-US')}
+                            {formatPrice(product.price)}
                         </strong>
                     </p>
 
