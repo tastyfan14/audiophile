@@ -1,11 +1,10 @@
 import ResponsiveImage from '@/shared/ui/ResponsiveImage'
 import cls from './Gallery.module.scss'
-import clsx from 'clsx'
 import type { ProductGalleryProps } from '../../model/types'
 
-export default function Gallery({ images, className }: ProductGalleryProps) {
+export default function Gallery({ images }: ProductGalleryProps) {
     return (
-        <div className={clsx(cls['gallery'], className)}>
+        <div className={cls.gallery}>
             {images.map((image) => {
                 return (
                     <ResponsiveImage
@@ -15,6 +14,7 @@ export default function Gallery({ images, className }: ProductGalleryProps) {
                     desktop={`/images/desktop/products/gallery-${image.desktop}`}
                     alt=''
                     className={cls['gallery__picture']}
+                    loading='lazy'
                     />
                 )
             })}
