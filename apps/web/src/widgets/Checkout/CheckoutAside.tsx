@@ -1,9 +1,10 @@
 import cls from './Checkout.module.scss'
 import clsx from 'clsx'
 import Button from '@/shared/ui/Button'
-import { SHIPPING } from '@/shared/config/constants'
 import Spinner from '@/shared/ui/Spinner'
 import SelectedProducts from '@/shared/ui/SelectedProducts'
+import { SHIPPING } from '@audiophile/shared'
+import { formatPrice } from '@/shared/lib/formatPrice'
 
 type CheckoutAsideProps = {
     total: number
@@ -24,13 +25,13 @@ export default function CheckoutAside({ total, vat, grandTotal, isSubmit }: Chec
 
             <dl className={cls['checkout-aside__dl']}>
                 <dt className={cls['checkout-aside__dt']}>Total</dt>
-                <dd className={cls['checkout-aside__dd']}>$ {total.toLocaleString('en-US')}</dd>
+                <dd className={cls['checkout-aside__dd']}>$ {formatPrice(total)}</dd>
 
                 <dt className={cls['checkout-aside__dt']}>Shipping</dt>
-                <dd className={cls['checkout-aside__dd']}>$ {SHIPPING.toLocaleString('en-US')}</dd>
+                <dd className={cls['checkout-aside__dd']}>$ {formatPrice(SHIPPING)}</dd>
 
                 <dt className={cls['checkout-aside__dt']}>VAT (Included)</dt>
-                <dd className={cls['checkout-aside__dd']}>$ {vat.toLocaleString('en-US')}</dd>
+                <dd className={cls['checkout-aside__dd']}>$ {formatPrice(vat)}</dd>
 
                 <dt className={cls['checkout-aside__dt']}>
                     <strong>
@@ -39,7 +40,7 @@ export default function CheckoutAside({ total, vat, grandTotal, isSubmit }: Chec
                 </dt>
                 <dd className={clsx(cls['checkout-aside__dd'], cls['checkout-aside__dd--accent'])}>
                     <strong>
-                        $ {grandTotal.toLocaleString('en-US')}
+                        $ {formatPrice(grandTotal)}
                     </strong>
                 </dd>
             </dl>
