@@ -3,19 +3,12 @@
 import cls from './ProductCard.module.scss'
 import clsx from 'clsx'
 import { ROUTES } from '@/shared/config/constants'
-import type { Product } from '@/entities/product/model/types'
+import type { ProductCardProps } from '@/entities/product/model/types'
 import ProductBadge from '../ProductBadge'
 import ResponsiveImage from '@/shared/ui/ResponsiveImage'
 import Button from '@/shared/ui/Button'
 
-type ProductCardProps = {
-    product: Pick<Product, 'id' | 'slug' | 'category' | 'badges' | 'image' | 'title' | 'desc' | 'stock'>
-    reverse?: boolean
-}
-
 export default function ProductCard({ product, reverse = false }: ProductCardProps) {
-    const isStock = product.stock > 0
-
     return (
         <li className={clsx(cls['product-card'], {[cls.reverse]: reverse})}>
             <ResponsiveImage
@@ -28,11 +21,7 @@ export default function ProductCard({ product, reverse = false }: ProductCardPro
             />
 
             <div className={cls['product-card__overview']}>
-                <div className={cls['product-card__overview--badges']}>
-                    {!isStock && <span className={cls['product-card__overview--stock']}>Out of stock</span>}
-
-                    <ProductBadge badges={product.badges} />
-                </div>
+                <ProductBadge badges={product.badges} stock={product.stock} />
 
                 <h2 className={cls['product-card__overview--title']}>{product.title}</h2>
                 <p className={cls['product-card__overview--desc']}>{product.desc}</p>
