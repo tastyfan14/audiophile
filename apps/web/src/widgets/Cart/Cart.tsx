@@ -11,12 +11,14 @@ import { ROUTES } from '@/shared/config/constants'
 import type { CartProps } from './types'
 import { useCartStore } from '@/entities/cart/model/store'
 import { useEscapeKey } from '@/shared/lib/useEscapeKey'
+import { calculateTotal } from '@/entities/cart/lib/calculations'
+import { formatPrice } from '@/shared/lib/formatPrice'
 
 export default function Cart({ isSyncing, isOpen, onClose, className }: CartProps) {
     useEscapeKey({ isOpen, onClose })
 
     const items = useCartStore(state => state.items)
-    const reduce = items.reduce((acc, item) => acc + item.price * item.quantity, 0)
+    const total = calculateTotal(items)
 
     return (
         <FocusTrap
@@ -73,7 +75,7 @@ export default function Cart({ isSyncing, isOpen, onClose, className }: CartProp
                                 {/* Cta */}
                                 <div className={cls['cart-content__cta']}>
                                     <h2 className={cls['cart-content__cta--title']}>TOTAL</h2>
-                                    <h3 className={cls['cart-content__cta--price']}>$ {reduce.toLocaleString('en-US')}</h3>
+                                    <h3 className={cls['cart-content__cta--price']}>$ {formatPrice(total)}</h3>
                                 </div>
 
                                 {/* Go to checkout */}
