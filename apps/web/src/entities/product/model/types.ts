@@ -54,6 +54,17 @@ export interface Product {
     stock: number
 }
 
+// components
+
+export type ProductBadgeProps = {
+    badges: ProductBadge[]
+} & Pick<Product, 'stock'>
+
+export type ProductCardProps = {
+    product: Pick<Product, 'id' | 'slug' | 'category' | 'badges' | 'image' | 'title' | 'desc' | 'stock'>
+    reverse?: boolean
+}
+
 // Home showcase
 
 export type ProductShowcaseVariants = (typeof PRODUCT_SHOWCASE_VARIANTS)[keyof typeof PRODUCT_SHOWCASE_VARIANTS]
