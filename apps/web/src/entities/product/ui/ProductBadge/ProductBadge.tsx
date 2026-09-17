@@ -5,12 +5,9 @@ import cls from './ProductBadge.module.scss'
 export default function ProductBadge({ badges, stock, className }: ProductBadgeProps) {
     return (
         <ul className={clsx(cls['product-badge'], className)}>
-            {stock <= 50
-            ? (
-                <span className={cls['product-badge__stock']}>Only {stock} left</span>
-            ) : (
-                <span className={cls['product-badge__stock']}>Out of stock</span>
-            )}
+            {stock <= 50 && stock !== 0 && <span className={cls['product-badge__stock']}>Only {stock} left</span>}
+
+            {stock === 0 && <span className={cls['product-badge__stock']}>Out of stock</span>}
 
             {badges.map((badge, index) => {
                 return (
