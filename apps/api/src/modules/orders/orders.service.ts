@@ -1,10 +1,8 @@
+import { SHIPPING, VAT_RATE } from '@audiophile/shared'
+import type { CheckoutCreateOrderDto } from '@audiophile/shared'
 import { prisma } from '../../shared/prisma.js'
-import type { CreateOrderDto } from './orders.dto.js'
 
-const SHIPPING = 50
-const VAT_RATE = 0.2
-
-export async function createOrder(data: CreateOrderDto) {
+export async function createOrder(data: CheckoutCreateOrderDto) {
     const { items } = data
 
     const productIds = items.map((item) => item.productId)
