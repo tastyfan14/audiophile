@@ -1,5 +1,3 @@
-'use client'
-
 import cls from './Hero.module.scss'
 import Button from '@/shared/ui/Button'
 import Container from '@/shared/ui/Layout/ui/Container'
