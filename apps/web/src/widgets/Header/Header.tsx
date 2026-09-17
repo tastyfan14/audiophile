@@ -15,7 +15,7 @@ import Container from '@/shared/ui/Layout/ui/Container'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { useCartStore } from '@/entities/cart/model/store'
-import { useSyncStock } from '@/shared/lib/useSyncStock'
+import { useProductsStock } from '@/shared/lib/useProductsStock'
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState<'burger' | 'cart' | null>(null)
@@ -26,16 +26,20 @@ export default function Header() {
 
     const items = useCartStore(state => state.items)
 
-    const { syncStock, isSyncing } = useSyncStock()
+    const {
+        data: stock,
+        isLoading,
+        isFetching,
+        isError,
+        refetch,
+    } = useProductsStock(items.map(item => item.id))
 
-    const handleSyncStock = async () => {
-        await syncStock(items.map(item => item.id))
-    }
-
-    const handleCartOpen = () => {
+    const handleCartOpen = async () => {
         setIsOpen(prev => prev === 'cart' ? null : 'cart')
 
-        handleSyncStock()
+        if (items.length > 0) {
+            await refetch()
+        }
     }
 
     return (
@@ -49,7 +53,8 @@ export default function Header() {
                     aria-label='Open menu'
                     aria-controls='burger'
                     aria-expanded={isOpen === 'burger'}
-                    onClick={() => setIsOpen(prev => prev === 'burger' ? null : 'burger')}>
+                    onClick={() => setIsOpen(prev => prev === 'burger' ? null : 'burger')}
+                    >
                         <IBurger />
                     </Button>
 
@@ -92,7 +97,10 @@ export default function Header() {
                     {isOpen === 'cart' && !isCheckout && (
                         <Container>
                             <Cart
-                            isSyncing={isSyncing}
+                            stock={stock}
+                            isLoading={isLoading}
+                            isFetching={isFetching}
+                            isError={isError}
                             isOpen={isOpen === 'cart'}
                             onClose={() => setIsOpen(null)}
                             />
