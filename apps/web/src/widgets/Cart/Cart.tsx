@@ -15,7 +15,7 @@ import { calculateTotal } from '@/entities/cart/lib/calculations'
 import { formatPrice } from '@/shared/lib/formatPrice'
 import CartEmpty from './CartEmpty'
 
-export default function Cart({ stock, isLoading, isFetching, isError, isOpen, onClose, className }: CartProps) {
+export default function Cart({ currentStock, isLoading, isFetching, isError, isOpen, onClose, className }: CartProps) {
     useEscapeKey({ isOpen, onClose })
 
     const items = useCartStore(state => state.items)
@@ -56,7 +56,7 @@ export default function Cart({ stock, isLoading, isFetching, isError, isOpen, on
                             </div>
 
                             {/* Here are the products themselves */}
-                            <SelectedProducts variant='cart' />
+                            <SelectedProducts currentStock={currentStock} variant='cart' />
 
                             {/* Cta */}
                             <div className={cls['cart-content__cta']}>
