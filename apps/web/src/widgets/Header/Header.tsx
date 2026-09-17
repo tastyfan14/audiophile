@@ -27,7 +27,7 @@ export default function Header() {
     const items = useCartStore(state => state.items)
 
     const {
-        data: stock,
+        data: currentStock,
         isLoading,
         isFetching,
         isError,
@@ -97,7 +97,7 @@ export default function Header() {
                     {isOpen === 'cart' && !isCheckout && (
                         <Container>
                             <Cart
-                            stock={stock}
+                            currentStock={currentStock}
                             isLoading={isLoading}
                             isFetching={isFetching}
                             isError={isError}
