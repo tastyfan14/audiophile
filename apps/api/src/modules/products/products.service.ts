@@ -1,4 +1,4 @@
-import type { ProductStockDto } from './products.dto.js'
+import type { ProductStockDto } from '@audiophile/shared'
 import { productDto, productStockDto } from './products.mapper.js'
 import { productsRepository } from './products.repository.js'
 
