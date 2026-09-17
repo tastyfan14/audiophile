@@ -1,5 +1,12 @@
+import type { ProductStockDto } from '@audiophile/shared'
+
 export type CartProps = {
-    isSyncing: boolean
+    stock: ProductStockDto[] | undefined
+
+    isLoading: boolean
+    isFetching: boolean
+    isError: boolean
+
     isOpen: boolean
     onClose: () => void
     className?: string
