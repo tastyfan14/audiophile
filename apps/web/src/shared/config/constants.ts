@@ -12,11 +12,6 @@ export const BREAKPOINTS = {
     PostMobile: 437, // Calculation formula: / 3, / 2, x 7 - 0.5
 } as const
 
-// checkout
-
-export const SHIPPING = 50
-export const VAR_RATE = 0.2
-
 // links
 
 export const SOCIAL_LINKS = {
