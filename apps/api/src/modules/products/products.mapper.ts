@@ -1,5 +1,5 @@
+import type { ProductDto, ProductStockDto } from '@audiophile/shared'
 import type { Prisma } from '../../../generated/prisma/browser.js'
-import type { ProductDto, ProductStockDto } from './products.dto.js'
 
 export type ProductWithRelations = Prisma.ProductGetPayload<{
     include: {
