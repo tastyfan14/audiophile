@@ -1,17 +1,10 @@
 import ProductCard from '@/entities/product/ui/ProductCard'
 import cls from './List.module.scss'
-import type { Product } from '@/entities/product/model/types'
+import type { ProductListProps } from '../../model/types'
 
-type Props = {
-    products: Product[]
-}
-
-export default async function List({ products }: Props) {
+export default async function List({ products }: ProductListProps) {
     return (
-        <ul
-        aria-label='Product list'
-        className={cls.list}
-        >
+        <ul className={cls.list} aria-label='Product list'>
             {products.map((product, index) => {
                 return (
                     <ProductCard
