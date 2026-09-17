@@ -38,7 +38,7 @@ export default function Cart({ stock, isLoading, isFetching, isError, isOpen, on
             ) : (
                 <div
                 id='cart'
-                className={clsx(cls.cart, cls['cart-content'], isWaiting && cls['cart-content--loading'])}
+                className={clsx(cls.cart, cls['cart-content'], isWaiting && cls['cart-content--loading'], className)}
                 role='dialog'
                 aria-modal='true'
                 >
