@@ -1,17 +1,31 @@
-import type { ProductFeature, ProductGallery, ProductInclude } from '@/entities/product/model/types'
-
-type Basic = {
-    className?: string
-}
+import type {
+    Product,
+    ProductFeature,
+    ProductGallery,
+    ProductInclude,
+    ProductRecommendation,
+} from '@/entities/product/model/types'
 
 export type ProductFeatureProps = {
     features: ProductFeature[]
-} & Basic
+}
 
 export type ProductIncludeProps = {
     includes: ProductInclude[]
-} & Basic
+}
 
 export type ProductGalleryProps = {
     images: ProductGallery[]
-} & Basic
+}
+
+export type ProductRecommendationProps = {
+    recommendations: ProductRecommendation[]
+}
+
+export type ProductPageProps = {
+    product: Product
+}
+
+export type ProductListProps = {
+    products: Product[]
+}
