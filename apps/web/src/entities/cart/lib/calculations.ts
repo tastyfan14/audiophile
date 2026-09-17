@@ -1,4 +1,4 @@
-import { SHIPPING, VAR_RATE } from '@/shared/config/constants'
+import { SHIPPING, VAT_RATE } from '@audiophile/shared'
 import type { CartItem } from '../model/types'
 
 export function calculateTotal(items: CartItem[]): number {
@@ -6,7 +6,7 @@ export function calculateTotal(items: CartItem[]): number {
 }
 
 export function calculateVat(total: number): number {
-    return (total * VAR_RATE)
+    return (total * VAT_RATE)
 }
 
 export function calculateGrandTotal(total: number): number {
