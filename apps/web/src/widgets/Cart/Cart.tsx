@@ -3,19 +3,19 @@
 import clsx from 'clsx'
 import cls from './Cart.module.scss'
 import Button from '@/shared/ui/Button'
+import Spinner from '@/shared/ui/Spinner'
+import SelectedProducts from '@/shared/ui/SelectedProducts/SelectedProducts'
+import RemoveFromCart from '@/features/RemoveFromCart/ui/RemoveFromCart'
 import { FocusTrap } from 'focus-trap-react'
 import { ROUTES } from '@/shared/config/constants'
 import type { CartProps } from './types'
 import { useCartStore } from '@/entities/cart/model/store'
 import { useEscapeKey } from '@/shared/lib/useEscapeKey'
-import Spinner from '@/shared/ui/Spinner'
-import SelectedProducts from '@/shared/ui/SelectedProducts/SelectedProducts'
 
 export default function Cart({ isSyncing, isOpen, onClose, className }: CartProps) {
     useEscapeKey({ isOpen, onClose })
 
     const items = useCartStore(state => state.items)
-    const clearCart = useCartStore(state => state.clearCart)
     const reduce = items.reduce((acc, item) => acc + item.price * item.quantity, 0)
 
     return (
@@ -63,13 +63,8 @@ export default function Cart({ isSyncing, isOpen, onClose, className }: CartProp
                                 {/* There's a product counter and a full cleaning button */}
                                 <div className={cls['cart-content__interactive']}>
                                     <h2 className={cls['cart-content__interactive--title']}>Cart ({items.length})</h2>
-
-                                    <Button
-                                    variant='additional'
-                                    className={cls['cart-content__interactive--button']}
-                                    onClick={clearCart}>
-                                        Remove all
-                                    </Button>
+                                    
+                                    <RemoveFromCart className={cls['cart-content__interactive--button']} />
                                 </div>
 
                                 {/* Here are the products themselves */}
