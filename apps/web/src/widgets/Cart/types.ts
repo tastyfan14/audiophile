@@ -11,3 +11,7 @@ export type CartProps = {
     onClose: () => void
     className?: string
 }
+
+export type CartEmptyProps = {
+    onClose: () => void
+}
