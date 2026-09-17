@@ -13,6 +13,7 @@ import { useCartStore } from '@/entities/cart/model/store'
 import { useEscapeKey } from '@/shared/lib/useEscapeKey'
 import { calculateTotal } from '@/entities/cart/lib/calculations'
 import { formatPrice } from '@/shared/lib/formatPrice'
+import CartEmpty from './CartEmpty'
 
 export default function Cart({ stock, isLoading, isFetching, isError, isOpen, onClose, className }: CartProps) {
     useEscapeKey({ isOpen, onClose })
@@ -33,26 +34,7 @@ export default function Cart({ stock, isLoading, isFetching, isError, isOpen, on
             {/* Checking the availability of items in the cart */}
             {items.length === 0
             ? (
-                <div
-                id='cart'
-                className={clsx(cls.cart, cls['cart-empty'], className)}
-                role='dialog'
-                aria-modal='true'
-                >
-                    <h2 className={cls['cart-empty__title']}>Your cart is empty</h2>
-
-                    <p className={cls['cart-empty__desc']}>Don’t wait, start shopping now.</p>
-
-                    <Button
-                    as='link'
-                    href={ROUTES.products.route}
-                    variant='secondary'
-                    className={cls['cart-empty__button']}
-                    onClick={onClose}
-                    >
-                        Shop Now
-                    </Button>
-                </div>
+                <CartEmpty onClose={onClose} />
             ) : (
                 <div
                 id='cart'
