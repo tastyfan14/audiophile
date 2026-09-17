@@ -1,11 +1,10 @@
-import clsx from 'clsx'
 import cls from './Include.module.scss'
 import type { ProductIncludeProps } from '../../model/types'
 
-export default function Include({ includes, className }: ProductIncludeProps) {
+export default function Include({ includes }: ProductIncludeProps) {
     return (
-        <div className={clsx(cls['include'], className)}>
-            <h2 className={cls['include__title']}>in the box</h2>
+        <div className={cls.include}>
+            <h2 className={cls['include__title']}>In the box</h2>
 
             <div className={cls['include__cards']}>
                 {includes.map((include) => {
