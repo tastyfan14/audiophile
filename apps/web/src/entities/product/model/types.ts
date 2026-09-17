@@ -58,6 +58,7 @@ export interface Product {
 
 export type ProductBadgeProps = {
     badges: ProductBadge[]
+    className?: string
 } & Pick<Product, 'stock'>
 
 export type ProductCardProps = {
