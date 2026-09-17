@@ -14,4 +14,9 @@
 
         @include space(margin, null, null, s4, null);
     };
+
+    &__state {
+        @include typography(body);
+        color: var(--text-paragraph);
+    }
 }
