@@ -39,12 +39,12 @@ export default function Page({ product }: ProductPageProps) {
 
                     <p className={cls['page-overview__desc']}>{product.desc}</p>
 
-                    <p className={cls['page-overview__price']}>$
+                    <data className={cls['page-overview__price']}>$
                         {' '}
                         <strong>
                             {formatPrice(product.price)}
                         </strong>
-                    </p>
+                    </data>
 
                     <div className={cls['page-overview__interactive']}>
                         <Counter
