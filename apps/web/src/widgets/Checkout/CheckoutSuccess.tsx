@@ -56,7 +56,7 @@ export default function CheckoutSuccess({ isOpen, onClose, grandTotal }: Checkou
                             {isShow
                                 ? (
                                     <>
-                                        <SelectedProducts variant='overlay' />
+                                        <SelectedProducts variant='overlay' currentStock={undefined} />
 
                                         {items.length > 1 && <div className={cls['checkout-success__items-voucher--line']} />}
 
@@ -70,7 +70,7 @@ export default function CheckoutSuccess({ isOpen, onClose, grandTotal }: Checkou
                                     </>
                                 ) : (
                                     <>
-                                        <SelectedProducts variant='first' />
+                                        <SelectedProducts variant='overlay--single' currentStock={undefined} />
 
                                         {items.length > 1 && <div className={cls['checkout-success__items-voucher--line']} />}
 
