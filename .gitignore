@@ -22,6 +22,10 @@ build/
 *.tsbuildinfo
 next-env.d.ts
 
+playwright-report/
+test-results/
+blob-report/
+
 coverage/
 .nyc_output/
 
