@@ -21,7 +21,7 @@ export default function CheckoutAside({ total, vat, grandTotal, isSubmit }: Chec
         >
             <h2 id='checkout-aside-title' className={cls['checkout-aside__title']}>SUMMARY</h2>
 
-            <SelectedProducts variant='summary' />
+            <SelectedProducts variant='summary' currentStock={undefined} />
 
             <dl className={cls['checkout-aside__dl']}>
                 <dt className={cls['checkout-aside__dt']}>Total</dt>
