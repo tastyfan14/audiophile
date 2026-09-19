@@ -34,6 +34,7 @@ export default function Checkout() {
     const methods = useForm<CheckoutSchema>({
         resolver: zodResolver(checkoutSchema),
         mode: 'onBlur',
+        shouldUnregister: true,
     })
 
     const {
