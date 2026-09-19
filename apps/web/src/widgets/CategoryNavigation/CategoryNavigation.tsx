@@ -1,3 +1,5 @@
+'use client'
+
 import IButtonRightArrow from '@/shared/assets/icons/IButtonRightArrow'
 import ResponsiveImage from '@/shared/ui/ResponsiveImage'
 import Button from '@/shared/ui/Button'
@@ -5,8 +7,11 @@ import clsx from 'clsx'
 import cls from './CategoryNavigation.module.scss'
 import clsButton from '@/shared/ui/Button/Button.module.scss'
 import { CATEGORY_NAVIGATION } from '@/shared/config/constants'
+import { useScrollToTop } from '@/shared/lib/useScrollToTop'
 
 export default function CategoryNavigation({ variant }: { variant: 'page' | 'menu' }) {
+    const scrollToTop = useScrollToTop()
+
     return (
         <nav
         className={clsx(cls['category-navigation'], cls[`category-navigation__${variant}`])}
@@ -19,6 +24,7 @@ export default function CategoryNavigation({ variant }: { variant: 'page' | 'men
                     as='link'
                     variant='additional'
                     href={category.route}
+                    onClick={(e) => scrollToTop(category.route, e)}
                     className={cls['category-navigation__card']}
                     >
                         <ResponsiveImage
