@@ -18,5 +18,15 @@
     &__state {
         @include typography(body);
         color: var(--text-paragraph);
+
+        @include space(margin, null, null, s1, null);
+
+        @include breakpoint(laptop) {
+            @include space(margin, null, null, s2, null);
+        };
+
+        @include breakpoint(desktop) {
+            @include space(margin, null, null, s4, null);
+        };
     }
 }
