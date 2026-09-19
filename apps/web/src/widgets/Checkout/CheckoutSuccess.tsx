@@ -88,8 +88,8 @@ export default function CheckoutSuccess({ isOpen, onClose, grandTotal }: Checkou
                             }
                         </div>
 
-                        <div className={cls['checkout-success__items-total']}>
-                            <h2 className={clsx(cls['checkout-success__items-total--title'], isShow && cls['checkout-success__items-total--centered'])}>GRAND TOTAL</h2>
+                        <div className={clsx(cls['checkout-success__items-total'], isShow && cls['checkout-success__items-total--centered'])}>
+                            <h2 className={cls['checkout-success__items-total--title']}>GRAND TOTAL</h2>
 
                             <p className={cls['checkout-success__items-total--price']}>
                                 ${' '}
