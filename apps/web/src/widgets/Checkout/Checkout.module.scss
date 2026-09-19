@@ -213,6 +213,8 @@
 
             // grand total
             &-total {
+                @include size(height, full);
+
                 background-color: var(--bg-secondary);
 
                 @include space(padding, xl, 3xl, 3xl, 3xl);
@@ -220,17 +222,23 @@
                 @include flex($direction: column, $gap: m3);
 
                 @include breakpoint(laptop) {
-                    @include space(padding, md, l3, xl, 5xl);
+                    @include space(padding, 0, l3, 0, 5xl);
 
                     @include flex($direction: column, $justify: center, $gap: m3);
                 };
 
                 @include breakpoint(desktop) {
-                    @include space(padding, l1, l2, l1, l0);
+                    @include space(padding, 0, l2, 0, l0);
                 };
 
                 &--centered {
-                    margin-top: auto;
+                    //
+
+                    @include breakpoint(laptop) {
+                        justify-content: end;
+
+                        @include space(padding, 0, l3, 5xl, 5xl);
+                    };
                 }
 
                 &--title {
