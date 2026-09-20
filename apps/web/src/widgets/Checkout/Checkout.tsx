@@ -7,6 +7,7 @@ import BackToPreviousPage from '@/features/BackNavigation/ui/BackToPreviousPage'
 import CheckoutAside from './CheckoutAside'
 import CheckoutEmpty from './CheckoutEmpty'
 import CheckoutSuccess from './CheckoutSuccess'
+import CheckoutError from './CheckoutError'
 import CheckoutBilling from './CheckoutBilling'
 import CheckoutShipping from './CheckoutShipping'
 import CheckoutPayment from './CheckoutPayment'
@@ -19,10 +20,12 @@ import { calculateTotal, calculateVat, calculateGrandTotal } from '@/entities/ca
 import { postCreateOrder } from '@/entities/checkout/api/postCreateOrder'
 import { useClearCartOnOrderComplete } from '@/features/Checkout/model/useClearCartOnOrderComplete'
 import { createOrderPayload } from '@/features/Checkout/model/createOrderPayload'
+import axios from 'axios'
 
 export default function Checkout() {
-    const [isOpen, setIsOpen] = useState<boolean>(false)
+    const [isOpen, setIsOpen] = useState<'success' | 'error' | null>(null)
     const [isOrderCompleted, setIsOrderCompleted] = useState<boolean>(false)
+    const [currentError, setCurrentError] = useState<number | null>(null)
 
     const items = useCartStore((state) => state.items)
     const clearCart = useCartStore((state) => state.clearCart)
@@ -44,25 +47,36 @@ export default function Checkout() {
     } = methods
 
     const onSubmit = async (data: CheckoutSchema) => {
-        await postCreateOrder(createOrderPayload(data, items))
+        try {
+            await postCreateOrder(createOrderPayload(data, items))
 
-        setIsOrderCompleted(true)
+            setIsOrderCompleted(true)
 
-        reset()
+            reset()
 
-        setIsOpen(true)
+            setIsOpen('success')
+        } catch (e) {
+            if (axios.isAxiosError(e)) {
+                setCurrentError(e.response?.status ?? 500)
+                setIsOpen('error')
+            } else {
+                setCurrentError(500)
+                setIsOpen('error')
+            }
+        }
     }
 
     useClearCartOnOrderComplete(isOrderCompleted) // hook
 
     const handleSuccessClose = () => {
-        setIsOpen(false)
+        setIsOpen('success')
         clearCart()
     }
 
     return (
         <section className={cls.checkout}>
-            <CheckoutSuccess isOpen={isOpen} onClose={handleSuccessClose} grandTotal={grandTotal} />
+            <CheckoutSuccess isOpen={isOpen === 'success'} onClose={handleSuccessClose} grandTotal={grandTotal} />
+            <CheckoutError isOpen={isOpen === 'error'} onClose={() => setIsOpen('error')} onRetry={handleSubmit(onSubmit)} status={currentError || undefined} />
 
             <BackToPreviousPage className={cls['checkout__button']} />
 
