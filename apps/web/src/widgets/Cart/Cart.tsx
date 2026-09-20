@@ -38,12 +38,12 @@ export default function Cart({ currentStock, isLoading, isFetching, isError, isO
             ) : (
                 <div
                 id='cart'
-                className={clsx(cls.cart, cls['cart-content'], isWaiting && cls['cart-content--loading'], className)}
+                className={clsx(cls.cart, cls['cart-content'], className)}
                 role='dialog'
                 aria-modal='true'
                 >
                     {isWaiting ? (
-                        <div role='status' aria-label='Loading'>
+                        <div role='status' aria-label='Loading' className={isWaiting ? cls['cart-content--loading'] : undefined}>
                             <Spinner />
                         </div>
                     ) : isError ? (
