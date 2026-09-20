@@ -31,9 +31,9 @@ export default function Page({ product }: ProductPageProps) {
                     preload
                     />
 
-                    {product.badges.length > 0 && (
+                    {/* {product.badges.length > 0 && ( */}
                         <ProductBadge badges={product.badges} stock={product.stock} className={cls['page-overview__badges']} />
-                    )}
+                    {/* // )} */}
 
                     <h1 className={cls['page-overview__title']}>{product.title}</h1>
 
