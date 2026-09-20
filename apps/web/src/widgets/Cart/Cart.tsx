@@ -43,9 +43,11 @@ export default function Cart({ currentStock, isLoading, isFetching, isError, isO
                 aria-modal='true'
                 >
                     {isWaiting ? (
-                        <Spinner />
+                        <div role='status' aria-label='Loading'>
+                            <Spinner />
+                        </div>
                     ) : isError ? (
-                        <p className={cls['cart-content--error']}>Failed to update product availability.</p>
+                        <p role='alert' className={cls['cart-content--error']}>Failed to update product availability.</p>
                     ) : (
                         <>
                             {/* There's a product counter and a full cleaning button */}
