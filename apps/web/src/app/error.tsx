@@ -1,7 +1,7 @@
 'use client'
 
 import cls from './error.module.scss'
-import Button from '@/shared/ui/Button'
+import TryAgain from '@/features/TryAgain/ui/TryAgain'
 import MainLayout from '@/shared/ui/Layout/ui/MainLayout'
 
 export default function Error({ reset }: { error: Error & { digest?: string }, reset: () => void }) {
@@ -12,13 +12,7 @@ export default function Error({ reset }: { error: Error & { digest?: string }, r
             <h1 className={cls['error__title']}>Something went wrong</h1>
             <p className={cls['error__desc']}>An unexpected error occurred.</p>
 
-            <Button
-            variant='secondary'
-            className={cls['error__button']}
-            onClick={() => reset()}
-            >
-                Try again
-            </Button>
+            <TryAgain variant='secondary' className={cls['error__button']} onRetry={() => reset()} />
         </MainLayout>
     )
 }
