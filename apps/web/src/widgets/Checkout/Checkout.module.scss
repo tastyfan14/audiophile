@@ -34,28 +34,18 @@
     }
 
     // common
-    &-empty, &-form, &-aside, &-success {
+    &-empty, &-form, &-aside, &-success, &-error {
         background-color: var(--bg-primary);
 
         border-radius: get-radius(3xs);
         overflow: hidden;
     }
 
-    &-success {
-        @include size(width, max-content, get-breakpoint(mobileIn), get-breakpoint(mobileIn));
-
+    &-error, &-success {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-
-        @include breakpoint(postMobile) {
-            @include size(width, max-content, 327, 377);
-        };
-
-        @include breakpoint(laptop) {
-            @include size(width, max-content, 540, 540);
-        };
 
         &__content {
             @include flex($direction: column, $gap: 3xl);
@@ -68,6 +58,55 @@
                 @include space(padding, l1, l1, l1, l1);
             };
         }
+    }
+
+    &-error {
+        @include size(width, max-content, get-breakpoint(mobileIn), get-breakpoint(mobileIn));
+
+        &__title {
+            @include typography(h2);
+            color: var(--text-secondary);
+            line-height: rem(28);
+            letter-spacing: rem(.96);
+            text-transform: uppercase;
+            text-align: center;
+
+            @include breakpoint(laptop) {
+                @include typography(h1);
+
+                margin-top: rem(-8);
+                margin-bottom: rem(-8);
+            };
+        }
+
+        &__desc {
+            @include typography(body);
+            color: var(--text-paragraph);
+            text-align: center;
+
+            margin-top: rem(-4);
+            margin-bottom: get-space(md);
+        }
+
+        &__interactive {
+            @include flex($direction: column, $gap: md);
+
+            & button {
+                @include size(width, full);
+            }
+        }
+    }
+
+    &-success {
+        @include size(width, max-content, get-breakpoint(mobileIn), get-breakpoint(mobileIn));
+
+        @include breakpoint(postMobile) {
+            @include size(width, max-content, 327, 377);
+        };
+
+        @include breakpoint(laptop) {
+            @include size(width, max-content, 540, 540);
+        };
 
         &__icon {
             //
