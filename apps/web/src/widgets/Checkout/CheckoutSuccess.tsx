@@ -40,16 +40,22 @@ export default function CheckoutSuccess({ isOpen, onClose, grandTotal }: Checkou
                 clickOutsideDeactivates: false,
             }}
             >
-                <div className={cls['checkout-success__content']}>
+                <div
+                role='dialog'
+                aria-modal='true'
+                aria-labelledby='checkout-success-title'
+                aria-describedby='checkout-success-desc'
+                className={cls['checkout-success__content']}
+                >
                     <IOrderConfirmation className={cls['checkout-success__icon']} />
 
-                    <h1 className={cls['checkout-success__title']}>
+                    <h1 id='checkout-success-title' className={cls['checkout-success__title']}>
                         THANK YOU
                         <br/>
                         FOR YOUR ORDER
                     </h1>
 
-                    <p className={cls['checkout-success__desc']}>You will receive an email confirmation shortly.</p>
+                    <p id='checkout-success-desc' className={cls['checkout-success__desc']}>You will receive an email confirmation shortly.</p>
 
                     <div className={cls['checkout-success__items']}>
                         <div className={cls['checkout-success__items-voucher']}>
