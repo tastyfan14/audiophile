@@ -3,8 +3,6 @@ import cors from 'cors'
 import ProductRouter from './modules/products/products.routes.js'
 import CheckoutRouter from './modules/orders/orders.routes.js'
 
-const PORT = process.env.PORT
-
 const app = express()
 
 app.use(
@@ -19,4 +17,4 @@ app.use(ProductRouter)
 
 app.use(CheckoutRouter)
 
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
+export default app
