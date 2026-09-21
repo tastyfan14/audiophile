@@ -69,7 +69,7 @@ export default function Checkout() {
     useClearCartOnOrderComplete(isOrderCompleted) // hook
 
     const handleSuccessClose = () => {
-        setIsOpen('success')
+        setIsOpen(null)
         clearCart()
     }
 
