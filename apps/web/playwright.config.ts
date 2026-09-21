@@ -19,37 +19,27 @@ export default defineConfig({
         trace: 'on-first-retry',
 
         screenshot: 'only-on-failure',
-
-        video: 'retain-on-failure',
     },
-
     projects: [
-        // Desktop
         {
             name: 'chromium',
-            use: { ...devices['Desktop Chrome'] },
+            use: {
+                ...devices['Desktop Chrome'],
+                channel: 'chrome',
+            },
         },
         {
-            name: 'firefox',
-            use: { ...devices['Desktop Firefox'] },
+            name: 'mobile-chrome',
+            use: {
+                ...devices['Pixel 5'],
+                channel: 'chrome',
+            },
         },
         {
             name: 'webkit',
-            use: { ...devices['Desktop Safari'] },
-        },
-
-        // Mobile
-        {
-            name: 'mobile-chrome',
-            use: { ...devices['Pixel 5'] },
-        },
-        {
-            name: 'mobile-safari',
-            use: { ...devices['iPhone 13'] },
-        },
-        {
-            name: 'mobile-safari',
-            use: { ...devices['iPhone XR'] },
+            use: {
+                ...devices['Desktop Safari'],
+            },
         },
     ],
 
