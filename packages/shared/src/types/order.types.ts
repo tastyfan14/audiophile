@@ -22,8 +22,8 @@ export type CheckoutOrderResponse = {
     shipping: number
     vat: number
     grandTotal: number
-    items: CheckoutCreateOrderItemDto & {
+    items: (CheckoutCreateOrderItemDto & {
         id: string
         price: number
-    }[]
+    })[]
 }
