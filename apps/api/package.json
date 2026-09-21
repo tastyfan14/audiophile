@@ -4,9 +4,9 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
+    "dev": "tsx watch --import ./src/instrumentation.ts src/server.ts",
     "build": "tsup",
-    "start": "node dist/server.js",
+    "start": "node --import ./instrumentation.mjs dist/server.js",
     "test": "vitest"
   },
   "prisma": {
@@ -17,6 +17,7 @@
     "@audiophile/shared": "workspace:*",
     "@prisma/adapter-pg": "^7.9.1",
     "@prisma/client": "^7.9.1",
+    "@sentry/node": "^10.75.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
