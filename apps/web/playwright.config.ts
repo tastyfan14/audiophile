@@ -35,12 +35,6 @@ export default defineConfig({
                 channel: 'chrome',
             },
         },
-        {
-            name: 'webkit',
-            use: {
-                ...devices['Desktop Safari'],
-            },
-        },
     ],
 
     webServer: {
