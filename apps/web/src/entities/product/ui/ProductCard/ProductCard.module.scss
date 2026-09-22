@@ -7,8 +7,6 @@
 .product-card {
     @include flex($direction: column, $align: center, $gap: 7xl);
 
-    overflow: hidden;
-
     @include breakpoint(desktop) {
         @include flex($direction: row, $justify: space-between, $align: center, $gap: l10);
     };
