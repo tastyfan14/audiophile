@@ -14,6 +14,11 @@
     position: relative;
     top: 0;
 
+    max-height: calc(100dvh - rem(200));
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+
     border-bottom-left-radius: get-radius(3xs);
     border-bottom-right-radius: get-radius(3xs);
 
