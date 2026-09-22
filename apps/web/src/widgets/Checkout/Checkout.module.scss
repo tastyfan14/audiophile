@@ -47,6 +47,11 @@
         left: 50%;
         transform: translate(-50%, -50%);
 
+        max-height: calc(100dvh - rem(100));
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+
         &__content {
             @include flex($direction: column, $gap: 3xl);
 
@@ -70,6 +75,9 @@
             letter-spacing: rem(.96);
             text-transform: uppercase;
             text-align: center;
+
+            margin-top: rem(8);
+            margin-bottom: rem(8);
 
             @include breakpoint(laptop) {
                 @include typography(h1);
