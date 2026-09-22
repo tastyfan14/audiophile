@@ -1,3 +1,7 @@
+// client url
+
+export const SITE_URL = 'https://audiophile-web-space.vercel.app'
+
 // tsx breakpoint
 
 export const BREAKPOINTS = {
