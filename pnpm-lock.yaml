@@ -1,4 +1,3 @@
----
 lockfileVersion: '9.0'
 
 importers:
@@ -155,7 +154,6 @@ snapshots:
       '@pnpm/exe.win32-arm64': 12.4.1
       '@pnpm/exe.win32-x64': 12.4.1
 
----
 lockfileVersion: '9.0'
 
 settings:
