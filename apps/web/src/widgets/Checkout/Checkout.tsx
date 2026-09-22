@@ -76,7 +76,7 @@ export default function Checkout() {
     return (
         <section className={cls.checkout}>
             <CheckoutSuccess isOpen={isOpen === 'success'} onClose={handleSuccessClose} grandTotal={grandTotal} />
-            <CheckoutError isOpen={isOpen === 'error'} onClose={() => setIsOpen('error')} onRetry={handleSubmit(onSubmit)} status={currentError || undefined} />
+            <CheckoutError isOpen={isOpen === 'error'} onClose={() => setIsOpen(null)} onRetry={handleSubmit(onSubmit)} status={currentError || undefined} />
 
             <BackToPreviousPage className={cls['checkout__button']} />
 

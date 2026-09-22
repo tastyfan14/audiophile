@@ -1,7 +1,7 @@
 'use client'
 
 import Overlay from '@/shared/ui/Overlay'
-import BackToHome from '@/features/BackNavigation/ui/BackToHome'
+import Button from '@/shared/ui/Button'
 import TryAgain from '@/features/TryAgain/ui/TryAgain'
 import { FocusTrap } from 'focus-trap-react'
 import cls from './Checkout.module.scss'
@@ -74,10 +74,10 @@ export default function CheckoutError({ isOpen, onClose, onRetry, status }: Chec
                         <div className={cls['checkout-error__interactive']}>
                             <TryAgain variant='primary' onRetry={onRetry} />
 
-                            <BackToHome variant='primary' />
+                            <Button variant='primary' onClick={onClose}>Close</Button>
                         </div>
                     ) : (
-                        <BackToHome variant='primary' />
+                        <Button variant='primary' onClick={onClose}>Close</Button>
                     )}
                 </div>
             </FocusTrap>
