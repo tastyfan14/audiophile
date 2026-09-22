@@ -15,6 +15,11 @@
     float: right;
     margin-top: get-space(3xl);
 
+    max-height: calc(100dvh - rem(200));
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+
     border-radius: get-radius(3xs);
 
     @include flex($direction: column, $gap: 3xl);
