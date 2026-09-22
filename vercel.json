@@ -1,0 +1,5 @@
+{
+  "buildCommand": "pnpm exec turbo build --filter=@audiophile/web",
+  "outputDirectory": "apps/web/.next",
+  "framework": "nextjs"
+}
