@@ -12,5 +12,8 @@
     "lint": {
       "outputs": []
     }
-  }
+  },
+  "globalPassThroughEnv": [
+    "SENTRY_AUTH_TOKEN"
+  ]
 }
