@@ -1,5 +1,6 @@
 {
-  "buildCommand": "pnpm exec turbo build --filter=@audiophile/web",
-  "outputDirectory": "apps/web/.next",
-  "framework": "nextjs"
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "buildCommand": "pnpm exec turbo build --filter=@audiophile/web...",
+  "outputDirectory": "apps/web/.next"
 }
