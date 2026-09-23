@@ -97,10 +97,6 @@
                 @include flex($justify: start, $align: center, $gap: 8xl);
             };
 
-            @include breakpoint(laptop) {
-                @include flex($justify: start, $align: center);
-            };
-
             @include breakpoint(desktop) {
                 justify-self: flex-end;
             };

@@ -66,7 +66,11 @@ export default function Header() {
                     <Button
                     variant='icon'
                     className={clsx(cls['header__cart'], cls['header__overlay--cart'], isCheckout && cls['header__cart--disabled'])}
-                    aria-label='Open cart'
+                    aria-label={
+                        items.length > 0
+                        ? `Open cart, ${items.length} ${items.length === 1 ? 'item' : 'items'}`
+                        : 'Open cart, empty'
+                    }
                     aria-controls='cart'
                     aria-expanded={isOpen === 'cart'}
                     onClick={handleCartOpen}

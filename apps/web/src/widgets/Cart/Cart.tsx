@@ -41,6 +41,7 @@ export default function Cart({ currentStock, isLoading, isFetching, isError, isO
                 className={clsx(cls.cart, cls['cart-content'], className)}
                 role='dialog'
                 aria-modal='true'
+                aria-labelledby='cart-title'
                 >
                     {isWaiting ? (
                         <div role='status' aria-label='Loading' className={isWaiting ? cls['cart-content--loading'] : undefined}>
@@ -52,7 +53,7 @@ export default function Cart({ currentStock, isLoading, isFetching, isError, isO
                         <>
                             {/* There's a product counter and a full cleaning button */}
                             <div className={cls['cart-content__interactive']}>
-                                <h2 className={cls['cart-content__interactive--title']}>Cart ({items.length})</h2>
+                                <h2 id='cart-title' className={cls['cart-content__interactive--title']}>Cart ({items.length})</h2>
                                 
                                 <RemoveFromCart className={cls['cart-content__interactive--button']} />
                             </div>
