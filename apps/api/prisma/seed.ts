@@ -1,8 +1,6 @@
 import data from './data/products.json' with { type: 'json' }
 import { prisma } from '../src/shared/prisma.js'
 
-const products = new Map<string, string>()
-
 async function main() {
     for (const category of data.categories) {
         await prisma.productCategory.create({
@@ -53,7 +51,7 @@ async function main() {
         })
 
         if (!product) {
-            throw new Error(`'Product not found:' ${slug}`)
+            throw new Error(`'Product not found: ${slug}'`)
         }
 
         await prisma.productFeature.createMany({
