@@ -31,12 +31,14 @@ test.describe('Checkout Error', () => {
 
         await page.getByRole('button', { name: /continue & pay/i }).click()
 
-        await expect(page.getByRole('alertdialog')).toBeVisible()
+        const alert = page.getByRole('alertdialog')
 
-        await expect(page.getByRole('heading', { name: /500/i })).toBeVisible()
+        await expect(alert).toBeVisible()
 
-        await expect(page.getByRole('button', { name: /try again/i })).toBeVisible()
+        await expect(alert.getByRole('heading', { name: /500/i })).toBeVisible()
 
-        await expect(page.getByRole('link', { name: /back to home/i })).toBeVisible()
+        await expect(alert.getByRole('button', { name: /try again/i })).toBeVisible()
+
+        await expect(alert.getByRole('button', { name: /close/i })).toBeVisible()
     })
 })
