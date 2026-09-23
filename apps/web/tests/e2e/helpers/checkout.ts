@@ -11,9 +11,9 @@ export async function addProductAndOpenCheckout(page: Page) {
 
         await expect(page).toHaveURL(ROUTES.headphones.route)
 
-        await page
-            .getByRole('link', { name: /see xx99 mark ii headphones product/i })
-            .click()
+        await expect(page.getByRole('link', { name: /see xx99 mark ii headphones product/i })).toBeVisible()
+
+        await page.getByRole('link', { name: /see xx99 mark ii headphones product/i }).click()
 
         await expect(page).toHaveURL(`${ROUTES.headphones.route}/xx99-mark-two`)
 
