@@ -4,7 +4,7 @@
 
 ## Preview
 
-### [Live Demo](https://audiophile-web-space.vercel.app) · [GitHub Repository](https://github.com/tastyfan14/audiophile)
+### [Live Demo](https://audiophile-web-space.vercel.app) · [GitHub Repository](https://github.com/tastyfan14/audiophile) · [Frontend Mentor](https://www.frontendmentor.io/solutions/full-stack-solution-built-with-nextjs-typescript-express-and-prisma-cjuuIBkQOJ)
 
 ### Desktop
 
